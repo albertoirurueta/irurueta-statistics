@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764575ca-bb2c-40b9-9afd-54123c62226f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/site/apt/index.apt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/build-info.properties" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/build-info.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/site/apt/index.apt" afterPath="$PROJECT_DIR$/src/site/apt/index.apt" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,41 +20,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="57" />
+            <state relative-caret-position="162">
+              <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
               <folding>
-                <marker date="1498681192000" expanded="false" signature="7603:7873" ph="..." />
-                <marker date="1498681192000" expanded="true" signature="8898:8940" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="8898:9029" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="8991:9029" ph="}" />
-                <marker date="1498681192000" expanded="true" signature="9084:9126" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="9084:9204" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="9166:9204" ph="}" />
-                <marker date="1498681192000" expanded="true" signature="9259:9301" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="9259:9379" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="9341:9379" ph="}" />
-                <marker date="1498681192000" expanded="true" signature="9865:9907" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="9865:9992" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="9954:9992" ph="}" />
-                <marker date="1498681192000" expanded="true" signature="10047:10089" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="10047:10163" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="10125:10163" ph="}" />
-                <marker date="1498681192000" expanded="true" signature="10218:10260" ph="{" />
-                <marker date="1498681192000" expanded="true" signature="10218:10334" ph="{...}" />
-                <marker date="1498681192000" expanded="true" signature="10296:10334" ph="}" />
+                <marker date="1498683899000" expanded="false" signature="7636:7906" ph="..." />
+                <marker date="1498683899000" expanded="true" signature="8931:8973" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="8931:9062" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="9024:9062" ph="}" />
+                <marker date="1498683899000" expanded="true" signature="9117:9159" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="9117:9237" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="9199:9237" ph="}" />
+                <marker date="1498683899000" expanded="true" signature="9292:9334" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="9292:9412" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="9374:9412" ph="}" />
+                <marker date="1498683899000" expanded="true" signature="9898:9940" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="9898:10025" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="9987:10025" ph="}" />
+                <marker date="1498683899000" expanded="true" signature="10080:10122" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="10080:10196" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="10158:10196" ph="}" />
+                <marker date="1498683899000" expanded="true" signature="10251:10293" ph="{" />
+                <marker date="1498683899000" expanded="true" signature="10251:10367" ph="{...}" />
+                <marker date="1498683899000" expanded="true" signature="10329:10367" ph="}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.apt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.apt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/site/apt/index.apt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="300">
+              <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -93,7 +92,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="392" />
+    <option name="x" value="-213" />
     <option name="y" value="23" />
     <option name="width" value="1094" />
     <option name="height" value="531" />
@@ -436,7 +435,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="392" y="23" width="1094" height="531" extended-state="0" />
+    <frame x="-213" y="23" width="1094" height="531" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -481,39 +480,39 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/site/apt/index.apt">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="162">
+          <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+          <folding>
+            <marker date="1498683899000" expanded="false" signature="7636:7906" ph="..." />
+            <marker date="1498683899000" expanded="true" signature="8931:8973" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="8931:9062" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="9024:9062" ph="}" />
+            <marker date="1498683899000" expanded="true" signature="9117:9159" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="9117:9237" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="9199:9237" ph="}" />
+            <marker date="1498683899000" expanded="true" signature="9292:9334" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="9292:9412" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="9374:9412" ph="}" />
+            <marker date="1498683899000" expanded="true" signature="9898:9940" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="9898:10025" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="9987:10025" ph="}" />
+            <marker date="1498683899000" expanded="true" signature="10080:10122" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="10080:10196" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="10158:10196" ph="}" />
+            <marker date="1498683899000" expanded="true" signature="10251:10293" ph="{" />
+            <marker date="1498683899000" expanded="true" signature="10251:10367" ph="{...}" />
+            <marker date="1498683899000" expanded="true" signature="10329:10367" ph="}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/site/apt/index.apt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="57" />
-          <folding>
-            <marker date="1498681192000" expanded="false" signature="7603:7873" ph="..." />
-            <marker date="1498681192000" expanded="true" signature="8898:8940" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="8898:9029" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="8991:9029" ph="}" />
-            <marker date="1498681192000" expanded="true" signature="9084:9126" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="9084:9204" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="9166:9204" ph="}" />
-            <marker date="1498681192000" expanded="true" signature="9259:9301" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="9259:9379" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="9341:9379" ph="}" />
-            <marker date="1498681192000" expanded="true" signature="9865:9907" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="9865:9992" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="9954:9992" ph="}" />
-            <marker date="1498681192000" expanded="true" signature="10047:10089" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="10047:10163" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="10125:10163" ph="}" />
-            <marker date="1498681192000" expanded="true" signature="10218:10260" ph="{" />
-            <marker date="1498681192000" expanded="true" signature="10218:10334" ph="{...}" />
-            <marker date="1498681192000" expanded="true" signature="10296:10334" ph="}" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -32,6 +32,12 @@ Set up dependencies
         <repository>
             <id>com.irurueta</id>
             <url>http://s3.amazonaws.com/artifacts.irurueta.com/snapshot</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
         ...
     </repositories>
