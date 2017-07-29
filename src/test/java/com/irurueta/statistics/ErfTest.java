@@ -18,27 +18,27 @@ import static org.junit.Assert.*;
 
 public class ErfTest {
     
-    public static final double ABSOLUTE_ERROR = 1e-6;
+    private static final double ABSOLUTE_ERROR = 1e-6;
     
-    public static final double MIN_RANDOM_VALUE = -100.0;
-    public static final double MAX_RANDOM_VALUE = 100.0;
+    private static final double MIN_RANDOM_VALUE = -100.0;
+    private static final double MAX_RANDOM_VALUE = 100.0;
     
-    public ErfTest() {}
+    public ErfTest() { }
     
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() { }
     
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() { }
     
     @Before
-    public void setUp() {}
+    public void setUp() { }
     
     @After
-    public void tearDown() {}
+    public void tearDown() { }
 
     @Test
-    public void testErf(){
+    public void testErf() {
         assertEquals(Erf.erf(0.0), 0.0, ABSOLUTE_ERROR);
         assertEquals(Erf.erf(Double.POSITIVE_INFINITY), 1.0, ABSOLUTE_ERROR);
         assertEquals(Erf.erf(Double.MAX_VALUE), 1.0, ABSOLUTE_ERROR);

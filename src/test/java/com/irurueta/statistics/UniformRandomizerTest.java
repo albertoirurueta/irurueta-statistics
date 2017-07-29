@@ -15,34 +15,32 @@ import org.junit.*;
 
 public class UniformRandomizerTest {
     
-    public static final int NUM_SAMPLES = 1000000;
-    public static final double RELATIVE_ERROR = 0.05;
-    public static final double BIG_RELATIVE_ERROR = 0.7;
+    private static final int NUM_SAMPLES = 1000000;
+    private static final double RELATIVE_ERROR = 0.05;
+    private static final double BIG_RELATIVE_ERROR = 0.7;
+    private static final double ABSOLUTE_ERROR = 0.01;
     
-    public static final int MIN_VALUE = 1;
-    public static final int MAX_VALUE = 100;
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 100;
+
+    private static final int LENGTH = 100;
     
-    public UniformRandomizerTest() {
-    }
+    public UniformRandomizerTest() { }
 
     @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
+    public static void setUpClass() throws Exception { }
 
     @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    public static void tearDownClass() throws Exception { }
     
     @Before
-    public void setUp() {
-    }
+    public void setUp() { }
     
     @After
-    public void tearDown() {
-    }
+    public void tearDown() { }
     
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         UniformRandomizer randomizer;
         
         randomizer = new UniformRandomizer(new Random());
@@ -53,15 +51,15 @@ public class UniformRandomizerTest {
         
         //Force NullPointerException
         randomizer = null;
-        try{
+        try {
             randomizer = new UniformRandomizer(null);
             fail("NullPointerException was expected but not thrown");
-        }catch(NullPointerException e){}
+        } catch (NullPointerException ignore) { }
         assertNull(randomizer);
     }
     
     @Test
-    public void testNextBoolean(){
+    public void testNextBoolean() {
         
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
@@ -74,7 +72,7 @@ public class UniformRandomizerTest {
 
         //we assign false = 0.0 and true = 1.0
         double sum = 0.0, sqrSum = 0.0, randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             if(randomizer.nextBoolean()) randomValue = 1.0;
             else randomValue = 0.0;
             
@@ -83,7 +81,7 @@ public class UniformRandomizerTest {
         }
         
         double estimatedMeanValue = sum / (double)NUM_SAMPLES;
-	double estimatedVariance = (sqrSum - (double)NUM_SAMPLES *
+        double estimatedVariance = (sqrSum - (double)NUM_SAMPLES *
                 estimatedMeanValue * estimatedMeanValue) / 
                 ((double)NUM_SAMPLES - 1.0);
 
@@ -93,49 +91,92 @@ public class UniformRandomizerTest {
         assertEquals(variance, estimatedVariance, 
                 estimatedVariance * BIG_RELATIVE_ERROR);
     }
-    
-    /*
+
     @Test
-    public void testFillWithBooleans(){
-        //TODO: make test
+    public void testFillWithBooleans() {
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        boolean[] array = new boolean[LENGTH];
+        int falseCounter = 0, trueCounter = 0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            randomizer.fill(array);
+
+            for(int j = 0; j < LENGTH; j++) {
+                if (array[j]) trueCounter++;
+                else falseCounter++;
+            }
+        }
+
+        //check that both true and false are equally probable
+        assertEquals((double)trueCounter / (double)(NUM_SAMPLES*LENGTH), 0.5,
+                ABSOLUTE_ERROR);
+        assertEquals((double)falseCounter / (double)(NUM_SAMPLES*LENGTH), 0.5,
+                ABSOLUTE_ERROR);
     }
-    */
-    
-    /*
+
     @Test
-    public void testNextBooleans(){
-        //TODO: make test
+    public void testNextBooleans() {
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        boolean[] array;
+        int falseCounter = 0, trueCounter = 0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            array = randomizer.nextBooleans(LENGTH);
+
+            for (int j = 0; j < LENGTH; j++) {
+                if (array[j]) trueCounter++;
+                else falseCounter++;
+            }
+        }
+
+        //check that both true and false are equally probable
+        assertEquals((double)trueCounter / (double)(NUM_SAMPLES*LENGTH), 0.5,
+                ABSOLUTE_ERROR);
+        assertEquals((double)falseCounter / (double)(NUM_SAMPLES*LENGTH), 0.5,
+                ABSOLUTE_ERROR);
     }
-    */
     
     @Test
-    public void testNextInt(){
+    public void testNextInt() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         int randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextInt();
             assertTrue(randomValue < Integer.MAX_VALUE && 
                     randomValue > -Integer.MAX_VALUE);
         }                
     }
-    
-    /*
+
     @Test
-    public void testFillWithInts(){
-        //TODO: make test
+    public void testFillWithIntegers() {
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array = new int[LENGTH];
+        randomizer.fill(array);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Integer.MAX_VALUE &&
+                    array[i] > -Integer.MAX_VALUE);
+        }
     }
-    */
-    
-    /*
+
     @Test
-    public void testNextInts(){
-        //TODO: make test
+    public void testNextInts() {
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array = randomizer.nextInts(LENGTH);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Integer.MAX_VALUE &&
+                    array[i] > -Integer.MAX_VALUE);
+        }
     }
-    */
     
     @Test
-    public void testNextIntWithMaxValue(){
+    public void testNextIntWithMaxValue() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -146,7 +187,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         int randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextInt(MAX_VALUE);
             assertTrue(randomValue >= 0);
             assertTrue(randomValue < MAX_VALUE);
@@ -168,28 +209,108 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextInt(-MAX_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
-    
-    /*
+
     @Test
-    public void testFillWithIntsAndMaxValue(){
-        //TODO: make test
+    public void testFillWithIntegersAndMaxValue(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array = new int[LENGTH];
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            randomizer.fill(array, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextIntsWithMaxValue(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array;
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            array = randomizer.nextInts(LENGTH, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextInts(LENGTH, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
+        try {
+            randomizer.nextInts(-LENGTH, MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testNextIntWithRange(){
+    public void testNextIntWithRange() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = MIN_VALUE;
@@ -200,7 +321,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         int randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextInt(MIN_VALUE, MAX_VALUE);
             assertTrue(randomValue >= MIN_VALUE);
             assertTrue(randomValue < MAX_VALUE);
@@ -222,54 +343,141 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextInt(MAX_VALUE, MIN_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }
-    
-    /*
+
     @Test
-    public void testFillWithIntsAndRange(){
-        //TODO: make test
+    public void testFillWithIntegersAndRange(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array = new int[LENGTH];
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            randomizer.fill(array, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextIntsWithRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        int[] array;
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            array = randomizer.nextInts(LENGTH, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextInts(LENGTH, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testNextLong(){
+    public void testNextLong() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         long randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextLong();
             assertTrue(randomValue < Long.MAX_VALUE && 
                     randomValue > -Long.MAX_VALUE);
         }                
     }
-    
-    /*
+
     @Test
     public void testFillWithLongs(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array = new long[LENGTH];
+        randomizer.fill(array);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Long.MAX_VALUE &&
+                    array[i] > -Long.MAX_VALUE);
+        }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextLongs(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array = randomizer.nextLongs(LENGTH);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Long.MAX_VALUE &&
+                    array[i] > -Long.MAX_VALUE);
+        }
     }
-    */
     
     @Test
-    public void testNextLongWithMaxValue(){
+    public void testNextLongWithMaxValue() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -280,7 +488,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         long randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextLong(MAX_VALUE);
             assertTrue(randomValue >= 0);
             assertTrue(randomValue < MAX_VALUE);
@@ -302,28 +510,104 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextLong(-MAX_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }
-    
-    /*
+
     @Test
     public void testFillWithLongsAndMaxValue(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array = new long[LENGTH];
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            randomizer.fill(array, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextLongsWithMaxValue(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array;
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            array = randomizer.nextLongs(LENGTH, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextLongs(LENGTH, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testNextLongWithRange(){
+    public void testNextLongWithRange() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = MIN_VALUE;
@@ -334,7 +618,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         long randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextLong(MIN_VALUE, MAX_VALUE);
             assertTrue(randomValue >= MIN_VALUE);
             assertTrue(randomValue < MAX_VALUE);
@@ -356,28 +640,102 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextLong(MAX_VALUE, MIN_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }
-    
-    /*
+
     @Test
     public void testFillWithLongsAndRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array = new long[LENGTH];
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            randomizer.fill(array, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextLongsWithRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        long[] array;
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            array = randomizer.nextLongs(LENGTH, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextLongs(LENGTH, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testNextFloat(){
+    public void testNextFloat() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -388,7 +746,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         float randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextFloat();
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
@@ -409,23 +767,36 @@ public class UniformRandomizerTest {
         assertEquals(variance, estimatedVariance,
                 estimatedVariance * RELATIVE_ERROR);        
     }    
-    
-    /*
+
     @Test
     public void testFillWithFloats(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array = new float[LENGTH];
+        randomizer.fill(array);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Float.MAX_VALUE &&
+                    array[i] > -Float.MAX_VALUE);
+        }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextFloats(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array = randomizer.nextFloats(LENGTH);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Float.MAX_VALUE &&
+                    array[i] > -Float.MAX_VALUE);
+        }
     }
-    */
     
     @Test
-    public void testNextFloatWithMaxValue(){
+    public void testNextFloatWithMaxValue() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -436,7 +807,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         float randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextFloat(MAX_VALUE);
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
@@ -458,28 +829,104 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextFloat(-MAX_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     } 
-    
-    /*
-    @Test
-    public void testFillWithFloatsAndMaxValue(){
-        //TODO: make test
-    }
-    */
-    
-    /*
-    @Test
-    public void testNextFloatsWithMaxValue(){
-        //TODO: make test
-    }
-    */
 
     @Test
-    public void testNextFloatWithRange(){
+    public void testFillWithFloatsAndMaxValue(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array = new float[LENGTH];
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            randomizer.fill(array, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
+    }
+
+    @Test
+    public void testNextFloatsWithMaxValue(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array;
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            array = randomizer.nextFloats(LENGTH, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextFloats(LENGTH, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
+    }
+
+    @Test
+    public void testNextFloatWithRange() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = MIN_VALUE;
@@ -490,7 +937,7 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         float randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextFloat(MIN_VALUE, MAX_VALUE);
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
@@ -512,28 +959,102 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextFloat(MAX_VALUE, MIN_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }    
-    
-    /*
+
     @Test
     public void testFillFloatsWithRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array = new float[LENGTH];
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            randomizer.fill(array, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextFloatsWithRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        float[] array;
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            array = randomizer.nextFloats(LENGTH, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += (double)array[j];
+                sqrSum += (double)array[j] * (double)array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextFloats(LENGTH, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testNextDouble(){
+    public void testNextDouble() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -544,13 +1065,13 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         double randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextDouble();
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
             
-            sum += (double)randomValue;
-            sqrSum += (double)randomValue * (double)randomValue;
+            sum += randomValue;
+            sqrSum += randomValue * randomValue;
         }
         
         double estimatedMeanValue = sum / (double)NUM_SAMPLES;
@@ -565,23 +1086,36 @@ public class UniformRandomizerTest {
         assertEquals(variance, estimatedVariance,
                 estimatedVariance * RELATIVE_ERROR);
     }    
-    
-    /*
+
     @Test
     public void testFillWithDoubles(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array = new double[LENGTH];
+        randomizer.fill(array);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Double.MAX_VALUE &&
+                    array[i] > -Double.MAX_VALUE);
+        }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextDoubles(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array = randomizer.nextDoubles(LENGTH);
+
+        //check correctness
+        for (int i = 0; i < LENGTH; i++) {
+            assertTrue(array[i] < Float.MAX_VALUE &&
+                    array[i] > -Float.MAX_VALUE);
+        }
     }
-    */
     
     @Test
-    public void testNextDoubleWithMaxValue(){
+    public void testNextDoubleWithMaxValue() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = 0.0;
@@ -592,13 +1126,13 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         double randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextDouble(MAX_VALUE);
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
             
-            sum += (double)randomValue;
-            sqrSum += (double)randomValue * (double)randomValue;
+            sum += randomValue;
+            sqrSum += randomValue * randomValue;
         }
         
         double estimatedMeanValue = sum / (double)NUM_SAMPLES;
@@ -614,28 +1148,104 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextDouble(-MAX_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }    
-    
-    /*
-    @Test
-    public void testFillWithDoublesAndMaxValue(){
-        //TODO: make test
-    }
-    */
-    
-    /*
-    @Test
-    public void testNextDoublesWithMaxValue(){
-        //TODO: make test
-    }
-    */
 
     @Test
-    public void testNextDoubleWithRange(){
+    public void testFillWithDoublesAndMaxValue(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array = new double[LENGTH];
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            randomizer.fill(array, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += array[j];
+                sqrSum += array[j] * array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
+    }
+
+    @Test
+    public void testNextDoublesWithMaxValue(){
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array;
+
+        double minValue = 0.0;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+
+            array = randomizer.nextDoubles(LENGTH, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += array[j];
+                sqrSum += array[j] * array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextDoubles(LENGTH, -MAX_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
+    }
+
+    @Test
+    public void testNextDoubleWithRange() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         
         double minValue = MIN_VALUE;
@@ -646,13 +1256,13 @@ public class UniformRandomizerTest {
         
         double sum = 0.0, sqrSum = 0.0;
         double randomValue;
-        for(int i = 0; i < NUM_SAMPLES; i++){
+        for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextDouble(MIN_VALUE, MAX_VALUE);
             assertTrue(randomValue >= minValue);
             assertTrue(randomValue < maxValue);
             
-            sum += (double)randomValue;
-            sqrSum += (double)randomValue * (double)randomValue;
+            sum += randomValue;
+            sqrSum += randomValue * randomValue;
         }
         
         double estimatedMeanValue = sum / (double)NUM_SAMPLES;
@@ -668,34 +1278,108 @@ public class UniformRandomizerTest {
                 estimatedVariance * RELATIVE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             randomizer.nextDouble(MAX_VALUE, MIN_VALUE);
             fail("IllegalArgumentException was expected but not thrown");
-        }catch(IllegalArgumentException e){}        
+        } catch (IllegalArgumentException ignore) { }
     }     
-    
-    /*
+
     @Test
     public void testFillWithDoublesAndRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array = new double[LENGTH];
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            randomizer.fill(array, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += array[j];
+                sqrSum += array[j] * array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.fill(array, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
-    
-    /*
+
     @Test
     public void testNextDoublesWithRange(){
-        //TODO: make test
+        UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        double[] array;
+
+        double minValue = MIN_VALUE;
+        double maxValue = MAX_VALUE;
+
+        double meanValue = 0.5 * (minValue + maxValue);
+        double variance = (maxValue - minValue) * (maxValue - minValue) / 12.0;
+
+        double sum = 0.0, sqrSum = 0.0;
+        for (int i = 0; i < NUM_SAMPLES; i++) {
+            array = randomizer.nextDoubles(LENGTH, MIN_VALUE, MAX_VALUE);
+
+            for (int j = 0; j < LENGTH; j++) {
+                assertTrue(array[j] >= 0);
+                assertTrue(array[j] < MAX_VALUE);
+
+                sum += array[j];
+                sqrSum += array[j] * array[j];
+            }
+        }
+
+        double estimatedMeanValue = sum / (double)(NUM_SAMPLES * LENGTH);
+        double estimatedVariance = (sqrSum - (double)(NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) /
+                ((double)(NUM_SAMPLES * LENGTH) - 1.0);
+
+        //Check correctness of results by checking against the expected mean
+        //and variance of a uniform distribution
+        assertEquals(meanValue, estimatedMeanValue,
+                estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance,
+                estimatedVariance * RELATIVE_ERROR);
+
+        //Force IllegalArgumentException
+        try {
+            randomizer.nextDoubles(LENGTH, MAX_VALUE, MIN_VALUE);
+            fail("IllegalArgumentException was expected but not thrown");
+        } catch (IllegalArgumentException ignore) { }
     }
-    */
     
     @Test
-    public void testGetType(){
+    public void testGetType() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
     }
     
     @Test
-    public void testGetSetInternalRandomizer(){
+    public void testGetSetInternalRandomizer() {
         Random random = new Random();
         UniformRandomizer randomizer = new UniformRandomizer(random);
         
@@ -709,14 +1393,14 @@ public class UniformRandomizerTest {
         assertSame(random, randomizer.getInternalRandom());
         
         //Force NullPointerException
-        try{
+        try {
             randomizer.setInternalRandom(null);
             fail("NullPointerException expected but not thrown");
-        }catch(NullPointerException e){}        
+        } catch (NullPointerException ignore) { }
     }
     
     @Test
-    public void testSetSeed(){
+    public void testSetSeed() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         long seed = 0;
         randomizer.setSeed(seed);

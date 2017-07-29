@@ -29,7 +29,7 @@ public class NormalDist {
      * Constructor. Initializes a Gaussian distribution with zero mean and
      * unitary standard deviation (i.e. N(0,1)).
      */
-    public NormalDist(){
+    public NormalDist() {
         mMu = 0.0;
         mSig = 1.0;
     }
@@ -42,7 +42,7 @@ public class NormalDist {
      * or negative.
      */
     public NormalDist(double mu, double sig) 
-            throws IllegalArgumentException{
+            throws IllegalArgumentException {
         setStandardDeviation(sig);
         setMean(mu);
     }
@@ -51,7 +51,7 @@ public class NormalDist {
      * Gets mean value of Gaussian distribution.
      * @return mean value of Gaussian distribution.
      */
-    public double getMean(){
+    public double getMean() {
         return mMu;
     }
     
@@ -59,7 +59,7 @@ public class NormalDist {
      * Sets mean value of Gaussian distribution.
      * @param mu mean value of Gaussian distribution.
      */
-    public final void setMean(double mu){
+    public final void setMean(double mu) {
         mMu = mu;
     }
     
@@ -67,7 +67,7 @@ public class NormalDist {
      * Gets standard deviation of Gaussian distribution.
      * @return standard deviation of Gaussian distribution.
      */
-    public double getStandardDeviation(){
+    public double getStandardDeviation() {
         return mSig;
     }
     
@@ -78,8 +78,8 @@ public class NormalDist {
      * or negative.
      */
     public final void setStandardDeviation(double sig) 
-            throws IllegalArgumentException{
-        if(sig <= 0.0){
+            throws IllegalArgumentException {
+        if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
         }
@@ -101,7 +101,7 @@ public class NormalDist {
      * negative.
      */
     public void setVariance(double variance) throws IllegalArgumentException {
-        if(variance <= 0.0) {
+        if (variance <= 0.0) {
             throw new IllegalArgumentException(
                     "variance must be greater than zero");
         }
@@ -120,8 +120,8 @@ public class NormalDist {
      * or negative.
      */
     public static double p(double x, double mu, double sig) 
-            throws IllegalArgumentException{
-        if(sig <= 0.0){
+            throws IllegalArgumentException {
+        if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
         }
@@ -137,7 +137,7 @@ public class NormalDist {
      * @return evaluation of p.d.f.
      */
     public double p(double x) {
-	return internalP(x, mMu, mSig);
+        return internalP(x, mMu, mSig);
     }
     
     /**
@@ -155,8 +155,8 @@ public class NormalDist {
      * or negative.
      */
     public static double cdf(double x, double mu, double sig) 
-            throws IllegalArgumentException{
-        if(sig <= 0.0){
+            throws IllegalArgumentException {
+        if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
         }
@@ -177,7 +177,7 @@ public class NormalDist {
      * @return evaluation of c.d.f.
      */
     public double cdf(double x) {
-	return internalCdf(x, mMu, mSig);
+        return internalCdf(x, mMu, mSig);
     }
     
     /**
@@ -196,8 +196,8 @@ public class NormalDist {
      * or negative, or if provided probability value is not between 0.0 and 1.0.
      */
     public static double invcdf(double p, double mu, double sig)
-            throws IllegalArgumentException{
-        if(sig <= 0.0){
+            throws IllegalArgumentException {
+        if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
         }
@@ -218,7 +218,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided probability value is not 
      * between 0.0 and 1.0.
      */
-    public double invcdf(double p) throws IllegalArgumentException{
+    public double invcdf(double p) throws IllegalArgumentException {
         return internalInvcdf(p, mMu, mSig);
     }
     
@@ -233,8 +233,8 @@ public class NormalDist {
      * or negative.
      */
     public static double mahalanobisDistance(double x, double mu, double sig)
-            throws IllegalArgumentException{
-        if(sig <= 0.0){
+            throws IllegalArgumentException {
+        if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
         }
@@ -248,7 +248,7 @@ public class NormalDist {
      * @param x point where Mahalanobis distance is evaluated.
      * @return Mahalanobis distance of provided point respect to current mean.
      */
-    public double mahalanobisDistance(double x){
+    public double mahalanobisDistance(double x) {
         return internalMahalanobisDistance(x, mMu, mSig);
     }
 
@@ -264,7 +264,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    private static double internalP(double x, double mu, double sig){
+    private static double internalP(double x, double mu, double sig) {
         return (0.398942280401432678 / sig) * Math.exp(-0.5 * 
                 Math.pow((x - mu) / sig, 2.0));
     }
@@ -284,7 +284,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    protected static double internalCdf(double x, double mu, double sig){
+    private static double internalCdf(double x, double mu, double sig) {
         return 0.5 * Erf.erfc(-0.707106781186547524 * (x - mu) / sig);
     }
     
@@ -304,13 +304,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided probability value is not 
      * between 0.0 and 1.0.
      */    
-    protected static double internalInvcdf(double p, double mu, double sig)
-            throws IllegalArgumentException{
-	if (p <= 0.0 || p >= 1.0){
+    private static double internalInvcdf(double p, double mu, double sig)
+            throws IllegalArgumentException {
+        if (p <= 0.0 || p >= 1.0) {
             throw new IllegalArgumentException(
                     "probability value must be between 0.0 and 1.0");
         }
-	return -1.41421356237309505 * sig * Erf.inverfc(2.0 * p) + mu;        
+        return -1.41421356237309505 * sig * Erf.inverfc(2.0 * p) + mu;
     }
     
     /**
@@ -322,7 +322,7 @@ public class NormalDist {
      * @return Mahalanobis distance of provided point respect to mean.
      */
     private static double internalMahalanobisDistance(double x, double mu, 
-            double sig){
+            double sig) {
         return Math.abs(x - mu) / sig;
     }
             
@@ -441,13 +441,13 @@ public class NormalDist {
          * @param x point x where derivative is evaluated.
          * @return evaluation of function at point x.
          */
-        public double evaluate(double x);
+        double evaluate(double x);
         
         /**
          * Evaluates derivative of a function at point x.
          * @param x point x where derivative is evaluated.
          * @return derivative of one dimenstional function at point x.
          */
-        public double evaluateDerivative(double x);
+        double evaluateDerivative(double x);
     }
 }

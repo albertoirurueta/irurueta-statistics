@@ -12,127 +12,131 @@ import java.util.Random;
 
 /**
  * Generates pseudo-random values following a Gaussian distribution having
- * the specified mean and standard deviation. By default mean is equal to
+ * the specified mMean and standard deviation. By default mMean is equal to
  * DEFAULT_MEAN and the standard deviation is equal to 
  * DEFAULT_STANDARD_DEVIATION.
  */
-public class GaussianRandomizer extends Randomizer{
-    
+public class GaussianRandomizer extends Randomizer {
+
     /**
-     * Contains mean value to be used for random value generation
-     */
-    private double mean;
-    
-    /**
-     * Standard deviation value to be used for random value generation
-     */
-    private double standardDeviation;
-    
-    /**
-     * Specifies mean value to be used for random value generation if no mean
+     * Specifies mMean value to be used for random value generation if no mMean
      * is provided.
      */
-    public static double DEFAULT_MEAN = 0.0;
-    
+    public static final double DEFAULT_MEAN = 0.0;
+
     /**
      * Specifies standard deviation to be used for random value generation if
      * none is provided.
      */
-    public static double DEFAULT_STANDARD_DEVIATION = 1.0;
+    public static final double DEFAULT_STANDARD_DEVIATION = 1.0;
+
+    /**
+     * Contains mMean value to be used for random value generation.
+     */
+    private double mMean;
+    
+    /**
+     * Standard deviation value to be used for random value generation.
+     */
+    private double mStandardDeviation;
 
     /**
      * Constructor.
-     * Because neither mean or standard deviation are provided, values
+     * Because neither mMean or standard deviation are provided, values
      * DEFAULT_MEAN and DEFAULT_STANDARD_DEVIATION will be used instead.
      * @param internalRandom Internal Random instance in charge of generating
-     * pseudo-random values
-     * @throws NullPointerException thrown if provided internal random is null
+     * pseudo-random values.
+     * @throws NullPointerException thrown if provided internal random is null.
      */
     public GaussianRandomizer(Random internalRandom) 
-            throws NullPointerException{
+            throws NullPointerException {
         super(internalRandom);
-        mean = DEFAULT_MEAN;
-        standardDeviation = DEFAULT_STANDARD_DEVIATION;
+        mMean = DEFAULT_MEAN;
+        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;
     }
     
     /**
-     * Constructor
+     * Constructor.
      * @param internalRandom Internal Random instance if charge of generating
-     * pseudo-random values
-     * @param mean Mean value of generated Gaussian values
-     * @param standardDeviation Standard deviation of generated Gaussian values
+     * pseudo-random values.
+     * @param mean Mean value of generated Gaussian values.
+     * @param standardDeviation Standard deviation of generated Gaussian values.
      * @throws IllegalArgumentException  thrown if provided standard deviation
      * is negative or zero.
-     * @throws NullPointerException if provided internal Random instance is null
+     * @throws NullPointerException if provided internal Random instance is null.
      */
     public GaussianRandomizer(Random internalRandom, double mean, 
             double standardDeviation) throws IllegalArgumentException, 
-            NullPointerException{
+            NullPointerException {
         super(internalRandom);
         
-        if(standardDeviation <= 0.0) throw new IllegalArgumentException();
-        this.mean = mean;
-        this.standardDeviation = standardDeviation;                
+        if (standardDeviation <= 0.0) {
+            throw new IllegalArgumentException();
+        }
+        mMean = mean;
+        mStandardDeviation = standardDeviation;
     }
     
     /**
-     * Returns mean value to be used for Gaussian random value generation.
-     * @return Mean value
+     * Returns mMean value to be used for Gaussian random value generation.
+     * @return Mean value.
      */
-    public double getMean(){
-        return mean;
+    public double getmMean() {
+        return mMean;
     }
     
     /**
-     * Sets mean value to be used for Gaussian random value generation.
-     * @param mean Mean value
+     * Sets mMean value to be used for Gaussian random value generation.
+     * @param mean Mean value.
      */
-    public void setMean(double mean){
-        this.mean = mean;
+    public void setmMean(double mean) {
+        mMean = mean;
     }
     
     /**
      * Returns standard deviation to be used for Gaussian random value 
      * generation.
-     * @return Standard deviation
+     * @return Standard deviation.
      */
-    public double getStandardDeviation(){
-        return standardDeviation;
+    public double getmStandardDeviation() {
+        return mStandardDeviation;
     }
     
     /**
-     * Sets standard deviation to be used for Gaussian random value generation
+     * Sets standard deviation to be used for Gaussian random value generation.
      * @param standardDeviation Standard deviation.
      * @throws IllegalArgumentException exception thrown if provided standard
      * deviation is negative or zero.
      */
-    public void setStandardDeviation(double standardDeviation) 
-            throws IllegalArgumentException{
+    public void setmStandardDeviation(double standardDeviation)
+            throws IllegalArgumentException {
         
-        if(standardDeviation <= 0.0) throw new IllegalArgumentException();
-        this.standardDeviation = standardDeviation;
+        if (standardDeviation <= 0.0) {
+            throw new IllegalArgumentException();
+        }
+        mStandardDeviation = standardDeviation;
     }
 
     /**
      * Returns next random boolean value. The probability of returning true
-     * is equal to obtaining a Gaussian value below the mean, which is 50%
-     * @return Next boolean value
+     * is equal to obtaining a Gaussian value below the mMean, which is 50%.
+     * @return Next boolean value.
      */    
     @Override
-    public boolean nextBoolean(){
-        return nextBoolean(mean);
+    public boolean nextBoolean() {
+        return nextBoolean(mMean);
     }
     
     /**
      * Returns next random boolean value. The probability of returning true
      * is equal to obtaining a Gaussian value below the provided threshold, 
-     * which is equal to erfc function
+     * which is equal to erfc function.
      * @param threshold Threshold to determine whether returned values will be
-     * true or false
-     * @return Next random boolean value
+     * true or false.
+     * @return Next random boolean value.
      */
-    public boolean nextBoolean(double threshold){
-        return (standardDeviation * getInternalRandom().nextGaussian() + mean) < 
+    public boolean nextBoolean(double threshold) {
+        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) <
                 threshold;
     }
     
@@ -142,10 +146,12 @@ public class GaussianRandomizer extends Randomizer{
      * provided threshold, which is equal to erfc function.
      * @param array array to be filled.
      * @param threshold Threshold to determine whether generated values will be
-     * true or false
+     * true or false.
      */
-    public void fill(boolean[] array, double threshold){
-        for(int i = 0; i < array.length; i++) array[i] = nextBoolean(threshold);
+    public void fill(boolean[] array, double threshold) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextBoolean(threshold);
+        }
     }
     
     /**
@@ -156,13 +162,15 @@ public class GaussianRandomizer extends Randomizer{
      * @param length Length of array to be created.
      * @param threshold Threshold to determine whether returned values will be
      * true or false.
-     * @return Array of random booleans
-     * @throws IllegalArgumentException if provided length is zero or negative
+     * @return Array of random booleans.
+     * @throws IllegalArgumentException if provided length is zero or negative.
      */
     public boolean[] nextBooleans(int length, double threshold)
-        throws IllegalArgumentException{
+        throws IllegalArgumentException {
         
-        if(length <= 0) throw new IllegalArgumentException();
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         
         boolean[] array = new boolean[length];
         fill(array, threshold);
@@ -170,54 +178,54 @@ public class GaussianRandomizer extends Randomizer{
     }
     
     /**
-     * Returns next random Gaussian integer value having provided mean and
-     * standard deviation
-     * @return  Next random Gaussian integer value
+     * Returns next random Gaussian integer value having provided mMean and
+     * standard deviation.
+     * @return  Next random Gaussian integer value.
      */
     @Override
-    public int nextInt(){
-        return (int)(standardDeviation * getInternalRandom().nextGaussian() + 
-                mean);
+    public int nextInt() {
+        return (int)(mStandardDeviation * getInternalRandom().nextGaussian() +
+                mMean);
     }    
 
     /**
-     * Returns next random Gaussian long value having provided mean and
-     * standard deviation
-     * @return  Next random Gaussian long value
+     * Returns next random Gaussian long value having provided mMean and
+     * standard deviation.
+     * @return  Next random Gaussian long value.
      */    
     @Override
-    public long nextLong(){        
-        return (long)(standardDeviation * getInternalRandom().nextGaussian() + 
-                mean);
+    public long nextLong() {
+        return (long)(mStandardDeviation * getInternalRandom().nextGaussian() +
+                mMean);
     }
 
     /**
-     * Returns next random Gaussian floating-point value having provided mean 
-     * and standard deviation
-     * @return  Next random Gaussian floating-point value
+     * Returns next random Gaussian floating-point value having provided mMean
+     * and standard deviation.
+     * @return  Next random Gaussian floating-point value.
      */        
     @Override
-    public float nextFloat(){
-        return (float)(standardDeviation * getInternalRandom().nextGaussian() + 
-                mean);
+    public float nextFloat() {
+        return (float)(mStandardDeviation * getInternalRandom().nextGaussian() +
+                mMean);
     }
 
     /**
      * Returns next random Gaussian double precision floating-point value having
-     * provided mean and standard deviation
-     * @return  Next random Gaussian double precision floating-point value
+     * provided mMean and standard deviation.
+     * @return  Next random Gaussian double precision floating-point value.
      */            
     @Override
-    public double nextDouble(){
-        return standardDeviation * getInternalRandom().nextGaussian() + mean;
+    public double nextDouble() {
+        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;
     }    
     
     /**
-     * Returns the randomizer type of this instance
-     * @return Randomizer type
+     * Returns the randomizer type of this instance.
+     * @return Randomizer type.
      */    
     @Override
-    public RandomizerType getType(){
+    public RandomizerType getType() {
         return RandomizerType.GAUSSIAN_RANDOMIZER;
     }
 }

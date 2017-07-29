@@ -31,58 +31,62 @@ import java.util.Random;
  * @author albertoirurueta
  */
 public abstract class Randomizer {
-    
-    /**
-     * Instance in charge of generating pseudo-random values. Secure instances
-     * can be used if the generated values need to be ensured to be "more" 
-     * random at the expense of higher computational cost
-     */
-    private Random internalRandom;
-    
+
     /**
      * Indicates that by default non secured random instance is used if none
-     * is provided
+     * is provided.
      */
     public static final boolean USE_SECURE_RANDOM_BY_DEFAULT = false;
     
     /**
      * Indicates default randomizer type if non is provided. By default uniform
-     * randomizers are created
+     * randomizers are created.
      */
     public static final RandomizerType DEFAULT_RANDOMIZER_TYPE = 
             RandomizerType.UNIFORM_RANDOMIZER;
-    
+
     /**
-     * Constructor
-     * @param internalRandom Instance in charge of generating pseudo-random 
-     *      values
-     * @throws NullPointerException if provided value is null
+     * Instance in charge of generating pseudo-random values. Secure instances
+     * can be used if the generated values need to be ensured to be "more"
+     * random at the expense of higher computational cost.
      */
-    public Randomizer(Random internalRandom) throws NullPointerException{
+    private Random mInternalRandom;
+
+    /**
+     * Constructor.
+     * @param internalRandom Instance in charge of generating pseudo-random 
+     *      values.
+     * @throws NullPointerException if provided value is null.
+     */
+    public Randomizer(Random internalRandom) throws NullPointerException {
         
-        if(internalRandom == null) throw new NullPointerException();
-        this.internalRandom = internalRandom;
+        if (internalRandom == null) {
+            throw new NullPointerException();
+        }
+        mInternalRandom = internalRandom;
     }
     
     /**
-     * Returns internal instance in charge of generating pseudo-random values
+     * Returns internal instance in charge of generating pseudo-random values.
      * @return instance in charge of generating pseudo-random values.
      */
-    public Random getInternalRandom(){
-        return internalRandom;
+    public Random getInternalRandom() {
+        return mInternalRandom;
     }
     
     /**
      * Sets internal instance in charge of generating pseudo-random values.
-     * @param internalRandom Instance in charge of generating pseudo-random 
-     *      values
-     * @throws NullPointerException if provided value is null
+     * @param internalRandom Instance in charge of generating pseudo-random
+     *      values.
+     * @throws NullPointerException if provided value is null.
      */
-    public void setInternalRandom(Random internalRandom) 
-            throws NullPointerException{
+    public void setInternalRandom(Random internalRandom)
+            throws NullPointerException {
         
-        if(internalRandom == null) throw new NullPointerException();
-        this.internalRandom = internalRandom;
+        if (internalRandom == null) {
+            throw new NullPointerException();
+        }
+        mInternalRandom = internalRandom;
     }
     
     /**
@@ -105,8 +109,8 @@ public abstract class Randomizer {
      * random instance)
      * @param seed Value to be used as seed
      */
-    public void setSeed(long seed){
-        internalRandom.setSeed(seed);
+    public void setSeed(long seed) {
+        mInternalRandom.setSeed(seed);
     }
     
     /**
@@ -117,21 +121,25 @@ public abstract class Randomizer {
     public abstract boolean nextBoolean();
     
     /**
-     * Fills provided array with random booleans
+     * Fills provided array with random booleans.
      * @param array Array to be filled.
      */
-    public void fill(boolean[] array){
-        for(int i = 0; i < array.length; i++) array[i] = nextBoolean();
+    public void fill(boolean[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextBoolean();
+        }
     }
     
     /**
-     * Returns array of booleans 
-     * @param length Length of array to be returned
-     * @return Array of uniform booleans
-     * @throws IllegalArgumentException if provided value is zero or negative
+     * Returns array of booleans.
+     * @param length Length of array to be returned.
+     * @return Array of uniform booleans.
+     * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public boolean[] nextBooleans(int length) throws IllegalArgumentException{
-        if(length <= 0) throw new IllegalArgumentException();
+    public boolean[] nextBooleans(int length) throws IllegalArgumentException {
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         boolean[] array = new boolean[length];
         fill(array);
         return array;
@@ -140,7 +148,7 @@ public abstract class Randomizer {
     /**
      * Returns next random integer value following a given distribution 
      * depending on the randomizer type.
-     * @return Next random integer value
+     * @return Next random integer value.
      */
     public abstract int nextInt();
     
@@ -148,18 +156,22 @@ public abstract class Randomizer {
      * Fills provided array with random integer values.
      * @param array Array to be filled.
      */
-    public void fill(int[] array){
-        for(int i = 0; i < array.length; i++) array[i] = nextInt();
+    public void fill(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextInt();
+        }
     }
     
     /**
      * Returns array of random integers.
      * @param length Length of array to be returned.
-     * @return Array of random integers
-     * @throws IllegalArgumentException if provided value is zero or negative 
+     * @return Array of random integers.
+     * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public int[] nextInts(int length) throws IllegalArgumentException{
-        if(length <= 0) throw new IllegalArgumentException();
+    public int[] nextInts(int length) throws IllegalArgumentException {
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         int[] array = new int[length];
         fill(array);
         return array;
@@ -168,7 +180,7 @@ public abstract class Randomizer {
     /**
      * Returns next random long value following a given distribution depending
      * on the randomizer type.
-     * @return Next random integer value
+     * @return Next random integer value.
      */
     public abstract long nextLong();
     
@@ -176,18 +188,22 @@ public abstract class Randomizer {
      * Fills provided array with random long values.
      * @param array Array to be filled.
      */
-    public void fill(long[] array){
-        for(int i = 0; i < array.length; i++) array[i] = nextLong();
+    public void fill(long[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextLong();
+        }
     }
 
     /**
      * Returns array of random long values.
      * @param length Length of array to be returned.
      * @return Array of random long values.
-     * @throws IllegalArgumentException if provided value is zero or negative
+     * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public long[] nextLongs(int length) throws IllegalArgumentException{
-        if(length <= 0) throw new IllegalArgumentException();
+    public long[] nextLongs(int length) throws IllegalArgumentException {
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         long[] array = new long[length];
         fill(array);
         return array;
@@ -196,26 +212,30 @@ public abstract class Randomizer {
     /**
      * Returns next random floating-point value following a given distribution
      * depending on the randomizer type.
-     * @return Next random integer value
+     * @return Next random integer value.
      */
     public abstract float nextFloat();
     
     /**
-     * Fills provided array with random floating point values
-     * @param array Array to be filled
+     * Fills provided array with random floating point values.
+     * @param array Array to be filled.
      */
-    public void fill(float[] array){
-        for(int i = 0; i < array.length; i++) array[i] = nextFloat();
+    public void fill(float[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextFloat();
+        }
     }
     
     /**
      * Returns array of floating point values.
      * @param length Length of array to be returned.
      * @return Array of random float values.
-     * @throws IllegalArgumentException if provided value is zero or negative
+     * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public float[] nextFloats(int length) throws IllegalArgumentException{
-        if(length <= 0) throw new IllegalArgumentException();
+    public float[] nextFloats(int length) throws IllegalArgumentException {
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         float[] array = new float[length];
         fill(array);
         return array;
@@ -224,34 +244,38 @@ public abstract class Randomizer {
     /**
      * Returns next random double precision floating-point value following a
      * given distribution depending on the randomizer type.
-     * @return Next random double precision floating-point value
+     * @return Next random double precision floating-point value.
      */
     public abstract double nextDouble();
     
     /**
-     * Fills provided array with random double precision floating point values
-     * @param array Array to be filled
+     * Fills provided array with random double precision floating point values.
+     * @param array Array to be filled.
      */
-    public void fill(double[] array){
-        for(int i = 0; i < array.length; i++) array[i] = nextDouble();
+    public void fill(double[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = nextDouble();
+        }
     }
     
     /**
      * Returns array of double precision floating point values.
      * @param length Length of array to be returned.
      * @return Array of random double values.
-     * @throws IllegalArgumentException if provided value is zero or negative
+     * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public double[] nextDoubles(int length) throws IllegalArgumentException{
-        if(length <= 0) throw new IllegalArgumentException();
+    public double[] nextDoubles(int length) throws IllegalArgumentException {
+        if (length <= 0) {
+            throw new IllegalArgumentException();
+        }
         double[] array = new double[length];
         fill(array);
         return array;
     }
     
     /**
-     * Returns the randomizer type of this instance
-     * @return Randomizer type
+     * Returns the randomizer type of this instance.
+     * @return Randomizer type.
      */    
     public abstract RandomizerType getType();
     
@@ -261,9 +285,9 @@ public abstract class Randomizer {
      * distribution is to be used and whether the random generator must be
      * secure or not.
      * @return A Randomizer instance using default randomizer type and secure 
-     * mode
+     * mode.
      */
-    public static Randomizer create(){
+    public static Randomizer create() {
         return create(DEFAULT_RANDOMIZER_TYPE);
     }
     
@@ -276,9 +300,9 @@ public abstract class Randomizer {
      * cryptography, and hence the name of the parameter.
      * @param useSecureRandom Parameter indicating whether generated values will
      * be used for security purposes such as cryptography.
-     * @return A Randomizer instance using provided secure mode
+     * @return A Randomizer instance using provided secure mode.
      */
-    public static Randomizer create(boolean useSecureRandom){
+    public static Randomizer create(boolean useSecureRandom) {
         return create(DEFAULT_RANDOMIZER_TYPE, useSecureRandom);
     }
     
@@ -286,23 +310,23 @@ public abstract class Randomizer {
      * Creates a new Randomizer instance using provided internal randomizer 
      * instance.
      * @param internalRandomizer Internal instance to be used for generation of
-     * pseudo-random values
+     * pseudo-random values.
      * @return A Randomizer instance using provided internal randomizer.
      * @throws NullPointerException Exception thrown if provided internal 
-     * randomizer is null
+     * randomizer is null.
      */
     public static Randomizer create(Random internalRandomizer) 
-            throws NullPointerException{
+            throws NullPointerException {
         return create(DEFAULT_RANDOMIZER_TYPE, internalRandomizer);
     }
     
     /**
      * Creates a new Randomizer instance using provided randomizer type and
-     * the default secure mode specified by USE_SECURE_RANDOM_BY_DEFAULT
-     * @param type Randomizer type to be used when creating an instance
+     * the default secure mode specified by USE_SECURE_RANDOM_BY_DEFAULT.
+     * @param type Randomizer type to be used when creating an instance.
      * @return A Randomizer instance using provided randomizer type.
      */
-    public static Randomizer create(RandomizerType type){
+    public static Randomizer create(RandomizerType type) {
         return create(type, USE_SECURE_RANDOM_BY_DEFAULT);
     }
     
@@ -313,14 +337,17 @@ public abstract class Randomizer {
      * @param useSecureRandom Boolean indicating whether generated values will
      * be secure for specific purposes such as cryptography. Secure mode 
      * generates more "random" values at the expense of higher computational 
-     * cost
+     * cost.
      * @return A Randomizer instance using provided randomizer type and secure
-     * mode
+     * mode.
      */
     public static Randomizer create(RandomizerType type, 
-            boolean useSecureRandom){        
-        if(useSecureRandom) return create(type, new SecureRandom());
-        else return create(type, new Random());
+            boolean useSecureRandom) {
+        if (useSecureRandom) {
+            return create(type, new SecureRandom());
+        } else {
+            return create(type, new Random());
+        }
     }
     
     /**
@@ -328,17 +355,19 @@ public abstract class Randomizer {
      * internal randomizer.
      * @param type Randomizer type to be used when creating an instance.
      * @param internalRandom Internal random instance to be used to generate
-     * pseudo-random values
+     * pseudo-random values.
      * @return A Randomizer instance using provided randomizer type and internal
      * random instance.
-     * @throws NullPointerException Exception thrown if internal random is null
+     * @throws NullPointerException Exception thrown if internal random is null.
      */
     public static Randomizer create(RandomizerType type, 
-            Random internalRandom) throws NullPointerException{
+            Random internalRandom) throws NullPointerException {
         
-        if(internalRandom == null) throw new NullPointerException();
+        if (internalRandom == null) {
+            throw new NullPointerException();
+        }
         
-        switch(type){
+        switch (type) {
             case GAUSSIAN_RANDOMIZER:
                 return new GaussianRandomizer(internalRandom);
             case UNIFORM_RANDOMIZER:

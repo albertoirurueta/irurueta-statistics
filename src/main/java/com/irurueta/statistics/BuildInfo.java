@@ -120,7 +120,7 @@ public class BuildInfo {
     /**
      * Constructor.
      */
-    private BuildInfo(){
+    private BuildInfo() {
         //loads properties file data
         InputStream stream = null;
         try {
@@ -159,7 +159,7 @@ public class BuildInfo {
      * Obtains singleton instance.
      * @return singleton instance.
      */
-    public synchronized static BuildInfo getInstance(){
+    public static synchronized BuildInfo getInstance() {
         BuildInfo info;
         if (mReference == null || (info = mReference.get()) == null) {
             info = new BuildInfo();

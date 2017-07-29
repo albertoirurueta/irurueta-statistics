@@ -19,32 +19,32 @@ import static org.junit.Assert.*;
 
 public class NormalDistTest {
     
-    public static final double MIN_RANDOM_VALUE = -100.0;
-    public static final double MAX_RANDOM_VALUE = 100.0;
+    private static final double MIN_RANDOM_VALUE = -100.0;
+    private static final double MAX_RANDOM_VALUE = 100.0;
     
-    public static final double ABSOLUTE_ERROR = 1e-6;
-    public static final double LARGE_ABSOLUTE_ERROR = 1e-3;
+    private static final double ABSOLUTE_ERROR = 1e-6;
+    private static final double LARGE_ABSOLUTE_ERROR = 1e-3;
     
-    public static final int N_SAMPLES = 1000000;
+    private static final int N_SAMPLES = 1000000;
     
-    public static final double RELATIVE_ERROR = 0.10;
+    private static final double RELATIVE_ERROR = 0.10;
     
-    public NormalDistTest() {}
+    public NormalDistTest() { }
     
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() { }
     
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() { }
     
     @Before
-    public void setUp() {}
+    public void setUp() { }
     
     @After
-    public void tearDown() {}
+    public void tearDown() { }
     
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         //test empty constructor
         NormalDist dist = new NormalDist();
         
@@ -64,15 +64,15 @@ public class NormalDistTest {
         
         //Force IllegalArgumentException
         dist = null;
-        try{
+        try {
             dist = new NormalDist(mean, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
         assertNull(dist);
     }
     
     @Test
-    public void testGetSetMean(){
+    public void testGetSetMean() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         
@@ -89,7 +89,7 @@ public class NormalDistTest {
     }
     
     @Test
-    public void testGetSetStandardDeviation(){
+    public void testGetSetStandardDeviation() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
         
@@ -105,10 +105,10 @@ public class NormalDistTest {
         assertEquals(dist.getStandardDeviation(), std, 0.0);
         
         //Force IllegalArgumentException
-        try{
+        try {
             dist.setStandardDeviation(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
@@ -133,11 +133,11 @@ public class NormalDistTest {
         try {
             dist.setVariance(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException e) { }
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testGetP(){
+    public void testGetP() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
@@ -153,14 +153,14 @@ public class NormalDistTest {
                 ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             NormalDist.p(x, mean, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testCdf(){
+    public void testCdf() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
@@ -196,14 +196,14 @@ public class NormalDistTest {
                 LARGE_ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             NormalDist.cdf(x, mean, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testInvcdf(){
+    public void testInvcdf() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
@@ -222,30 +222,30 @@ public class NormalDistTest {
                 p, ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             NormalDist.invcdf(p, mean, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             NormalDist.invcdf(0.0, mean, std);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             NormalDist.invcdf(1.0, mean, std);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             dist.invcdf(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             dist.invcdf(1.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testMahalanobisDistance(){
+    public void testMahalanobisDistance() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
@@ -263,10 +263,10 @@ public class NormalDistTest {
                 Math.abs(x - mean) / std, ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             NormalDist.mahalanobisDistance(x, mean, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
         
     @Test
@@ -357,12 +357,12 @@ public class NormalDistTest {
                 new Random(), mean, standardDeviation);
         double x, y;
         double resultMean = 0.0, sqrSum = 0.0, resultStandardDeviation;
-        for(int i = 0; i < N_SAMPLES; i++) {
+        for (int i = 0; i < N_SAMPLES; i++) {
             x = gaussRandomizer.nextDouble();
             y = evaluator.evaluate(x);
             
-            resultMean += (double)y / (double)N_SAMPLES;
-            sqrSum += (double)y * (double)y / (double)N_SAMPLES;
+            resultMean += y / (double)N_SAMPLES;
+            sqrSum += y * y / (double)N_SAMPLES;
         }
         
         resultStandardDeviation = Math.sqrt(sqrSum - resultMean * resultMean);
@@ -440,12 +440,12 @@ public class NormalDistTest {
                 new Random(), mean, standardDeviation);
         double x, y;
         double resultMean = 0.0, sqrSum = 0.0, resultStandardDeviation;
-        for(int i = 0; i < N_SAMPLES; i++) {
+        for (int i = 0; i < N_SAMPLES; i++) {
             x = gaussRandomizer.nextDouble();
             y = evaluator.evaluate(x);
             
-            resultMean += (double)y / (double)N_SAMPLES;
-            sqrSum += (double)y * (double)y / (double)N_SAMPLES;
+            resultMean += y / (double)N_SAMPLES;
+            sqrSum += y * y / (double)N_SAMPLES;
         }
         
         resultStandardDeviation = Math.sqrt(sqrSum - resultMean * resultMean);

@@ -17,33 +17,29 @@ import static org.junit.Assert.*;
 
 public class MaxIterationsExceededExceptionTest {
     
-    public MaxIterationsExceededExceptionTest() {}
+    public MaxIterationsExceededExceptionTest() { }
     
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() { }
     
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() { }
     
     @Before
-    public void setUp() {}
+    public void setUp() { }
     
     @After
-    public void tearDown() {}
+    public void tearDown() { }
 
     @Test
-    public void testConstructor(){
-        MaxIterationsExceededException ex;
-        assertNotNull(ex = new MaxIterationsExceededException());
-        
-        ex = null;
-        assertNotNull(ex = new MaxIterationsExceededException("message"));
-        
-        ex = null;
-        assertNotNull(ex = new MaxIterationsExceededException(new Exception()));
-        
-        ex = null;
-        assertNotNull(ex = new MaxIterationsExceededException("message", 
+    public void testConstructor() {
+        assertNotNull(new MaxIterationsExceededException());
+
+        assertNotNull(new MaxIterationsExceededException("message"));
+
+        assertNotNull(new MaxIterationsExceededException(new Exception()));
+
+        assertNotNull(new MaxIterationsExceededException("message",
                 new Exception()));
     }
 }

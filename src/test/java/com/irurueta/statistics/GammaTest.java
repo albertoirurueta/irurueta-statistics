@@ -17,32 +17,32 @@ import static org.junit.Assert.*;
 
 public class GammaTest {
     
-    public static final double ABSOLUTE_ERROR = 1e-8;
-    public static final int NUMBER_OF_TRIALS = 10;
+    private static final double ABSOLUTE_ERROR = 1e-8;
+    private static final int NUMBER_OF_TRIALS = 10;
     
-    public GammaTest() {}
+    public GammaTest() { }
     
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() { }
     
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() { }
     
     @Before
-    public void setUp() {}
+    public void setUp() { }
     
     @After
-    public void tearDown() {}
+    public void tearDown() { }
     
     @Test
-    public void testConstructorAndGetGln(){
+    public void testConstructorAndGetGln() {
         Gamma g = new Gamma();
         
         assertEquals(g.getGln(), 0.0, 0.0);
     }
     
     @Test
-    public void testGammln(){
+    public void testGammln() {
         //gamma function is related to factorial for positive natural
         //numbers so that gamma(x) = (x-1)!. Gammln returns its logarithm
         
@@ -55,14 +55,14 @@ public class GammaTest {
                 ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             Gamma.gammln(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testFactrl(){
+    public void testFactrl() {
         assertEquals(Gamma.factrl(0), 1.0, 0.0);
         assertEquals(Gamma.factrl(1), 1.0, 0.0);
         assertEquals(Gamma.factrl(2), 2.0, 0.0);
@@ -73,36 +73,36 @@ public class GammaTest {
         assertEquals(Gamma.factrl(7), 7.0 * 6.0 * 5.0 * 4.0 * 3.0 * 2.0, 0.0);
         
         //Force IllegalArgumentException
-        try{
+        try {
             Gamma.factrl(-1);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             Gamma.factrl(171);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testFactln(){
+    public void testFactln() {
         //gamma function is related to factorial by gamma(x) = (x - 1)!
         
-        for(int i = 1; i < Gamma.MAX_CACHED_LOG_FACTORIALS + 1; i++){
+        for (int i = 1; i < Gamma.MAX_CACHED_LOG_FACTORIALS + 1; i++) {
             assertEquals(Gamma.gammln(i), Gamma.factln(i - 1), 0.0);
         }
         
         //Force IllegalArgumentException
-        try{
+        try {
             Gamma.factln(-1);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testBico(){
+    public void testBico() {
         
-        for(int n = 0; n < NUMBER_OF_TRIALS; n++){
-            for(int k = 0; k < n; k++){
+        for (int n = 0; n < NUMBER_OF_TRIALS; n++) {
+            for (int k = 0; k < n; k++) {
                 assertEquals(Gamma.bico(n, k), 
                         Gamma.factrl(n) / 
                         (Gamma.factrl(k) * Gamma.factrl(n - k)), 
@@ -111,22 +111,22 @@ public class GammaTest {
         }
         
         //Force IllegalArgumentException
-        try{
+        try {
             Gamma.bico(-1, NUMBER_OF_TRIALS);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             Gamma.bico(NUMBER_OF_TRIALS, -1);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             Gamma.bico(NUMBER_OF_TRIALS, NUMBER_OF_TRIALS + 1);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testBeta(){
+    public void testBeta() {
         
         assertEquals(Gamma.beta(1.0, 2.0),
                 Gamma.factrl(0) * Gamma.factrl(1) /
@@ -139,18 +139,18 @@ public class GammaTest {
                 Gamma.factrl(3 + 4 - 1), ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             Gamma.beta(0.0, 1.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             Gamma.beta(1.0, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testGammpAndGammq() throws MaxIterationsExceededException{
+    public void testGammpAndGammq() throws MaxIterationsExceededException {
         Gamma g = new Gamma();
         
         assertEquals(g.gammp(1.0, 2.0), 1.0 - g.gammq(1.0, 2.0), 
@@ -162,15 +162,15 @@ public class GammaTest {
         
         assertEquals(g.gammp(1.0, 0.0), 0.0, 0.0);
         
-        try{
+        try {
             assertEquals(g.gammp(1.0, Double.POSITIVE_INFINITY), 1.0, 
                     ABSOLUTE_ERROR);
             fail("MaxIterationsExceededException expected but not thrown");
-        }catch(MaxIterationsExceededException e){}
+        } catch (MaxIterationsExceededException ignore) { }
     }
     
     @Test
-    public void testInvgammp() throws MaxIterationsExceededException{
+    public void testInvgammp() throws MaxIterationsExceededException {
         Gamma g = new Gamma();
         
         assertEquals(g.invgammp(g.gammp(1.0, 2.0), 1.0), 2.0, 

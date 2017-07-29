@@ -40,12 +40,12 @@ public class Erf {
      * Number of coefficients to approximate the error function using a 
      * Chebychev approximation.
      */
-    public static final int N_COF = 28;
+    private static final int N_COF = 28;
     
     /**
-     * Coefficients of Chebychev polynomial to approximate the error function
+     * Coefficients of Chebychev polynomial to approximate the error function.
      */
-    public static final double[] COF = {-1.3026537197817094, 
+    private static final double[] COF = {-1.3026537197817094,
         6.4196979235649026e-1, 1.9476473204185836e-2, -9.561514786808631e-3,
         -9.46595344482036e-4, 3.66839497852761e-4, 4.2523324806907e-5,
         -2.0278578112534e-5, -1.624290004647e-6, 1.303655835580e-6, 
@@ -57,16 +57,19 @@ public class Erf {
     /**
      * Empty constructor.
      */
-    private Erf(){}
+    private Erf() { }
     
     /**
      * Evaluates the error function at x.
      * @param x value to evualte the error function at.
      * @return value of the error function.
      */
-    public static double erf(double x){
-        if(x >= 0.0) return 1.0 - erfccheb(x);
-        else return erfccheb(-x) - 1.0;
+    public static double erf(double x) {
+        if (x >= 0.0) {
+            return 1.0 - erfccheb(x);
+        } else {
+            return erfccheb(-x) - 1.0;
+        }
     }
     
     /**
@@ -74,9 +77,12 @@ public class Erf {
      * @param x value to evaluate the complementary error function at.
      * @return value of the complementary error function.
      */
-    public static double erfc(double x){
-        if(x >= 0.0) return erfccheb(x);
-        else return 2.0 - erfccheb(-x);
+    public static double erfc(double x) {
+        if (x >= 0.0) {
+            return erfccheb(x);
+        } else {
+            return 2.0 - erfccheb(-x);
+        }
     }
     
     /**
@@ -86,19 +92,22 @@ public class Erf {
      * @param p value to evaluate the inverse erfc function at.
      * @return result of the evaluation.
      */
-    public static double inverfc(double p){
+    public static double inverfc(double p) {
         double x, err, t, pp;
-	if (p >= 2.0) return -100.0;
-	if (p <= 0.0) return 100.0;
-	pp = (p < 1.0) ? p : 2.0 - p;
-	t = Math.sqrt(-2.0 * Math.log(pp / 2.0));
-	x = -0.70711 * ((2.30753 + t * 0.27061) / 
-                (1.0 + t * (0.99229 + t * 0.04481)) - t);
-	for (int j = 0; j < 2; j++) {
+        if (p >= 2.0) {
+            return -100.0;
+        }
+        if (p <= 0.0) {
+            return 100.0;
+        }
+        pp = p < 1.0 ? p : 2.0 - p;
+        t = Math.sqrt(-2.0 * Math.log(pp / 2.0));
+        x = -0.70711 * ((2.30753 + t * 0.27061) / (1.0 + t * (0.99229 + t * 0.04481)) - t);
+        for (int j = 0; j < 2; j++) {
             err = erfc(x) - pp;
             x += err / (1.12837916709551257 * Math.exp(-x * x) - x * err);
-	}
-	return (p < 1.0 ? x : -x);        
+        }
+        return (p < 1.0 ? x : -x);
     }
     
     /**
@@ -108,7 +117,7 @@ public class Erf {
      * @param p value to evaluate the inverse erf function at.
      * @return result of the evaluation.
      */
-    public static double inverf(double p){
+    public static double inverf(double p) {
         return inverfc(1.0 - p);
     }
     
@@ -119,21 +128,21 @@ public class Erf {
      * @return evaluation of the erfc at provided value.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    protected static double erfccheb(double z) throws IllegalArgumentException{
-	int j;
-	double t, ty, tmp, d = 0.0, dd = 0.0;
-	if (z < 0.0){
+    private static double erfccheb(double z) throws IllegalArgumentException {
+        int j;
+        double t, ty, tmp, d = 0.0, dd = 0.0;
+        if (z < 0.0) {
             throw new IllegalArgumentException(
                     "erfccheb requires nonnegative argument");
         }
-	
+
         t = 2.0 / (2.0 + z);
-	ty = 4.0 * t - 2.;
-	for (j=N_COF - 1; j > 0; j--) {
+        ty = 4.0 * t - 2.;
+        for (j = N_COF - 1; j > 0; j--) {
             tmp = d;
             d = ty * d - dd + COF[j];
             dd = tmp;
-	}
-	return t * Math.exp(-z * z + 0.5 * (COF[0] + ty * d) - dd);        
+        }
+        return t * Math.exp(-z * z + 0.5 * (COF[0] + ty * d) - dd);
     }
 }

@@ -18,28 +18,27 @@ import static org.junit.Assert.*;
 
 public class ChiSqDistTest {
     
-    public static final double MIN_RANDOM_VALUE = 0.0;
-    public static final double MAX_RANDOM_VALUE = 10.0;
+    private static final double MIN_RANDOM_VALUE = 0.0;
+    private static final double MAX_RANDOM_VALUE = 10.0;
     
-    public static final double ABSOLUTE_ERROR = 1e-6;
-    public static final double LARGE_ABSOLUTE_ERROR = 1e-3;
+    private static final double ABSOLUTE_ERROR = 1e-6;
     
-    public ChiSqDistTest() {}
+    public ChiSqDistTest() { }
     
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() { }
     
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() { }
     
     @Before
-    public void setUp() {}
+    public void setUp() { }
     
     @After
-    public void tearDown() {}
+    public void tearDown() { }
     
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double nu = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         
@@ -49,15 +48,15 @@ public class ChiSqDistTest {
         
         //Force IllegalArgumentException
         dist = null;
-        try{
+        try {
             dist = new ChiSqDist(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore){ }
         assertNull(dist);
     }
     
     @Test
-    public void testGetSetNu(){
+    public void testGetSetNu() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double nu = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double nu2 = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
@@ -74,14 +73,14 @@ public class ChiSqDistTest {
         assertEquals(dist.getNu(), nu2, 0.0);
         
         //Force IllegalArgumentException
-        try{
+        try {
             dist.setNu(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testP(){
+    public void testP() {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double nu = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double x2 = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
@@ -96,22 +95,22 @@ public class ChiSqDistTest {
                 ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             dist.p(0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.p(0.0, nu);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.p(x2, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testCdf() throws MaxIterationsExceededException{
+    public void testCdf() throws MaxIterationsExceededException {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double nu = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         
@@ -134,22 +133,22 @@ public class ChiSqDistTest {
         assertTrue(dist.cdf(x2max) >= 0.0 && dist.cdf(x2max) <= 1.0);
         
         //Force IllegalArgumentException
-        try{
+        try {
             dist.cdf(-1.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.cdf(-1.0, nu);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.cdf(x2min, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
     
     @Test
-    public void testInvcdf() throws MaxIterationsExceededException{
+    public void testInvcdf() throws MaxIterationsExceededException {
         UniformRandomizer randomizer = new UniformRandomizer(new Random());
         double nu = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
         double x2 = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
@@ -166,25 +165,25 @@ public class ChiSqDistTest {
                 ABSOLUTE_ERROR);
         
         //Force IllegalArgumentException
-        try{
+        try {
             ChiSqDist.invcdf(p, 0.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.invcdf(-1.0, nu);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             ChiSqDist.invcdf(1.0, nu);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             dist.invcdf(-1.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
-        try{
+        } catch (IllegalArgumentException ignore) { }
+        try {
             dist.invcdf(1.0);
             fail("IllegalArgumentException expected but not thrown");
-        }catch(IllegalArgumentException e){}
+        } catch (IllegalArgumentException ignore) { }
     }
 }

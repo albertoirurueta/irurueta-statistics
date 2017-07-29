@@ -9,19 +9,19 @@
 package com.irurueta.statistics;
 
 /**
- * Indicates type of Randomizer
+ * Indicates type of Randomizer.
  */
 public enum RandomizerType {
 
     /**
      * Type used for Uniform randomizers where generated values are uniformly
-     * distributed
+     * distributed.
      */
     UNIFORM_RANDOMIZER,
     
     /**
      * Type used for Gaussian randomizers where generated values are distributed
-     * following a Gaussian distribution
+     * following a Gaussian distribution.
      */
     GAUSSIAN_RANDOMIZER
 }
