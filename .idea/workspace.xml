@@ -698,9 +698,6 @@
     <history-entry file="RandomizerTest - 2017.07.30 at 00h 36m 39s.xml">
       <configuration name="RandomizerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UniformRandomizerTest - 2017.07.28 at 18h 08m 04s.xml">
-      <configuration name="UniformRandomizerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UniformRandomizerTest - 2017.07.28 at 18h 10m 00s.xml">
       <configuration name="UniformRandomizerTest" configurationId="JUnit" />
     </history-entry>
@@ -714,6 +711,9 @@
       <configuration name="UniformRandomizerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="UniformRandomizerTest - 2017.07.28 at 18h 17m 27s.xml">
+      <configuration name="UniformRandomizerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UniformRandomizerTest - 2017.07.30 at 01h 12m 40s.xml">
       <configuration name="UniformRandomizerTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -731,7 +731,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32763976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32763976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
