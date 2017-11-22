@@ -284,7 +284,8 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    private static double internalCdf(double x, double mu, double sig) {
+    @SuppressWarnings("all")
+    protected static double internalCdf(double x, double mu, double sig) {
         return 0.5 * Erf.erfc(-0.707106781186547524 * (x - mu) / sig);
     }
     
@@ -303,8 +304,9 @@ public class NormalDist {
      * @return the value x for which the c.d.f. has value p.
      * @throws IllegalArgumentException if provided probability value is not 
      * between 0.0 and 1.0.
-     */    
-    private static double internalInvcdf(double p, double mu, double sig)
+     */
+    @SuppressWarnings("all")
+    protected static double internalInvcdf(double p, double mu, double sig)
             throws IllegalArgumentException {
         if (p <= 0.0 || p >= 1.0) {
             throw new IllegalArgumentException(
