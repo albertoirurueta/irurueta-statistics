@@ -14,7 +14,21 @@ package com.irurueta.statistics;
  * This class is based in code of Numerical Recipes 3rd ed. section 6.14.1.
  */
 public class NormalDist {
-    
+    /**
+     * Square root of 2.
+     */
+    private static final double SQRT2 = Math.sqrt(2.0);
+
+    /**
+     * Square root of 2 divided by 2.
+     */
+    private static final double HALF_SQRT2 = SQRT2 / 2.0;
+
+    /**
+     * Term to normalize Gaussian so that its integral from -infinity to infinity is one.
+     */
+    private static final double GAUSSIAN_NORM = 1.0 / Math.sqrt(2.0*Math.PI);
+
     /**
      * Mean value of Gaussian distribution.
      */
@@ -265,10 +279,10 @@ public class NormalDist {
      * or negative.
      */
     private static double internalP(double x, double mu, double sig) {
-        return (0.398942280401432678 / sig) * Math.exp(-0.5 * 
+        return (GAUSSIAN_NORM / sig) * Math.exp(-0.5 *
                 Math.pow((x - mu) / sig, 2.0));
     }
-    
+
     /**
      * Evaluates the cumulative distribution function (c.d.f.) of a Gaussian
      * distribution having mean mu and standard deviation sig at provided point 
@@ -286,9 +300,9 @@ public class NormalDist {
      */
     @SuppressWarnings("all")
     protected static double internalCdf(double x, double mu, double sig) {
-        return 0.5 * Erf.erfc(-0.707106781186547524 * (x - mu) / sig);
+        return 0.5 * Erf.erfc(-HALF_SQRT2 * (x - mu) / sig);
     }
-    
+
     /**
      * Evaluates the inverse cumulative distribution function of a Gaussian
      * distribution having mean mu and standard deviation sig at provided point
@@ -312,7 +326,7 @@ public class NormalDist {
             throw new IllegalArgumentException(
                     "probability value must be between 0.0 and 1.0");
         }
-        return -1.41421356237309505 * sig * Erf.inverfc(2.0 * p) + mu;
+        return -SQRT2 * sig * Erf.inverfc(2.0 * p) + mu;
     }
     
     /**
