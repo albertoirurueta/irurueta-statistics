@@ -1,10 +1,17 @@
-/**
- * @file
- * This file contains Unit Tests for
- * com.irurueta.statistics.Randomizer
- * 
- * @author Alberto Irurueta (alberto@irurueta.com)
- * @date April 6, 2012
+/*
+ * Copyright (C) 2012 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.irurueta.statistics;
 
@@ -13,6 +20,7 @@ import java.util.Random;
 import static org.junit.Assert.*;
 import org.junit.*;
 
+@SuppressWarnings("Duplicates")
 public class RandomizerTest {
 
     private static final int NUM_SAMPLES = 1000000;
@@ -24,10 +32,10 @@ public class RandomizerTest {
     public RandomizerTest() { }
 
     @BeforeClass
-    public static void setUpClass() throws Exception { }
+    public static void setUpClass() { }
 
     @AfterClass
-    public static void tearDownClass() throws Exception { }
+    public static void tearDownClass() { }
     
     @Before
     public void setUp() { }
@@ -45,13 +53,13 @@ public class RandomizerTest {
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
             assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
         } else {
-            assertTrue(randomizer.getInternalRandom() instanceof Random);
+            assertNotNull(randomizer.getInternalRandom());
         }        
         assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
         
         //test create with secure parameter
         randomizer = Randomizer.create(false);
-        assertTrue(randomizer.getInternalRandom() instanceof Random);
+        assertNotNull(randomizer.getInternalRandom());
         assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
 
         randomizer = Randomizer.create(true);
@@ -70,6 +78,7 @@ public class RandomizerTest {
             randomizer = Randomizer.create((Random)null);
             fail("NullPointerExceptioen expected but not thrown");
         } catch (NullPointerException ignore) { }
+        //noinspection all
         assertNull(randomizer);
         
         //test create with RandomizerType
@@ -77,7 +86,7 @@ public class RandomizerTest {
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
             assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
         } else {
-            assertTrue(randomizer.getInternalRandom() instanceof Random);
+            assertNotNull(randomizer.getInternalRandom());
         }        
         assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
         
@@ -85,7 +94,7 @@ public class RandomizerTest {
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
             assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
         } else {
-            assertTrue(randomizer.getInternalRandom() instanceof Random);
+            assertNotNull(randomizer.getInternalRandom());
         }        
         assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
         
@@ -93,7 +102,7 @@ public class RandomizerTest {
         //test create with RandomizerType and secure parameter
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER, 
                 false);
-        assertTrue(randomizer.getInternalRandom() instanceof Random);
+        assertNotNull(randomizer.getInternalRandom());
         assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
         
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER, 
@@ -103,7 +112,7 @@ public class RandomizerTest {
         
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
                 false);
-        assertTrue(randomizer.getInternalRandom() instanceof Random);
+        assertNotNull(randomizer.getInternalRandom());
         assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
         
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
@@ -130,12 +139,14 @@ public class RandomizerTest {
                     null);
             fail("NullPointerException expected but not thrown");
         } catch (NullPointerException ignore) { }
+        //noinspection all
         assertNull(randomizer);
         try {
             randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
                     null);
             fail("NullPointerException expected but not thrown");
         } catch (NullPointerException ignore) { }
+        //noinspection all
         assertNull(randomizer);
         
     }

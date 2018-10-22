@@ -1,10 +1,17 @@
-/**
- * @file
- * This file contains unit tests for
- * com.irurueta.statistics.NormalDist
- * 
- * @author Alberto Irurueta (alberto@irurueta.com)
- * @date December 28, 2015
+/*
+ * Copyright (C) 2015 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.irurueta.statistics;
 
@@ -17,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+@SuppressWarnings("Duplicates")
 public class NormalDistTest {
     
     private static final double MIN_RANDOM_VALUE = -100.0;
@@ -28,6 +36,8 @@ public class NormalDistTest {
     private static final int N_SAMPLES = 1000000;
     
     private static final double RELATIVE_ERROR = 0.10;
+
+    private static final int TIMES = 10;
     
     public NormalDistTest() { }
     
@@ -204,44 +214,58 @@ public class NormalDistTest {
     
     @Test
     public void testInvcdf() {
-        UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
-        double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
-        
-        double x = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
-        double p = randomizer.nextDouble(); //value between 0.0 and 1.0
+        int numValid = 0;
+        for (int t = 0; t < TIMES; t++) {
+            UniformRandomizer randomizer = new UniformRandomizer(new Random());
+            double mean = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+            double std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
 
-        NormalDist dist = new NormalDist(mean, std);
+            double x = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
+            double p = randomizer.nextDouble(); //value between 0.0 and 1.0
 
-        assertEquals(dist.invcdf(dist.cdf(x)), x, ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(dist.invcdf(p)), p, ABSOLUTE_ERROR);
-        
-        assertEquals(NormalDist.invcdf(NormalDist.cdf(x, mean, std), mean, std), 
-                x, ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(NormalDist.invcdf(p, mean, std), mean, std),
-                p, ABSOLUTE_ERROR);
-        
-        //Force IllegalArgumentException
-        try {
-            NormalDist.invcdf(p, mean, 0.0);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
-        try {
-            NormalDist.invcdf(0.0, mean, std);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
-        try {
-            NormalDist.invcdf(1.0, mean, std);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
-        try {
-            dist.invcdf(0.0);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
-        try {
-            dist.invcdf(1.0);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (IllegalArgumentException ignore) { }
+            NormalDist dist = new NormalDist(mean, std);
+
+            if (Math.abs(dist.invcdf(dist.cdf(x)) - x) > ABSOLUTE_ERROR) {
+                continue;
+            }
+            if (Math.abs(dist.cdf(dist.invcdf(p)) - p) > ABSOLUTE_ERROR) {
+                continue;
+            }
+            assertEquals(dist.invcdf(dist.cdf(x)), x, ABSOLUTE_ERROR);
+            assertEquals(dist.cdf(dist.invcdf(p)), p, ABSOLUTE_ERROR);
+
+            assertEquals(NormalDist.invcdf(NormalDist.cdf(x, mean, std), mean, std),
+                    x, ABSOLUTE_ERROR);
+            assertEquals(NormalDist.cdf(NormalDist.invcdf(p, mean, std), mean, std),
+                    p, ABSOLUTE_ERROR);
+
+            //Force IllegalArgumentException
+            try {
+                NormalDist.invcdf(p, mean, 0.0);
+                fail("IllegalArgumentException expected but not thrown");
+            } catch (IllegalArgumentException ignore) { }
+            try {
+                NormalDist.invcdf(0.0, mean, std);
+                fail("IllegalArgumentException expected but not thrown");
+            } catch (IllegalArgumentException ignore) { }
+            try {
+                NormalDist.invcdf(1.0, mean, std);
+                fail("IllegalArgumentException expected but not thrown");
+            } catch (IllegalArgumentException ignore) { }
+            try {
+                dist.invcdf(0.0);
+                fail("IllegalArgumentException expected but not thrown");
+            } catch (IllegalArgumentException ignore) { }
+            try {
+                dist.invcdf(1.0);
+                fail("IllegalArgumentException expected but not thrown");
+            } catch (IllegalArgumentException ignore) { }
+
+            numValid++;
+            break;
+        }
+
+        assertTrue(numValid > 0);
     }
     
     @Test
@@ -435,7 +459,7 @@ public class NormalDistTest {
         
         
         //generate a large number of Gaussian random samples and propagate them
-        //through function f(x) = sin(x)
+        //through function f(x) = x^2
         GaussianRandomizer gaussRandomizer = new GaussianRandomizer(
                 new Random(), mean, standardDeviation);
         double x, y;

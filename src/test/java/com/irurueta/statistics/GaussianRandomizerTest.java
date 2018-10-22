@@ -1,10 +1,17 @@
-/**
- * @file
- * This file contains Unit Tests for
- * com.irurueta.statistics.GaussianRandomizer
- * 
- * @author Alberto Irurueta (alberto@irurueta.com)
- * @date April 6, 2012
+/*
+ * Copyright (C) 2012 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.irurueta.statistics;
 
@@ -27,10 +34,10 @@ public class GaussianRandomizerTest {
     public GaussianRandomizerTest() { }
 
     @BeforeClass
-    public static void setUpClass() throws Exception { }
+    public static void setUpClass() { }
 
     @AfterClass
-    public static void tearDownClass() throws Exception { }
+    public static void tearDownClass() { }
     
     @Before
     public void setUp() { }
@@ -47,14 +54,14 @@ public class GaussianRandomizerTest {
         assertNotNull(randomizer);
         assertEquals(randomizer.getmMean(), GaussianRandomizer.DEFAULT_MEAN,
                 0.0);
-        assertEquals(randomizer.getmStandardDeviation(),
+        assertEquals(randomizer.getStandardDeviation(),
                 GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, 0.0);
         
         randomizer = new GaussianRandomizer(new SecureRandom());
         assertNotNull(randomizer);
         assertEquals(randomizer.getmMean(), GaussianRandomizer.DEFAULT_MEAN,
                 0.0);
-        assertEquals(randomizer.getmStandardDeviation(),
+        assertEquals(randomizer.getStandardDeviation(),
                 GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, 0.0);
         
         
@@ -73,7 +80,7 @@ public class GaussianRandomizerTest {
                 STANDARD_DEVIATION);
         assertNotNull(randomizer);
         assertEquals(randomizer.getmMean(), MEAN, 0.0);
-        assertEquals(randomizer.getmStandardDeviation(), STANDARD_DEVIATION,
+        assertEquals(randomizer.getStandardDeviation(), STANDARD_DEVIATION,
                 0.0);
         
         //Force IllegalArgumentException
@@ -106,19 +113,19 @@ public class GaussianRandomizerTest {
         GaussianRandomizer randomizer = new GaussianRandomizer(new Random());
         
         //check default mean
-        assertEquals(randomizer.getmStandardDeviation(),
+        assertEquals(randomizer.getStandardDeviation(),
                 GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, 0.0);
         
         //set new standard deviation
-        randomizer.setmStandardDeviation(STANDARD_DEVIATION);
+        randomizer.setStandardDeviation(STANDARD_DEVIATION);
         
         //check correctness
-        assertEquals(randomizer.getmStandardDeviation(), STANDARD_DEVIATION,
+        assertEquals(randomizer.getStandardDeviation(), STANDARD_DEVIATION,
                 0.0);
         
         //Force IllegalArgumentException
         try {
-            randomizer.setmStandardDeviation(-STANDARD_DEVIATION);
+            randomizer.setStandardDeviation(-STANDARD_DEVIATION);
             fail("IllegalArgumentException was expected but not thrown");
         } catch (IllegalArgumentException ignore) { }
     }
@@ -166,7 +173,7 @@ public class GaussianRandomizerTest {
     }
 
     @Test
-    public void testFillWithBooleansAndThreshold(){
+    public void testFillWithBooleansAndThreshold() {
         GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
                 MEAN, STANDARD_DEVIATION);
 
@@ -197,7 +204,7 @@ public class GaussianRandomizerTest {
     }
 
     @Test
-    public void testNextBooleansAndThreshold(){
+    public void testNextBooleansAndThreshold() {
         GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
                 MEAN, STANDARD_DEVIATION);
 
