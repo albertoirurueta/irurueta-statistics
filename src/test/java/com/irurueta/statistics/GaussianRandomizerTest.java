@@ -15,10 +15,12 @@
  */
 package com.irurueta.statistics;
 
+import org.junit.*;
+
 import java.security.SecureRandom;
 import java.util.Random;
+
 import static org.junit.Assert.*;
-import org.junit.*;
 
 public class GaussianRandomizerTest {
     

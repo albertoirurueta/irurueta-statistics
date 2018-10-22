@@ -16,12 +16,10 @@
 package com.irurueta.statistics;
 
 import com.irurueta.statistics.NormalDist.DerivativeEvaluator;
+import org.junit.*;
+
 import java.util.Random;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 @SuppressWarnings("Duplicates")
