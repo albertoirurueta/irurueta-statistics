@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764575ca-bb2c-40b9-9afd-54123c62226f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/irurueta/statistics/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/irurueta/statistics/build-info.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/BuildInfoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/BuildInfoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ChiSqDistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ChiSqDistTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ErfTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ErfTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GammaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GammaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/MaxIterationsExceededExceptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/MaxIterationsExceededExceptionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/NormalDistTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/NormalDistTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/RandomizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/RandomizerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/StatisticsExceptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/StatisticsExceptionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/UniformRandomizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/UniformRandomizerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,10 +19,10 @@
     <session id="253425313">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="4" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.1" value="3" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,13 +38,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="459" />
-          <entry key="xml" value="37" />
+          <entry key="xml" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="459" />
-          <entry key="XML" value="37" />
+          <entry key="XML" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -67,8 +58,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-end-line="5" selection-end-column="57" />
+            <state relative-caret-position="376">
+              <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
+              <folding>
+                <element signature="e#37#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,7 +98,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/site/apt/index.apt" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/GaussianRandomizer.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/BuildInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/ChiSqDist.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/irurueta/statistics/Erf.java" />
@@ -127,6 +120,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/RandomizerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/StatisticsExceptionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/UniformRandomizerTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -160,7 +154,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="135" />
+    <option name="x" value="25" />
     <option name="y" value="23" />
     <option name="width" value="1415" />
     <option name="height" value="768" />
@@ -193,7 +187,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,6 +260,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -519,6 +513,7 @@
       <workItem from="1539942610031" duration="1838000" />
       <workItem from="1540196348798" duration="3654000" />
       <workItem from="1540245312257" duration="266000" />
+      <workItem from="1540478349898" duration="69000" />
     </task>
     <servers />
   </component>
@@ -555,13 +550,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20218000" />
+    <option name="totallyTimeSpent" value="20287000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="135" y="23" width="1415" height="768" extended-state="0" />
+    <frame x="25" y="23" width="1415" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48513302" visible="true" weight="0.25564456" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48513302" visible="true" weight="0.25928622" />
       <window_info id="Structure" order="1" sideWeight="0.514867" side_tool="true" weight="0.30892017" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -587,7 +582,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info active="true" anchor="right" id="Maven Projects" order="6" visible="true" weight="0.3284778" />
+      <window_info anchor="right" id="Maven Projects" order="6" weight="0.3284778" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Database" order="9" />
@@ -841,8 +836,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="57" lean-forward="true" selection-start-line="5" selection-end-line="5" selection-end-column="57" />
+        <state relative-caret-position="376">
+          <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
+          <folding>
+            <element signature="e#37#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
