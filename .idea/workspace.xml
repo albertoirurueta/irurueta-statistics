@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="764575ca-bb2c-40b9-9afd-54123c62226f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/irurueta/statistics/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/irurueta/statistics/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,31 +21,33 @@
     <session id="253425313">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.0" value="4" />
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.0" value="5" />
           <entry key="project.open.time.1" value="3" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="50" />
+          <entry key="java" value="51" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="50" />
+          <entry key="JAVA" value="51" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="459" />
+          <entry key="java" value="485" />
           <entry key="xml" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="459" />
+          <entry key="JAVA" value="485" />
           <entry key="XML" value="67" />
         </counts>
       </usages-collector>
@@ -55,14 +59,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
-              <folding>
-                <element signature="e#37#58#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/checkstyle.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -80,6 +90,8 @@
       <find>testInv</find>
       <find>invcd</find>
       <find>propagate</find>
+      <find>AvoidStarImport</find>
+      <find>GaussianRandomizerTest</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -114,13 +126,14 @@
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ChiSqDistTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/ErfTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GammaTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/MaxIterationsExceededExceptionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/NormalDistTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/RandomizerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/StatisticsExceptionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/UniformRandomizerTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/checkstyle.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java" />
       </list>
     </option>
   </component>
@@ -154,8 +167,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
-    <option name="y" value="23" />
+    <option name="x" value="151" />
+    <option name="y" value="85" />
     <option name="width" value="1415" />
     <option name="height" value="768" />
   </component>
@@ -186,6 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -260,7 +274,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,7 +285,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540245523983" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541855049880" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
@@ -293,7 +306,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.NormalDistTest">
+  <component name="RunManager" selected="JUnit.GaussianRandomizerTest">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -329,6 +342,21 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GaussianRandomizerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-statistics" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.statistics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.irurueta.statistics" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.statistics.GaussianRandomizerTest" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -377,21 +405,6 @@
       <option name="MAIN_CLASS_NAME" value="com.irurueta.statistics.NormalDistTest" />
       <option name="METHOD_NAME" value="testPropagateSinusoidal" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RandomizerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="irurueta-statistics" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.irurueta.statistics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.irurueta.statistics" />
-      <option name="MAIN_CLASS_NAME" value="com.irurueta.statistics.RandomizerTest" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -470,19 +483,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.RandomizerTest" />
       <item itemvalue="JUnit.NormalDistTest" />
       <item itemvalue="JUnit.UniformRandomizerTest" />
       <item itemvalue="JUnit.NormalDistTest.testPropagatePoly" />
       <item itemvalue="JUnit.NormalDistTest.testPropagateSinusoidal" />
+      <item itemvalue="JUnit.GaussianRandomizerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GaussianRandomizerTest" />
         <item itemvalue="JUnit.NormalDistTest" />
         <item itemvalue="JUnit.NormalDistTest.testPropagateSinusoidal" />
         <item itemvalue="JUnit.NormalDistTest.testPropagatePoly" />
         <item itemvalue="JUnit.UniformRandomizerTest" />
-        <item itemvalue="JUnit.RandomizerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -514,13 +527,11 @@
       <workItem from="1540196348798" duration="3654000" />
       <workItem from="1540245312257" duration="266000" />
       <workItem from="1540478349898" duration="69000" />
+      <workItem from="1541854321432" duration="668000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UniformRandomizerTest - 2017.07.28 at 18h 10m 00s.xml">
-      <configuration name="UniformRandomizerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UniformRandomizerTest - 2017.07.28 at 18h 11m 33s.xml">
       <configuration name="UniformRandomizerTest" configurationId="JUnit" />
     </history-entry>
@@ -548,15 +559,18 @@
     <history-entry file="NormalDistTest - 2018.10.22 at 12h 06m 13s.xml">
       <configuration name="NormalDistTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="GaussianRandomizerTest - 2018.11.10 at 14h 00m 48s.xml">
+      <configuration name="GaussianRandomizerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20287000" />
+    <option name="totallyTimeSpent" value="20955000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1415" height="768" extended-state="0" />
+    <frame x="151" y="85" width="1415" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48513302" visible="true" weight="0.25928622" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48513302" visible="true" weight="0.2629279" />
       <window_info id="Structure" order="1" sideWeight="0.514867" side_tool="true" weight="0.30892017" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -772,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/statistics/MaxIterationsExceededExceptionTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -834,13 +838,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/irurueta/statistics/GaussianRandomizerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="251" column="8" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="257" column="74" selection-start-line="257" selection-start-column="74" selection-end-line="257" selection-end-column="74" />
-          <folding>
-            <element signature="e#37#58#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkstyle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>

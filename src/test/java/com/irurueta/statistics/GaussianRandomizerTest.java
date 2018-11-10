@@ -242,11 +242,12 @@ public class GaussianRandomizerTest {
                 MEAN, STANDARD_DEVIATION);
         
         double mean = 0.0, sqrSum = 0.0, standardDeviation;
+        int num = 2 * NUM_SAMPLES;
         int value;
-        for (int i = 0; i < NUM_SAMPLES; i++) {
+        for (int i = 0; i < num; i++) {
             value = randomizer.nextInt();
-            mean += (double)value / (double)NUM_SAMPLES;
-            sqrSum += (double)value * (double)value / (double)NUM_SAMPLES;
+            mean += (double)value / (double)num;
+            sqrSum += (double)value * (double)value / (double)num;
         }
         
         standardDeviation = Math.sqrt(sqrSum - mean);
