@@ -17,11 +17,19 @@ env:
         #GPG_PASSPHRASE
         - secure: "u7PraRPSYWMjBfzcVLwX5BksfwA1Dn5x4ctzi/K2yME+8CTVgwymJPv5oYZMynFIEKDoujwcePJysi73TF2BqnyTdeo4GYOzXF3rYdPNqhP6Fux0z14UqQ1X+p4Ic+jAFywboSJwrETMw7hjA6MGU1DRlBsZ2oU4qNpHYE1EUE4O7oftopNWpr1Tni6CUx4Pvk6YVPX1cKcc5SxObqH7GbLknDsQVfjCC2hgVl+rywmcUWScNzYTroxMBc2MUpYCxecN0I8aBOo8fluBgnqYcUpJweU0NrBgdZ5J40PnZP5m+C0o+heJt7EaXVtCQ6/pxuy1wYo/R9Idji0VPuw/H5gvyJwesOsKit2DDMqGQCePN4LRDaf6Mzb6+7TubPpzb+pEDQ2kzG8TNc6srd/G4rceETFXUcg54u45AuGF2TrlOSXV29upU4094MzizE4Jez2TFM55E+0rbpuP5hbf7LOd790zwClY5mcl1MAsyrzV18aT3slePy8TM+buXPY4Qv/OKapuyIYQ93OPxkAxnvftR/sszmS19QFO7MDXRNvMpENJl1a328WeVdycitNimdus1HLpo02haR4OXtsix+RlImG8DPHtNbp+GzzijpKgGiH0I/ThDHT79uM9RiZcN3e3irNe+BzNd2N+dsQnn9kGI3OGpuwck2I9spCBtSY="
 
+addons:
+  sonarcloud:
+    organization: "albertoirurueta-github"
+    token:
+      secure: "TV9yKRoHHvRYUQmJJIKGP8vVMuSdxfgfSMBP++me3l2hmoHTKQrq9mzP7jULWD/QkuPfkzNZkZtJN48I6XmB+CypXIVc6QxEiOiSO5AlCPD0FuIMDYdZgF6ESjOhHrFOm07A3ktrbVnDIcw3bgDZUXCjUHZx3foQidQMSo2BRARMpDXByBUKOU6KM1Rf1STMrvhkcK3772mAdbMa0CecpIZanBktELL2eEKKcRzmOfsP+wjHSG3djQRxeS5Y48DgAW4E2yETaCjIa4LnoKtHNTebBi29h6u7WX9fVo05qKIQOAx9RMj/EHzqexrpLObRIGbcaz0sjIJ8VdrNquGp4K/a+pO6jaMMjKt2s/umOV/NjIUGMNI3vph5A8O72GO4YwGrwaUawwAWgWkU1Sk+nkBIRzPLmVjS8vNQKFpTxocaQ7doHWyceio8CLUVmkDVxqgH3noiE7vpzAsxXchkyrk17RmOk/8wwh8ZmE2f87q0ZlmF1tcW6amNxQmWUX0StUI4qVTgP9wJfKfjAZjTZelHbRuDKcTpz5u/HP2g2t9mwmrdwLKrGC+FAq2Dmm7Jd91+hViIIksr1eucuWeU1nGj2nt2Ztl1EKJGnVnb/J2nAVHbC5M4+Rc4ih9EIEjEOKiPAqzucqDgBBMZ6Bw/Cb2It8rPreYCXltd98osrwA="
+
 #if timeout occurs, add travis_wait as in example below:
 #script: travis_wait mvn clean jacoco:prepare-agent install jacoco:report site
 
 #add: -Denvironment=test to activate CI profile to publish into gh-pages
-script: travis_wait mvn clean jacoco:prepare-agent install jacoco:report coveralls:report site -Denvironment=test -P !build-extras
+script:
+  - travis_wait mvn clean jacoco:prepare-agent install jacoco:report coveralls:report site -Denvironment=test -P !build-extras
+  - sonar-scanner
 
 cache:
   directories:
