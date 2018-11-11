@@ -23,8 +23,8 @@
         </developer>
     </developers>
     <scm>
-        <connection>git@github.com:albertoirurueta/irurueta-statistics.git</connection>
-        <developerConnection>git@github.com:albertoirurueta/irurueta-statistics.git</developerConnection>
+        <connection>scm:git@github.com:albertoirurueta/irurueta-statistics.git</connection>
+        <developerConnection>scm:git@github.com:albertoirurueta/irurueta-statistics.git</developerConnection>
         <url>git@github.com:albertoirurueta/irurueta-statistics.git</url>
     </scm>
 
