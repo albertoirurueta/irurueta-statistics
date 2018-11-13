@@ -107,14 +107,14 @@ public class Erf {
 <span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (p &lt;= 0.0) {</span>
 <span class="nc" id="L108">            return 100.0;</span>
         }
-<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        pp = p &lt; 1.0 ? p : 2.0 - p;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        pp = p &lt; 1.0 ? p : 2.0 - p;</span>
 <span class="fc" id="L111">        t = Math.sqrt(-2.0 * Math.log(pp / 2.0));</span>
 <span class="fc" id="L112">        x = -0.70711 * ((2.30753 + t * 0.27061) / (1.0 + t * (0.99229 + t * 0.04481)) - t);</span>
 <span class="fc bfc" id="L113" title="All 2 branches covered.">        for (int j = 0; j &lt; 2; j++) {</span>
 <span class="fc" id="L114">            err = erfc(x) - pp;</span>
 <span class="fc" id="L115">            x += err / (1.12837916709551257 * Math.exp(-x * x) - x * err);</span>
         }
-<span class="pc bpc" id="L117" title="1 of 2 branches missed.">        return (p &lt; 1.0 ? x : -x);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        return (p &lt; 1.0 ? x : -x);</span>
     }
     
     /**
