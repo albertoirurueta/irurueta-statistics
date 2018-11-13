@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>com.irurueta:irurueta-statistics - Checkstyle report</title>
-    <link>https://bitbucket.org/alberto_irurueta/irurueta-statistics</link>
+    <link>https://github.com/albertoirurueta/irurueta-statistics</link>
     <description>com.irurueta:irurueta-statistics - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2017 - 2018</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html</link>
+            <link>https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html</link>
       <description>
-        <p>Click <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.StatisticsException.java">com/irurueta/statistics/StatisticsException.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.StatisticsException.java">com/irurueta/statistics/StatisticsException.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.BuildInfo.java">com/irurueta/statistics/BuildInfo.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.BuildInfo.java">com/irurueta/statistics/BuildInfo.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.build-info.properties">com/irurueta/statistics/build-info.properties</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.build-info.properties">com/irurueta/statistics/build-info.properties</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.NormalDist.java">com/irurueta/statistics/NormalDist.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.NormalDist.java">com/irurueta/statistics/NormalDist.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.GaussLegendreQuadrature.java">com/irurueta/statistics/GaussLegendreQuadrature.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.GaussLegendreQuadrature.java">com/irurueta/statistics/GaussLegendreQuadrature.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.package-info.java">com/irurueta/statistics/package-info.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.package-info.java">com/irurueta/statistics/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.ChiSqDist.java">com/irurueta/statistics/ChiSqDist.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.ChiSqDist.java">com/irurueta/statistics/ChiSqDist.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.GaussianRandomizer.java">com/irurueta/statistics/GaussianRandomizer.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.GaussianRandomizer.java">com/irurueta/statistics/GaussianRandomizer.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.RandomizerType.java">com/irurueta/statistics/RandomizerType.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.RandomizerType.java">com/irurueta/statistics/RandomizerType.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.MaxIterationsExceededException.java">com/irurueta/statistics/MaxIterationsExceededException.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.MaxIterationsExceededException.java">com/irurueta/statistics/MaxIterationsExceededException.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Gamma.java">com/irurueta/statistics/Gamma.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Gamma.java">com/irurueta/statistics/Gamma.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Randomizer.java">com/irurueta/statistics/Randomizer.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Randomizer.java">com/irurueta/statistics/Randomizer.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Erf.java">com/irurueta/statistics/Erf.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.Erf.java">com/irurueta/statistics/Erf.java</a>
                 </td>
                 <td>
                   0
@@ -228,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://bitbucket.org/alberto_irurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.UniformRandomizer.java">com/irurueta/statistics/UniformRandomizer.java</a>
+                  <a href="https://github.com/albertoirurueta/irurueta-statistics/checkstyle.html#com.irurueta.statistics.UniformRandomizer.java">com/irurueta/statistics/UniformRandomizer.java</a>
                 </td>
                 <td>
                   0
