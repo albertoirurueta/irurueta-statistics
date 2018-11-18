@@ -424,22 +424,22 @@ public class Gamma extends GaussLegendreQuadrature {
 <span class="fc bfc" id="L424" title="All 2 branches covered.">        if (a &gt; 1.) {</span>
 <span class="fc" id="L425">            lna1 = Math.log(a1);</span>
 <span class="fc" id="L426">            afac = Math.exp(a1 * (lna1 - 1.) - gln);</span>
-<span class="pc bpc" id="L427" title="1 of 2 branches missed.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
+<span class="fc bfc" id="L427" title="All 2 branches covered.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
 <span class="fc" id="L428">            t = Math.sqrt(-2. * Math.log(pp));</span>
 <span class="fc" id="L429">            x = (2.30753 + t * 0.27061) / (1. + t * (0.99229 + t * 0.04481)) - t;</span>
-<span class="pc bpc" id="L430" title="1 of 2 branches missed.">            if (p &lt; 0.5) {</span>
-<span class="nc" id="L431">                x = -x;</span>
+<span class="fc bfc" id="L430" title="All 2 branches covered.">            if (p &lt; 0.5) {</span>
+<span class="fc" id="L431">                x = -x;</span>
             }
 <span class="fc" id="L433">            x = Math.max(1.e-3, a * Math.pow(1. - 1. / (9. * a) - x / (3. * Math.sqrt(a)), 3));</span>
         } else {
 <span class="fc" id="L435">            t = 1.0 - a * (0.253 + a * 0.12);</span>
-<span class="fc bfc" id="L436" title="All 2 branches covered.">            if (p &lt; t) {</span>
-<span class="fc" id="L437">                x = Math.pow(p / t, 1. / a);</span>
+<span class="pc bpc" id="L436" title="1 of 2 branches missed.">            if (p &lt; t) {</span>
+<span class="nc" id="L437">                x = Math.pow(p / t, 1. / a);</span>
             } else {
 <span class="fc" id="L439">                x = 1. - Math.log(1. - (p - t) / (1. - t));</span>
             }
         }
-<span class="fc bfc" id="L442" title="All 2 branches covered.">        for (j = 0; j &lt; 12; j++) {</span>
+<span class="pc bpc" id="L442" title="1 of 2 branches missed.">        for (j = 0; j &lt; 12; j++) {</span>
 <span class="pc bpc" id="L443" title="1 of 2 branches missed.">            if (x &lt;= 0.0) {</span>
 <span class="nc" id="L444">                return 0.0;</span>
             }
