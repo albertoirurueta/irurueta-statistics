@@ -172,8 +172,7 @@ public class NormalDist {
      */
     public static double cdf(double x, double mu, double sig) {
         if (sig <= 0.0) {
-            throw new IllegalArgumentException(
-                    "standard deviation must be greater than zero");
+            throw new IllegalArgumentException();
         }
 
         return internalCdf(x, mu, sig);
