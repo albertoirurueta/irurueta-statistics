@@ -139,8 +139,7 @@ public class NormalDist {
      */
     public static double p(double x, double mu, double sig) {
         if (sig <= 0.0) {
-            throw new IllegalArgumentException(
-                    "standard deviation must be greater than zero");
+            throw new IllegalArgumentException();
         }
         
         return internalP(x, mu, sig);
