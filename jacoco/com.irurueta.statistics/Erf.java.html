@@ -100,21 +100,24 @@ public class Erf {
      * @return result of the evaluation.
      */
     public static double inverfc(double p) {
-        double x, err, t, pp;
-<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if (p &gt;= 2.0) {</span>
-<span class="nc" id="L105">            return -100.0;</span>
+        double x;
+        double err;
+        double t;
+        double pp;
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (p &gt;= 2.0) {</span>
+<span class="nc" id="L108">            return -100.0;</span>
         }
-<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (p &lt;= 0.0) {</span>
-<span class="nc" id="L108">            return 100.0;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if (p &lt;= 0.0) {</span>
+<span class="nc" id="L111">            return 100.0;</span>
         }
-<span class="fc bfc" id="L110" title="All 2 branches covered.">        pp = p &lt; 1.0 ? p : 2.0 - p;</span>
-<span class="fc" id="L111">        t = Math.sqrt(-2.0 * Math.log(pp / 2.0));</span>
-<span class="fc" id="L112">        x = -0.70711 * ((2.30753 + t * 0.27061) / (1.0 + t * (0.99229 + t * 0.04481)) - t);</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (int j = 0; j &lt; 2; j++) {</span>
-<span class="fc" id="L114">            err = erfc(x) - pp;</span>
-<span class="fc" id="L115">            x += err / (1.12837916709551257 * Math.exp(-x * x) - x * err);</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        pp = p &lt; 1.0 ? p : 2.0 - p;</span>
+<span class="fc" id="L114">        t = Math.sqrt(-2.0 * Math.log(pp / 2.0));</span>
+<span class="fc" id="L115">        x = -0.70711 * ((2.30753 + t * 0.27061) / (1.0 + t * (0.99229 + t * 0.04481)) - t);</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        for (int j = 0; j &lt; 2; j++) {</span>
+<span class="fc" id="L117">            err = erfc(x) - pp;</span>
+<span class="fc" id="L118">            x += err / (1.12837916709551257 * Math.exp(-x * x) - x * err);</span>
         }
-<span class="fc bfc" id="L117" title="All 2 branches covered.">        return (p &lt; 1.0 ? x : -x);</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        return (p &lt; 1.0 ? x : -x);</span>
     }
     
     /**
@@ -125,7 +128,7 @@ public class Erf {
      * @return result of the evaluation.
      */
     public static double inverf(double p) {
-<span class="fc" id="L128">        return inverfc(1.0 - p);</span>
+<span class="fc" id="L131">        return inverfc(1.0 - p);</span>
     }
     
     /**
@@ -135,22 +138,26 @@ public class Erf {
      * @return evaluation of the erfc at provided value.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    private static double erfccheb(double z) throws IllegalArgumentException {
+    private static double erfccheb(double z) {
         int j;
-<span class="fc" id="L140">        double t, ty, tmp, d = 0.0, dd = 0.0;</span>
-<span class="pc bpc" id="L141" title="1 of 2 branches missed.">        if (z &lt; 0.0) {</span>
-<span class="nc" id="L142">            throw new IllegalArgumentException(</span>
+        double t;
+        double ty;
+        double tmp;
+<span class="fc" id="L146">        double d = 0.0;</span>
+<span class="fc" id="L147">        double dd = 0.0;</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        if (z &lt; 0.0) {</span>
+<span class="nc" id="L149">            throw new IllegalArgumentException(</span>
                     &quot;erfccheb requires nonnegative argument&quot;);
         }
 
-<span class="fc" id="L146">        t = 2.0 / (2.0 + z);</span>
-<span class="fc" id="L147">        ty = 4.0 * t - 2.;</span>
-<span class="fc bfc" id="L148" title="All 2 branches covered.">        for (j = N_COF - 1; j &gt; 0; j--) {</span>
-<span class="fc" id="L149">            tmp = d;</span>
-<span class="fc" id="L150">            d = ty * d - dd + COF[j];</span>
-<span class="fc" id="L151">            dd = tmp;</span>
+<span class="fc" id="L153">        t = 2.0 / (2.0 + z);</span>
+<span class="fc" id="L154">        ty = 4.0 * t - 2.;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        for (j = N_COF - 1; j &gt; 0; j--) {</span>
+<span class="fc" id="L156">            tmp = d;</span>
+<span class="fc" id="L157">            d = ty * d - dd + COF[j];</span>
+<span class="fc" id="L158">            dd = tmp;</span>
         }
-<span class="fc" id="L153">        return t * Math.exp(-z * z + 0.5 * (COF[0] + ty * d) - dd);</span>
+<span class="fc" id="L160">        return t * Math.exp(-z * z + 0.5 * (COF[0] + ty * d) - dd);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
