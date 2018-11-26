@@ -65,7 +65,7 @@ public abstract class Randomizer {
      *      values.
      * @throws NullPointerException if provided value is null.
      */
-<span class="fc" id="L68">    public Randomizer(Random internalRandom) throws NullPointerException {</span>
+<span class="fc" id="L68">    public Randomizer(Random internalRandom) {</span>
         
 <span class="fc bfc" id="L70" title="All 2 branches covered.">        if (internalRandom == null) {</span>
 <span class="fc" id="L71">            throw new NullPointerException();</span>
@@ -87,14 +87,12 @@ public abstract class Randomizer {
      *      values.
      * @throws NullPointerException if provided value is null.
      */
-    public void setInternalRandom(Random internalRandom)
-            throws NullPointerException {
-        
-<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (internalRandom == null) {</span>
-<span class="fc" id="L94">            throw new NullPointerException();</span>
+    public void setInternalRandom(Random internalRandom) {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (internalRandom == null) {</span>
+<span class="fc" id="L92">            throw new NullPointerException();</span>
         }
-<span class="fc" id="L96">        mInternalRandom = internalRandom;</span>
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L94">        mInternalRandom = internalRandom;</span>
+<span class="fc" id="L95">    }</span>
     
     /**
      * Sets the seed for the internal randomizer.
@@ -117,8 +115,8 @@ public abstract class Randomizer {
      * @param seed Value to be used as seed
      */
     public void setSeed(long seed) {
-<span class="fc" id="L120">        mInternalRandom.setSeed(seed);</span>
-<span class="fc" id="L121">    }</span>
+<span class="fc" id="L118">        mInternalRandom.setSeed(seed);</span>
+<span class="fc" id="L119">    }</span>
     
     /**
      * Returns next random boolean value following a given distribution 
@@ -132,10 +130,10 @@ public abstract class Randomizer {
      * @param array Array to be filled.
      */
     public void fill(boolean[] array) {
-<span class="fc bfc" id="L135" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L136">            array[i] = nextBoolean();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L134">            array[i] = nextBoolean();</span>
         }
-<span class="fc" id="L138">    }</span>
+<span class="fc" id="L136">    }</span>
     
     /**
      * Returns array of booleans.
@@ -143,13 +141,13 @@ public abstract class Randomizer {
      * @return Array of uniform booleans.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public boolean[] nextBooleans(int length) throws IllegalArgumentException {
-<span class="fc bfc" id="L147" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L148">            throw new IllegalArgumentException();</span>
+    public boolean[] nextBooleans(int length) {
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L146">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L150">        boolean[] array = new boolean[length];</span>
-<span class="fc" id="L151">        fill(array);</span>
-<span class="fc" id="L152">        return array;</span>
+<span class="fc" id="L148">        boolean[] array = new boolean[length];</span>
+<span class="fc" id="L149">        fill(array);</span>
+<span class="fc" id="L150">        return array;</span>
     }
     
     /**
@@ -164,10 +162,10 @@ public abstract class Randomizer {
      * @param array Array to be filled.
      */
     public void fill(int[] array) {
-<span class="fc bfc" id="L167" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L168">            array[i] = nextInt();</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L166">            array[i] = nextInt();</span>
         }
-<span class="fc" id="L170">    }</span>
+<span class="fc" id="L168">    }</span>
     
     /**
      * Returns array of random integers.
@@ -175,13 +173,13 @@ public abstract class Randomizer {
      * @return Array of random integers.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public int[] nextInts(int length) throws IllegalArgumentException {
-<span class="fc bfc" id="L179" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L180">            throw new IllegalArgumentException();</span>
+    public int[] nextInts(int length) {
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L178">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L182">        int[] array = new int[length];</span>
-<span class="fc" id="L183">        fill(array);</span>
-<span class="fc" id="L184">        return array;</span>
+<span class="fc" id="L180">        int[] array = new int[length];</span>
+<span class="fc" id="L181">        fill(array);</span>
+<span class="fc" id="L182">        return array;</span>
     }
     
     /**
@@ -196,10 +194,10 @@ public abstract class Randomizer {
      * @param array Array to be filled.
      */
     public void fill(long[] array) {
-<span class="fc bfc" id="L199" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L200">            array[i] = nextLong();</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L198">            array[i] = nextLong();</span>
         }
-<span class="fc" id="L202">    }</span>
+<span class="fc" id="L200">    }</span>
 
     /**
      * Returns array of random long values.
@@ -207,13 +205,13 @@ public abstract class Randomizer {
      * @return Array of random long values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public long[] nextLongs(int length) throws IllegalArgumentException {
-<span class="fc bfc" id="L211" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L212">            throw new IllegalArgumentException();</span>
+    public long[] nextLongs(int length) {
+<span class="fc bfc" id="L209" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L210">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L214">        long[] array = new long[length];</span>
-<span class="fc" id="L215">        fill(array);</span>
-<span class="fc" id="L216">        return array;</span>
+<span class="fc" id="L212">        long[] array = new long[length];</span>
+<span class="fc" id="L213">        fill(array);</span>
+<span class="fc" id="L214">        return array;</span>
     }
     
     /**
@@ -228,10 +226,10 @@ public abstract class Randomizer {
      * @param array Array to be filled.
      */
     public void fill(float[] array) {
-<span class="fc bfc" id="L231" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L232">            array[i] = nextFloat();</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L230">            array[i] = nextFloat();</span>
         }
-<span class="fc" id="L234">    }</span>
+<span class="fc" id="L232">    }</span>
     
     /**
      * Returns array of floating point values.
@@ -239,13 +237,13 @@ public abstract class Randomizer {
      * @return Array of random float values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public float[] nextFloats(int length) throws IllegalArgumentException {
-<span class="fc bfc" id="L243" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L244">            throw new IllegalArgumentException();</span>
+    public float[] nextFloats(int length) {
+<span class="fc bfc" id="L241" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L242">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L246">        float[] array = new float[length];</span>
-<span class="fc" id="L247">        fill(array);</span>
-<span class="fc" id="L248">        return array;</span>
+<span class="fc" id="L244">        float[] array = new float[length];</span>
+<span class="fc" id="L245">        fill(array);</span>
+<span class="fc" id="L246">        return array;</span>
     }
     
     /**
@@ -260,10 +258,10 @@ public abstract class Randomizer {
      * @param array Array to be filled.
      */
     public void fill(double[] array) {
-<span class="fc bfc" id="L263" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L264">            array[i] = nextDouble();</span>
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L262">            array[i] = nextDouble();</span>
         }
-<span class="fc" id="L266">    }</span>
+<span class="fc" id="L264">    }</span>
     
     /**
      * Returns array of double precision floating point values.
@@ -271,13 +269,13 @@ public abstract class Randomizer {
      * @return Array of random double values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public double[] nextDoubles(int length) throws IllegalArgumentException {
-<span class="fc bfc" id="L275" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L276">            throw new IllegalArgumentException();</span>
+    public double[] nextDoubles(int length) {
+<span class="fc bfc" id="L273" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L274">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L278">        double[] array = new double[length];</span>
-<span class="fc" id="L279">        fill(array);</span>
-<span class="fc" id="L280">        return array;</span>
+<span class="fc" id="L276">        double[] array = new double[length];</span>
+<span class="fc" id="L277">        fill(array);</span>
+<span class="fc" id="L278">        return array;</span>
     }
     
     /**
@@ -295,7 +293,7 @@ public abstract class Randomizer {
      * mode.
      */
     public static Randomizer create() {
-<span class="fc" id="L298">        return create(DEFAULT_RANDOMIZER_TYPE);</span>
+<span class="fc" id="L296">        return create(DEFAULT_RANDOMIZER_TYPE);</span>
     }
     
     /**
@@ -310,7 +308,7 @@ public abstract class Randomizer {
      * @return A Randomizer instance using provided secure mode.
      */
     public static Randomizer create(boolean useSecureRandom) {
-<span class="fc" id="L313">        return create(DEFAULT_RANDOMIZER_TYPE, useSecureRandom);</span>
+<span class="fc" id="L311">        return create(DEFAULT_RANDOMIZER_TYPE, useSecureRandom);</span>
     }
     
     /**
@@ -322,9 +320,8 @@ public abstract class Randomizer {
      * @throws NullPointerException Exception thrown if provided internal 
      * randomizer is null.
      */
-    public static Randomizer create(Random internalRandomizer) 
-            throws NullPointerException {
-<span class="fc" id="L327">        return create(DEFAULT_RANDOMIZER_TYPE, internalRandomizer);</span>
+    public static Randomizer create(Random internalRandomizer) {
+<span class="fc" id="L324">        return create(DEFAULT_RANDOMIZER_TYPE, internalRandomizer);</span>
     }
     
     /**
@@ -334,7 +331,7 @@ public abstract class Randomizer {
      * @return A Randomizer instance using provided randomizer type.
      */
     public static Randomizer create(RandomizerType type) {
-<span class="fc" id="L337">        return create(type, USE_SECURE_RANDOM_BY_DEFAULT);</span>
+<span class="fc" id="L334">        return create(type, USE_SECURE_RANDOM_BY_DEFAULT);</span>
     }
     
     /**
@@ -350,10 +347,10 @@ public abstract class Randomizer {
      */
     public static Randomizer create(RandomizerType type, 
             boolean useSecureRandom) {
-<span class="fc bfc" id="L353" title="All 2 branches covered.">        if (useSecureRandom) {</span>
-<span class="fc" id="L354">            return create(type, new SecureRandom());</span>
+<span class="fc bfc" id="L350" title="All 2 branches covered.">        if (useSecureRandom) {</span>
+<span class="fc" id="L351">            return create(type, new SecureRandom());</span>
         } else {
-<span class="fc" id="L356">            return create(type, new Random());</span>
+<span class="fc" id="L353">            return create(type, new Random());</span>
         }
     }
     
@@ -368,18 +365,18 @@ public abstract class Randomizer {
      * @throws NullPointerException Exception thrown if internal random is null.
      */
     public static Randomizer create(RandomizerType type, 
-            Random internalRandom) throws NullPointerException {
+            Random internalRandom) {
         
-<span class="fc bfc" id="L373" title="All 2 branches covered.">        if (internalRandom == null) {</span>
-<span class="fc" id="L374">            throw new NullPointerException();</span>
+<span class="fc bfc" id="L370" title="All 2 branches covered.">        if (internalRandom == null) {</span>
+<span class="fc" id="L371">            throw new NullPointerException();</span>
         }
         
-<span class="fc bfc" id="L377" title="All 2 branches covered.">        switch (type) {</span>
+<span class="fc bfc" id="L374" title="All 2 branches covered.">        switch (type) {</span>
             case GAUSSIAN_RANDOMIZER:
-<span class="fc" id="L379">                return new GaussianRandomizer(internalRandom);</span>
+<span class="fc" id="L376">                return new GaussianRandomizer(internalRandom);</span>
             case UNIFORM_RANDOMIZER:
             default:
-<span class="fc" id="L382">                return new UniformRandomizer(internalRandom);</span>
+<span class="fc" id="L379">                return new UniformRandomizer(internalRandom);</span>
         }
     }
 }

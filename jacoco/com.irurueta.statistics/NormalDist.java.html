@@ -62,18 +62,17 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public NormalDist(double mu, double sig) 
-<span class="fc" id="L66">            throws IllegalArgumentException {</span>
-<span class="fc" id="L67">        setStandardDeviation(sig);</span>
-<span class="fc" id="L68">        setMean(mu);</span>
-<span class="fc" id="L69">    }</span>
+<span class="fc" id="L65">    public NormalDist(double mu, double sig) {</span>
+<span class="fc" id="L66">        setStandardDeviation(sig);</span>
+<span class="fc" id="L67">        setMean(mu);</span>
+<span class="fc" id="L68">    }</span>
     
     /**
      * Gets mean value of Gaussian distribution.
      * @return mean value of Gaussian distribution.
      */
     public double getMean() {
-<span class="fc" id="L76">        return mMu;</span>
+<span class="fc" id="L75">        return mMu;</span>
     }
     
     /**
@@ -81,15 +80,15 @@ public class NormalDist {
      * @param mu mean value of Gaussian distribution.
      */
     public final void setMean(double mu) {
-<span class="fc" id="L84">        mMu = mu;</span>
-<span class="fc" id="L85">    }</span>
+<span class="fc" id="L83">        mMu = mu;</span>
+<span class="fc" id="L84">    }</span>
     
     /**
      * Gets standard deviation of Gaussian distribution.
      * @return standard deviation of Gaussian distribution.
      */
     public double getStandardDeviation() {
-<span class="fc" id="L92">        return mSig;</span>
+<span class="fc" id="L91">        return mSig;</span>
     }
     
     /**
@@ -98,21 +97,19 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public final void setStandardDeviation(double sig) 
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
-<span class="fc" id="L104">            throw new IllegalArgumentException(</span>
-                    &quot;standard deviation must be greater than zero&quot;);
+    public final void setStandardDeviation(double sig) {
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
+<span class="fc" id="L102">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L107">        mSig = sig;</span>
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L104">        mSig = sig;</span>
+<span class="fc" id="L105">    }</span>
     
     /**
      * Gets variance of Gaussian distribution.
      * @return variance of Gaussian distribution.
      */
     public double getVariance() {
-<span class="fc" id="L115">        return mSig * mSig;</span>
+<span class="fc" id="L112">        return mSig * mSig;</span>
     }
     
     /**
@@ -121,13 +118,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided variance is zero or 
      * negative.
      */
-    public void setVariance(double variance) throws IllegalArgumentException {
-<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (variance &lt;= 0.0) {</span>
-<span class="fc" id="L126">            throw new IllegalArgumentException(</span>
+    public void setVariance(double variance) {
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        if (variance &lt;= 0.0) {</span>
+<span class="fc" id="L123">            throw new IllegalArgumentException(</span>
                     &quot;variance must be greater than zero&quot;);
         }
-<span class="fc" id="L129">        mSig = Math.sqrt(variance);</span>
-<span class="fc" id="L130">    }</span>
+<span class="fc" id="L126">        mSig = Math.sqrt(variance);</span>
+<span class="fc" id="L127">    }</span>
     
     /**
      * Evaluates the probability density function (p.d.f.) of a Gaussian 
@@ -140,14 +137,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public static double p(double x, double mu, double sig) 
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
-<span class="fc" id="L146">            throw new IllegalArgumentException(</span>
+    public static double p(double x, double mu, double sig) {
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
+<span class="fc" id="L142">            throw new IllegalArgumentException(</span>
                     &quot;standard deviation must be greater than zero&quot;);
         }
         
-<span class="fc" id="L150">        return internalP(x, mu, sig);</span>
+<span class="fc" id="L146">        return internalP(x, mu, sig);</span>
     }        
 
     /**
@@ -158,7 +154,7 @@ public class NormalDist {
      * @return evaluation of p.d.f.
      */
     public double p(double x) {
-<span class="fc" id="L161">        return internalP(x, mMu, mSig);</span>
+<span class="fc" id="L157">        return internalP(x, mMu, mSig);</span>
     }
     
     /**
@@ -175,14 +171,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    public static double cdf(double x, double mu, double sig) 
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L180" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
-<span class="fc" id="L181">            throw new IllegalArgumentException(</span>
+    public static double cdf(double x, double mu, double sig) {
+<span class="fc bfc" id="L175" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
+<span class="fc" id="L176">            throw new IllegalArgumentException(</span>
                     &quot;standard deviation must be greater than zero&quot;);
         }
 
-<span class="fc" id="L185">        return internalCdf(x, mu, sig);</span>
+<span class="fc" id="L180">        return internalCdf(x, mu, sig);</span>
     }
 
     /**
@@ -198,7 +193,7 @@ public class NormalDist {
      * @return evaluation of c.d.f.
      */
     public double cdf(double x) {
-<span class="fc" id="L201">        return internalCdf(x, mMu, mSig);</span>
+<span class="fc" id="L196">        return internalCdf(x, mMu, mSig);</span>
     }
     
     /**
@@ -216,14 +211,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative, or if provided probability value is not between 0.0 and 1.0.
      */
-    public static double invcdf(double p, double mu, double sig)
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
-<span class="fc" id="L222">            throw new IllegalArgumentException(</span>
+    public static double invcdf(double p, double mu, double sig) {
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
+<span class="fc" id="L216">            throw new IllegalArgumentException(</span>
                     &quot;standard deviation must be greater than zero&quot;);
         }
 
-<span class="fc" id="L226">        return internalInvcdf(p, mu, sig);</span>
+<span class="fc" id="L220">        return internalInvcdf(p, mu, sig);</span>
     }
 
     /**
@@ -239,8 +233,8 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided probability value is not 
      * between 0.0 and 1.0.
      */
-    public double invcdf(double p) throws IllegalArgumentException {
-<span class="fc" id="L243">        return internalInvcdf(p, mMu, mSig);</span>
+    public double invcdf(double p) {
+<span class="fc" id="L237">        return internalInvcdf(p, mMu, mSig);</span>
     }
     
     /**
@@ -253,14 +247,13 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    public static double mahalanobisDistance(double x, double mu, double sig)
-            throws IllegalArgumentException {
-<span class="fc bfc" id="L258" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
-<span class="fc" id="L259">            throw new IllegalArgumentException(</span>
+    public static double mahalanobisDistance(double x, double mu, double sig) {
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (sig &lt;= 0.0) {</span>
+<span class="fc" id="L252">            throw new IllegalArgumentException(</span>
                     &quot;standard deviation must be greater than zero&quot;);
         }
         
-<span class="fc" id="L263">        return internalMahalanobisDistance(x, mu, sig);</span>
+<span class="fc" id="L256">        return internalMahalanobisDistance(x, mu, sig);</span>
     }
     
     /**
@@ -270,7 +263,7 @@ public class NormalDist {
      * @return Mahalanobis distance of provided point respect to current mean.
      */
     public double mahalanobisDistance(double x) {
-<span class="fc" id="L273">        return internalMahalanobisDistance(x, mMu, mSig);</span>
+<span class="fc" id="L266">        return internalMahalanobisDistance(x, mMu, mSig);</span>
     }
 
     /**
@@ -286,8 +279,8 @@ public class NormalDist {
      * or negative.
      */
     private static double internalP(double x, double mu, double sig) {
-<span class="fc" id="L289">        return (GAUSSIAN_NORM / sig) * Math.exp(-0.5 *</span>
-<span class="fc" id="L290">                Math.pow((x - mu) / sig, 2.0));</span>
+<span class="fc" id="L282">        return (GAUSSIAN_NORM / sig) * Math.exp(-0.5 *</span>
+<span class="fc" id="L283">                Math.pow((x - mu) / sig, 2.0));</span>
     }
 
     /**
@@ -307,7 +300,7 @@ public class NormalDist {
      */
     @SuppressWarnings(&quot;all&quot;)
     protected static double internalCdf(double x, double mu, double sig) {
-<span class="fc" id="L310">        return 0.5 * Erf.erfc(-HALF_SQRT2 * (x - mu) / sig);</span>
+<span class="fc" id="L303">        return 0.5 * Erf.erfc(-HALF_SQRT2 * (x - mu) / sig);</span>
     }
 
     /**
@@ -329,11 +322,11 @@ public class NormalDist {
     @SuppressWarnings(&quot;all&quot;)
     protected static double internalInvcdf(double p, double mu, double sig)
             throws IllegalArgumentException {
-<span class="fc bfc" id="L332" title="All 4 branches covered.">        if (p &lt;= 0.0 || p &gt;= 1.0) {</span>
-<span class="fc" id="L333">            throw new IllegalArgumentException(</span>
+<span class="fc bfc" id="L325" title="All 4 branches covered.">        if (p &lt;= 0.0 || p &gt;= 1.0) {</span>
+<span class="fc" id="L326">            throw new IllegalArgumentException(</span>
                     &quot;probability value must be between 0.0 and 1.0&quot;);
         }
-<span class="fc" id="L336">        return -SQRT2 * sig * Erf.inverfc(2.0 * p) + mu;</span>
+<span class="fc" id="L329">        return -SQRT2 * sig * Erf.inverfc(2.0 * p) + mu;</span>
     }
     
     /**
@@ -346,7 +339,7 @@ public class NormalDist {
      */
     private static double internalMahalanobisDistance(double x, double mu, 
             double sig) {
-<span class="fc" id="L349">        return Math.abs(x - mu) / sig;</span>
+<span class="fc" id="L342">        return Math.abs(x - mu) / sig;</span>
     }
             
     /**
@@ -364,11 +357,11 @@ public class NormalDist {
      */
     public static void propagate(DerivativeEvaluator evaluator, double mean, 
             double standardDeviation, NormalDist result) {
-<span class="fc" id="L367">        double evaluation = evaluator.evaluate(mean);</span>
-<span class="fc" id="L368">        double derivative = evaluator.evaluateDerivative(mean);</span>
-<span class="fc" id="L369">        result.setMean(evaluation);</span>
-<span class="fc" id="L370">        result.setStandardDeviation(Math.abs(derivative * standardDeviation));</span>
-<span class="fc" id="L371">    }</span>
+<span class="fc" id="L360">        double evaluation = evaluator.evaluate(mean);</span>
+<span class="fc" id="L361">        double derivative = evaluator.evaluateDerivative(mean);</span>
+<span class="fc" id="L362">        result.setMean(evaluation);</span>
+<span class="fc" id="L363">        result.setStandardDeviation(Math.abs(derivative * standardDeviation));</span>
+<span class="fc" id="L364">    }</span>
     
     /**
      * Evaluates the derivative and a 1D function at a certain mean point and 
@@ -384,9 +377,9 @@ public class NormalDist {
      */
     public static NormalDist propagate(DerivativeEvaluator evaluator,
             double mean, double standardDeviation) {
-<span class="fc" id="L387">        NormalDist result = new NormalDist();</span>
-<span class="fc" id="L388">        propagate(evaluator, mean, standardDeviation, result);</span>
-<span class="fc" id="L389">        return result;</span>
+<span class="fc" id="L380">        NormalDist result = new NormalDist();</span>
+<span class="fc" id="L381">        propagate(evaluator, mean, standardDeviation, result);</span>
+<span class="fc" id="L382">        return result;</span>
     }
     
     /**
@@ -402,9 +395,9 @@ public class NormalDist {
      */
     public static void propagate(DerivativeEvaluator evaluator, NormalDist dist, 
             NormalDist result) {
-<span class="fc" id="L405">        propagate(evaluator, dist.getMean(), dist.getStandardDeviation(), </span>
+<span class="fc" id="L398">        propagate(evaluator, dist.getMean(), dist.getStandardDeviation(), </span>
                 result);
-<span class="fc" id="L407">    }</span>
+<span class="fc" id="L400">    }</span>
     
     /**
      * Evaluates the derivative and a 1D function at a certain mean point and 
@@ -418,9 +411,9 @@ public class NormalDist {
      */
     public static NormalDist propagate(DerivativeEvaluator evaluator, 
             NormalDist dist) {
-<span class="fc" id="L421">        NormalDist result = new NormalDist();</span>
-<span class="fc" id="L422">        propagate(evaluator, dist, result);</span>
-<span class="fc" id="L423">        return result;</span>
+<span class="fc" id="L414">        NormalDist result = new NormalDist();</span>
+<span class="fc" id="L415">        propagate(evaluator, dist, result);</span>
+<span class="fc" id="L416">        return result;</span>
     }
     
     /**
@@ -435,8 +428,8 @@ public class NormalDist {
      */
     public void propagateThisDistribution(DerivativeEvaluator evaluator, 
             NormalDist result) {
-<span class="fc" id="L438">        propagate(evaluator, this, result);</span>
-<span class="fc" id="L439">    }</span>
+<span class="fc" id="L431">        propagate(evaluator, this, result);</span>
+<span class="fc" id="L432">    }</span>
     
     /**
      * Evaluates the derivative and a 1D function at the mean point of this
@@ -448,9 +441,9 @@ public class NormalDist {
      * @see &lt;a href=&quot;https://github.com/joansola/slamtb&quot;&gt;propagateUncertainty.m at https://github.com/joansola/slamtb&lt;/a&gt;
      */
     public NormalDist propagateThisDistribution(DerivativeEvaluator evaluator) {
-<span class="fc" id="L451">        NormalDist result = new NormalDist();</span>
-<span class="fc" id="L452">        propagateThisDistribution(evaluator, result);</span>
-<span class="fc" id="L453">        return result;</span>
+<span class="fc" id="L444">        NormalDist result = new NormalDist();</span>
+<span class="fc" id="L445">        propagateThisDistribution(evaluator, result);</span>
+<span class="fc" id="L446">        return result;</span>
     }
     
     /**

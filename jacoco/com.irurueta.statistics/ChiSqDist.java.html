@@ -91,7 +91,7 @@ public class ChiSqDist {
      */
     public static double p(double x2, double nu) {
 <span class="fc bfc" id="L93" title="All 2 branches covered.">        if (nu &lt;= 0.0) {</span>
-<span class="fc" id="L94">            throw new IllegalArgumentException(&quot;nu must be greater than 0.0&quot;);</span>
+<span class="fc" id="L94">            throw new IllegalArgumentException();</span>
         }
         
 <span class="fc" id="L97">        return internalP(x2, nu, fac(nu));</span>
