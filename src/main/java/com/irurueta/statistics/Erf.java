@@ -100,7 +100,10 @@ public class Erf {
      * @return result of the evaluation.
      */
     public static double inverfc(double p) {
-        double x, err, t, pp;
+        double x;
+        double err;
+        double t;
+        double pp;
         if (p >= 2.0) {
             return -100.0;
         }
@@ -135,9 +138,13 @@ public class Erf {
      * @return evaluation of the erfc at provided value.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    private static double erfccheb(double z) throws IllegalArgumentException {
+    private static double erfccheb(double z) {
         int j;
-        double t, ty, tmp, d = 0.0, dd = 0.0;
+        double t;
+        double ty;
+        double tmp;
+        double d = 0.0;
+        double dd = 0.0;
         if (z < 0.0) {
             throw new IllegalArgumentException(
                     "erfccheb requires nonnegative argument");

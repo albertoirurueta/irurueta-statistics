@@ -46,7 +46,7 @@ public class ChiSqDist {
      * @throws IllegalArgumentException if provided nu parameter is negative or 
      * zero.
      */
-    public ChiSqDist(double nu) throws IllegalArgumentException {
+    public ChiSqDist(double nu) {
         mGamma = new Gamma();
         setNu(nu);
     }
@@ -69,9 +69,9 @@ public class ChiSqDist {
      * @throws IllegalArgumentException if provided nu parameter is negative or
      * zero.
      */
-    public final void setNu(double nu) throws IllegalArgumentException {
+    public final void setNu(double nu) {
         if (nu <= 0.0) {
-            throw new IllegalArgumentException("nu must be greater than 0.0");
+            throw new IllegalArgumentException();
         }
         
         mNu = nu;
@@ -89,8 +89,7 @@ public class ChiSqDist {
      * @return evaluation of p.d.f.
      * @throws IllegalArgumentException if either x2 or nu are negative or zero.
      */
-    public static double p(double x2, double nu) 
-            throws IllegalArgumentException {
+    public static double p(double x2, double nu) {
         if (nu <= 0.0) {
             throw new IllegalArgumentException("nu must be greater than 0.0");
         }
@@ -106,7 +105,7 @@ public class ChiSqDist {
      * @return evaluation of p.d.f.
      * @throws IllegalArgumentException if x2 is negative or zero.
      */
-    public double p(double x2) throws IllegalArgumentException {
+    public double p(double x2) {
         return internalP(x2, mNu, mFac);
     }
     
@@ -126,7 +125,7 @@ public class ChiSqDist {
      * usually for numerically unstable input values.
      */
     public static double cdf(double x2, double nu)
-            throws IllegalArgumentException, MaxIterationsExceededException {
+            throws MaxIterationsExceededException {
         if (nu <= 0.0) {
             throw new IllegalArgumentException("nu must be greater than 0.0");
         }
@@ -146,8 +145,7 @@ public class ChiSqDist {
      * funciton cannot be reached. This is rarely thrown and happens usually for
      * numerically unstable input values.
      */
-    public double cdf(double x2) throws IllegalArgumentException, 
-            MaxIterationsExceededException {
+    public double cdf(double x2) throws MaxIterationsExceededException {
         return internalCdf(x2, mNu, mGamma);
     }
     
@@ -169,8 +167,7 @@ public class ChiSqDist {
      * incomplete gamma function cannot be reached. This is rarely thrown and
      * happens usually for numerically unstable values.
      */
-    public static double invcdf(double p, double nu) 
-            throws IllegalArgumentException, MaxIterationsExceededException {
+    public static double invcdf(double p, double nu) throws MaxIterationsExceededException {
         if (nu <= 0.0) {
             throw new IllegalArgumentException("nu must be greater than 0.0");
         }
@@ -193,8 +190,7 @@ public class ChiSqDist {
      * incomplete gamma function cannot be reached. This is rarely thrown and
      * happens usually for numerically unstable values.
      */
-    public double invcdf(double p) throws IllegalArgumentException, 
-            MaxIterationsExceededException {
+    public double invcdf(double p) throws MaxIterationsExceededException {
         return internalInvcdf(p, mNu, mGamma);
     }
         
@@ -211,8 +207,7 @@ public class ChiSqDist {
      * @return evaluation of p.d.f.
      * @throws IllegalArgumentException if x2 is negative or zero.
      */
-    private static double internalP(double x2, double nu, double fac) 
-            throws IllegalArgumentException {
+    private static double internalP(double x2, double nu, double fac) {
         if (x2 <= 0.0) {
             throw new IllegalArgumentException(
                     "chi square must be greater than zero");
@@ -239,7 +234,7 @@ public class ChiSqDist {
      * numerically unstable values.
      */
     private static double internalCdf(double x2, double nu, Gamma gamma) 
-            throws IllegalArgumentException, MaxIterationsExceededException {
+            throws MaxIterationsExceededException {
         if (x2 < 0.0) {
             throw new IllegalArgumentException("chi square must be positive or zero");
         }
@@ -269,7 +264,7 @@ public class ChiSqDist {
      * happens usually for numerically unstable values.
      */
     private static double internalInvcdf(double p, double nu, Gamma gamma)
-            throws IllegalArgumentException, MaxIterationsExceededException {
+            throws MaxIterationsExceededException {
 
         if (p < 0.0 || p >= 1.0) {
             throw new IllegalArgumentException(

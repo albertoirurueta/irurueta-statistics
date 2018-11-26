@@ -90,12 +90,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * Logarithm of gamma function.
      */
     private double gln;
-    
-    /**
-     * Construtor.
-     */
-    public Gamma() { }
-    
+
     /**
      * Returns logarithm of gamma function.
      * @return logarithm of gamma function.
@@ -110,13 +105,16 @@ public class Gamma extends GaussLegendreQuadrature {
      * @return the logarithm of gamma function.
      * @throws IllegalArgumentException if value is negative.
      */
-    public static double gammln(double xx) throws IllegalArgumentException {
+    public static double gammln(double xx) {
         if (xx <= 0.0) {
             throw new IllegalArgumentException("bad arg in gammln");
         }
 
         int j;
-        double x, tmp, y, ser;
+        double x;
+        double tmp;
+        double y;
+        double ser;
 
         y = x = xx;
         tmp = x + 5.24218750000000000;
@@ -139,7 +137,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws IllegalArgumentException if provided value generates a factorial
      * that cannot be represented using double precision.
      */
-    public static double factrl(int n) throws IllegalArgumentException {
+    public static double factrl(int n) {
         if (n < 0 || n > MAX_FACTORIALS) {
             throw new IllegalArgumentException("factrl out of range");
         }
@@ -162,7 +160,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @return logarithm of factorial.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public static double factln(int n) throws IllegalArgumentException {
+    public static double factln(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("negative arg in factln");
         }
@@ -189,9 +187,8 @@ public class Gamma extends GaussLegendreQuadrature {
      * @return binomial value.
      * @throws IllegalArgumentException if either n or k are negative or if k is greater than n.
      */
-    public static double bico(int n, int k) 
-            throws IllegalArgumentException {
-        if (n < 0 || k < 0 || k > n) {
+    public static double bico(int n, int k) {
+        if (k < 0 || k > n) {
             throw new IllegalArgumentException("bad args in bico");
         }
         
@@ -211,8 +208,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @return value of beta function.
      * @throws IllegalArgumentException if either z or w are negative.
      */
-    public static double beta(double z, double w) 
-            throws IllegalArgumentException {
+    public static double beta(double z, double w) {
         return Math.exp(gammln(z) + gammln(w) - gammln(z + w));
     }    
 
@@ -225,7 +221,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
     public double gammp(double a, double x) 
-            throws IllegalArgumentException, MaxIterationsExceededException {
+            throws MaxIterationsExceededException {
         if (x < 0.0 || a <= 0.0) {
             throw new IllegalArgumentException("bad args in gammp");
         }
@@ -250,7 +246,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
     public double gammq(double a, double x) 
-            throws IllegalArgumentException, MaxIterationsExceededException {
+            throws MaxIterationsExceededException {
         if (x < 0.0 || a <= 0.0) {
             throw new IllegalArgumentException("bad args in gammq");
         }
@@ -336,7 +332,6 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      * exceeded.
      */
-    @SuppressWarnings("all")
     private double gcf(double a, double x, int maxIterations) 
             throws MaxIterationsExceededException {
         int i;
@@ -380,8 +375,13 @@ public class Gamma extends GaussLegendreQuadrature {
      */
     private double gammpapprox(double a, double x, int psig) {
         int j;
-        double xu, t, sum, ans;
-        double a1 = a - 1.0, lna1 = Math.log(a1), sqrta1 = Math.sqrt(a1);
+        double xu;
+        double t;
+        double sum;
+        double ans;
+        double a1 = a - 1.0;
+        double lna1 = Math.log(a1);
+        double sqrta1 = Math.sqrt(a1);
         gln = gammln(a);
         if (x > a1) {
             xu = Math.max(a1 + 11.5 * sqrta1, x + 6.0 * sqrta1);
@@ -394,7 +394,12 @@ public class Gamma extends GaussLegendreQuadrature {
             sum += W[j] * Math.exp(-(t - a1) + a1 * (Math.log(t) - lna1));
         }
         ans = sum * (xu - x) * Math.exp(a1 * (lna1 - 1.) - gln);
-        return psig != 0 ? (ans > 0.0 ? 1.0 - ans : -ans) : (ans >= 0.0 ? ans : 1.0 + ans);
+
+        if (psig != 0 ) {
+            return ans > 0.0 ? 1.0 - ans : -ans;
+        } else {
+            return ans >= 0.0 ? ans : 1.0 + ans;
+        }
     }
 
     /**
@@ -407,10 +412,16 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      * exceeded.
      */
-    public double invgammp(double p, double a) throws IllegalArgumentException,
-            MaxIterationsExceededException {
+    public double invgammp(double p, double a) throws MaxIterationsExceededException {
         int j;
-        double x, err, t, u, pp, lna1 = 0.0, afac = 0.0, a1 = a - 1;
+        double x;
+        double err;
+        double t;
+        double u;
+        double pp;
+        double lna1 = 0.0;
+        double afac = 0.0;
+        double a1 = a - 1.0;
         gln = gammln(a);
         if (a <= 0.) {
             throw new IllegalArgumentException("a must be pos in invgammap");
