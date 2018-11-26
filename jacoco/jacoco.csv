@@ -3,11 +3,11 @@ com.irurueta:irurueta-statistics,com.irurueta.statistics,StatisticsException,0,1
 com.irurueta:irurueta-statistics,com.irurueta.statistics,RandomizerType,0,24,0,0,0,3,0,1,0,1
 com.irurueta:irurueta-statistics,com.irurueta.statistics,MaxIterationsExceededException,0,16,0,0,0,8,0,4,0,4
 com.irurueta:irurueta-statistics,com.irurueta.statistics,GaussLegendreQuadrature,0,154,0,0,0,3,0,2,0,2
-com.irurueta:irurueta-statistics,com.irurueta.statistics,Gamma,215,696,30,62,32,111,26,36,1,15
+com.irurueta:irurueta-statistics,com.irurueta.statistics,Gamma,211,700,31,61,32,111,27,35,1,15
 com.irurueta:irurueta-statistics,com.irurueta.statistics,ChiSqDist,0,171,0,16,0,32,0,21,0,13
 com.irurueta:irurueta-statistics,com.irurueta.statistics,Erf,9,292,3,15,3,27,3,12,0,6
 com.irurueta:irurueta-statistics,com.irurueta.statistics,Randomizer,0,223,0,30,0,65,0,36,0,21
 com.irurueta:irurueta-statistics,com.irurueta.statistics,BuildInfo,12,113,2,4,4,31,2,11,0,10
 com.irurueta:irurueta-statistics,com.irurueta.statistics,GaussianRandomizer,4,142,1,9,1,32,1,19,0,15
-com.irurueta:irurueta-statistics,com.irurueta.statistics,NormalDist,0,278,0,16,0,65,0,35,0,27
+com.irurueta:irurueta-statistics,com.irurueta.statistics,NormalDist,0,277,0,16,0,65,0,35,0,27
 com.irurueta:irurueta-statistics,com.irurueta.statistics,UniformRandomizer,0,344,0,28,0,81,0,45,0,31
