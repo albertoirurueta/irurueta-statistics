@@ -91,7 +91,7 @@ public class ChiSqDist {
      */
     public static double p(double x2, double nu) {
         if (nu <= 0.0) {
-            throw new IllegalArgumentException("nu must be greater than 0.0");
+            throw new IllegalArgumentException();
         }
         
         return internalP(x2, nu, fac(nu));

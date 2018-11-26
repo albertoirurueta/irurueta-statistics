@@ -62,8 +62,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public NormalDist(double mu, double sig) 
-            throws IllegalArgumentException {
+    public NormalDist(double mu, double sig) {
         setStandardDeviation(sig);
         setMean(mu);
     }
@@ -98,11 +97,9 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public final void setStandardDeviation(double sig) 
-            throws IllegalArgumentException {
+    public final void setStandardDeviation(double sig) {
         if (sig <= 0.0) {
-            throw new IllegalArgumentException(
-                    "standard deviation must be greater than zero");
+            throw new IllegalArgumentException();
         }
         mSig = sig;
     }
@@ -121,7 +118,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided variance is zero or 
      * negative.
      */
-    public void setVariance(double variance) throws IllegalArgumentException {
+    public void setVariance(double variance) {
         if (variance <= 0.0) {
             throw new IllegalArgumentException(
                     "variance must be greater than zero");
@@ -140,8 +137,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative.
      */
-    public static double p(double x, double mu, double sig) 
-            throws IllegalArgumentException {
+    public static double p(double x, double mu, double sig) {
         if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
@@ -175,8 +171,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    public static double cdf(double x, double mu, double sig) 
-            throws IllegalArgumentException {
+    public static double cdf(double x, double mu, double sig) {
         if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
@@ -216,8 +211,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero 
      * or negative, or if provided probability value is not between 0.0 and 1.0.
      */
-    public static double invcdf(double p, double mu, double sig)
-            throws IllegalArgumentException {
+    public static double invcdf(double p, double mu, double sig) {
         if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");
@@ -239,7 +233,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided probability value is not 
      * between 0.0 and 1.0.
      */
-    public double invcdf(double p) throws IllegalArgumentException {
+    public double invcdf(double p) {
         return internalInvcdf(p, mMu, mSig);
     }
     
@@ -253,8 +247,7 @@ public class NormalDist {
      * @throws IllegalArgumentException if provided standard deviation is zero
      * or negative.
      */
-    public static double mahalanobisDistance(double x, double mu, double sig)
-            throws IllegalArgumentException {
+    public static double mahalanobisDistance(double x, double mu, double sig) {
         if (sig <= 0.0) {
             throw new IllegalArgumentException(
                     "standard deviation must be greater than zero");

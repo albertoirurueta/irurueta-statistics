@@ -55,8 +55,7 @@ public class GaussianRandomizer extends Randomizer {
      * pseudo-random values.
      * @throws NullPointerException thrown if provided internal random is null.
      */
-    public GaussianRandomizer(Random internalRandom) 
-            throws NullPointerException {
+    public GaussianRandomizer(Random internalRandom) {
         super(internalRandom);
         mMean = DEFAULT_MEAN;
         mStandardDeviation = DEFAULT_STANDARD_DEVIATION;
@@ -73,8 +72,7 @@ public class GaussianRandomizer extends Randomizer {
      * @throws NullPointerException if provided internal Random instance is null.
      */
     public GaussianRandomizer(Random internalRandom, double mean, 
-            double standardDeviation) throws IllegalArgumentException, 
-            NullPointerException {
+            double standardDeviation) {
         super(internalRandom);
         
         if (standardDeviation <= 0.0) {
@@ -115,8 +113,7 @@ public class GaussianRandomizer extends Randomizer {
      * @throws IllegalArgumentException exception thrown if provided standard
      * deviation is negative or zero.
      */
-    public void setStandardDeviation(double standardDeviation)
-            throws IllegalArgumentException {
+    public void setStandardDeviation(double standardDeviation) {
         
         if (standardDeviation <= 0.0) {
             throw new IllegalArgumentException();
@@ -172,8 +169,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Array of random booleans.
      * @throws IllegalArgumentException if provided length is zero or negative.
      */
-    public boolean[] nextBooleans(int length, double threshold)
-        throws IllegalArgumentException {
+    public boolean[] nextBooleans(int length, double threshold) {
         
         if (length <= 0) {
             throw new IllegalArgumentException();

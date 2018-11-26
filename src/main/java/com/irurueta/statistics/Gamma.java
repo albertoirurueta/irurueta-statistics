@@ -332,10 +332,16 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      * exceeded.
      */
+    @SuppressWarnings("all")
     private double gcf(double a, double x, int maxIterations) 
             throws MaxIterationsExceededException {
         int i;
-        double an, b, c, d, del, h;
+        double an;
+        double b;
+        double c;
+        double d;
+        double del;
+        double h;
         gln = gammln(a);
         b = x + 1.0 - a;
         c = 1.0 / FPMIN;
@@ -412,6 +418,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      * exceeded.
      */
+    @SuppressWarnings("Duplicates")
     public double invgammp(double p, double a) throws MaxIterationsExceededException {
         int j;
         double x;

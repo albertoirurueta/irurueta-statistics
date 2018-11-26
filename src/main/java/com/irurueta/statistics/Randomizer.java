@@ -65,7 +65,7 @@ public abstract class Randomizer {
      *      values.
      * @throws NullPointerException if provided value is null.
      */
-    public Randomizer(Random internalRandom) throws NullPointerException {
+    public Randomizer(Random internalRandom) {
         
         if (internalRandom == null) {
             throw new NullPointerException();
@@ -87,9 +87,7 @@ public abstract class Randomizer {
      *      values.
      * @throws NullPointerException if provided value is null.
      */
-    public void setInternalRandom(Random internalRandom)
-            throws NullPointerException {
-        
+    public void setInternalRandom(Random internalRandom) {
         if (internalRandom == null) {
             throw new NullPointerException();
         }
@@ -143,7 +141,7 @@ public abstract class Randomizer {
      * @return Array of uniform booleans.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public boolean[] nextBooleans(int length) throws IllegalArgumentException {
+    public boolean[] nextBooleans(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -175,7 +173,7 @@ public abstract class Randomizer {
      * @return Array of random integers.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public int[] nextInts(int length) throws IllegalArgumentException {
+    public int[] nextInts(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -207,7 +205,7 @@ public abstract class Randomizer {
      * @return Array of random long values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public long[] nextLongs(int length) throws IllegalArgumentException {
+    public long[] nextLongs(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -239,7 +237,7 @@ public abstract class Randomizer {
      * @return Array of random float values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public float[] nextFloats(int length) throws IllegalArgumentException {
+    public float[] nextFloats(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -271,7 +269,7 @@ public abstract class Randomizer {
      * @return Array of random double values.
      * @throws IllegalArgumentException if provided value is zero or negative.
      */
-    public double[] nextDoubles(int length) throws IllegalArgumentException {
+    public double[] nextDoubles(int length) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -322,8 +320,7 @@ public abstract class Randomizer {
      * @throws NullPointerException Exception thrown if provided internal 
      * randomizer is null.
      */
-    public static Randomizer create(Random internalRandomizer) 
-            throws NullPointerException {
+    public static Randomizer create(Random internalRandomizer) {
         return create(DEFAULT_RANDOMIZER_TYPE, internalRandomizer);
     }
     
@@ -368,7 +365,7 @@ public abstract class Randomizer {
      * @throws NullPointerException Exception thrown if internal random is null.
      */
     public static Randomizer create(RandomizerType type, 
-            Random internalRandom) throws NullPointerException {
+            Random internalRandom) {
         
         if (internalRandom == null) {
             throw new NullPointerException();

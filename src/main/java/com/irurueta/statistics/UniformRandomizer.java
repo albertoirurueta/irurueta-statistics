@@ -28,8 +28,7 @@ public class UniformRandomizer extends Randomizer {
      * pseudo-random values.
      * @throws NullPointerException thrown if provided internal random is null.
      */
-    public UniformRandomizer(Random internalRandom) 
-            throws NullPointerException {
+    public UniformRandomizer(Random internalRandom) {
         super(internalRandom);
     }
 
@@ -62,7 +61,7 @@ public class UniformRandomizer extends Randomizer {
      * @return Next integer value following a uniform distribution.
      * @throws IllegalArgumentException if provided values is negative.
      */
-    public int nextInt(int maxValue) throws IllegalArgumentException {
+    public int nextInt(int maxValue) {
         return getInternalRandom().nextInt(maxValue);
     }
     
@@ -73,7 +72,7 @@ public class UniformRandomizer extends Randomizer {
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public void fill(int[] array, int maxValue) throws IllegalArgumentException {
+    public void fill(int[] array, int maxValue) {
         for (int i = 0; i < array.length; i++) {
             array[i] = nextInt(maxValue);
         }
@@ -87,8 +86,7 @@ public class UniformRandomizer extends Randomizer {
      * @return Array of random uniform integers.
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
-    public int[] nextInts(int length, int maxValue) 
-            throws IllegalArgumentException {
+    public int[] nextInts(int length, int maxValue) {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
@@ -107,8 +105,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
      * or equal than minValue.
      */
-    public int nextInt(int minValue, int maxValue) 
-            throws IllegalArgumentException {
+    public int nextInt(int minValue, int maxValue) {
         
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
@@ -128,8 +125,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if maxValue is smaller or equal than
      * minValue.
      */
-    public void fill(int[] array, int minValue, int maxValue) 
-            throws IllegalArgumentException {
+    public void fill(int[] array, int minValue, int maxValue) {
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
@@ -174,7 +170,7 @@ public class UniformRandomizer extends Randomizer {
      * @return Next long value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
      */    
-    public long nextLong(long maxValue) throws IllegalArgumentException {
+    public long nextLong(long maxValue) {
         return nextLong(0, maxValue);
     }
     
@@ -215,8 +211,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
      * or equal than minValue.
      */    
-    public long nextLong(long minValue, long maxValue) 
-            throws IllegalArgumentException {
+    public long nextLong(long minValue, long maxValue) {
         
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
@@ -277,7 +272,7 @@ public class UniformRandomizer extends Randomizer {
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public float nextFloat(float maxValue) throws IllegalArgumentException {
+    public float nextFloat(float maxValue) {
         return nextFloat(0.0f, maxValue);
     }
     
@@ -318,8 +313,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
      * or equal than minValue.
      */        
-    public float nextFloat(float minValue, float maxValue) 
-            throws IllegalArgumentException {
+    public float nextFloat(float minValue, float maxValue) {
         
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
@@ -380,7 +374,7 @@ public class UniformRandomizer extends Randomizer {
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public double nextDouble(double maxValue) throws IllegalArgumentException {
+    public double nextDouble(double maxValue) {
         return nextDouble(0.0, maxValue);
     }    
     
@@ -421,8 +415,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
      * or equal than minValue.
      */            
-    public double nextDouble(double minValue, double maxValue)
-            throws IllegalArgumentException {
+    public double nextDouble(double minValue, double maxValue) {
 
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
