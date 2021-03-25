@@ -52,7 +52,12 @@ public class UniformRandomizerTest {
     @Test
     public void testConstructor() {
         UniformRandomizer randomizer;
-        
+
+        // test 1st constructor
+        randomizer = new UniformRandomizer();
+        assertNotNull(randomizer);
+
+        // test 2nd constructor
         randomizer = new UniformRandomizer(new Random());
         assertNotNull(randomizer);
         

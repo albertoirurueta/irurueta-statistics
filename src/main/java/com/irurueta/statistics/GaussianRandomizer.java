@@ -49,6 +49,14 @@ public class GaussianRandomizer extends Randomizer {
 
     /**
      * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    public GaussianRandomizer() {
+        this(new Random());
+    }
+
+    /**
+     * Constructor.
      * Because neither mMean or standard deviation are provided, values
      * DEFAULT_MEAN and DEFAULT_STANDARD_DEVIATION will be used instead.
      * @param internalRandom Internal Random instance in charge of generating

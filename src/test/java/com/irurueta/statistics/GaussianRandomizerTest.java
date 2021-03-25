@@ -52,6 +52,14 @@ public class GaussianRandomizerTest {
         GaussianRandomizer randomizer;
         
         //test 1st constructor
+        randomizer = new GaussianRandomizer();
+        assertNotNull(randomizer);
+        assertEquals(randomizer.getmMean(), GaussianRandomizer.DEFAULT_MEAN,
+            0.0);
+        assertEquals(randomizer.getStandardDeviation(),
+            GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, 0.0);
+
+        // test 2nd constructor
         randomizer = new GaussianRandomizer(new Random());
         assertNotNull(randomizer);
         assertEquals(randomizer.getmMean(), GaussianRandomizer.DEFAULT_MEAN,

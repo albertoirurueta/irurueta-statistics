@@ -21,6 +21,14 @@ import java.util.Random;
  * Generates pseudo-random values following a uniform distribution.
  */
 public class UniformRandomizer extends Randomizer {
+
+    /**
+     * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    public UniformRandomizer() {
+        super();
+    }
     
     /**
      * Constructor.

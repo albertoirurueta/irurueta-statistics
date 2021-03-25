@@ -61,11 +61,19 @@ public abstract class Randomizer {
 
     /**
      * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    protected Randomizer() {
+        this(new Random());
+    }
+
+    /**
+     * Constructor.
      * @param internalRandom Instance in charge of generating pseudo-random 
      *      values.
      * @throws NullPointerException if provided value is null.
      */
-    public Randomizer(Random internalRandom) {
+    protected Randomizer(Random internalRandom) {
         
         if (internalRandom == null) {
             throw new NullPointerException();
