@@ -21,6 +21,14 @@ import java.util.Random;
  * Generates pseudo-random values following a uniform distribution.
  */
 public class UniformRandomizer extends Randomizer {
+
+    /**
+     * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    public UniformRandomizer() {
+<span class="fc" id="L30">        super();</span>
+<span class="fc" id="L31">    }</span>
     
     /**
      * Constructor.
@@ -29,8 +37,8 @@ public class UniformRandomizer extends Randomizer {
      * @throws NullPointerException thrown if provided internal random is null.
      */
     public UniformRandomizer(Random internalRandom) {
-<span class="fc" id="L32">        super(internalRandom);</span>
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L40">        super(internalRandom);</span>
+<span class="fc" id="L41">    }</span>
 
     /**
      * Returns next boolean value following a uniform distribution (e.g. the
@@ -39,7 +47,7 @@ public class UniformRandomizer extends Randomizer {
      */    
     @Override
     public boolean nextBoolean() {
-<span class="fc" id="L42">        return getInternalRandom().nextBoolean();</span>
+<span class="fc" id="L50">        return getInternalRandom().nextBoolean();</span>
     }
         
     /**
@@ -50,7 +58,7 @@ public class UniformRandomizer extends Randomizer {
      */
     @Override
     public int nextInt() {
-<span class="fc" id="L53">        return getInternalRandom().nextInt();</span>
+<span class="fc" id="L61">        return getInternalRandom().nextInt();</span>
     }
         
     /**
@@ -62,7 +70,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values is negative.
      */
     public int nextInt(int maxValue) {
-<span class="fc" id="L65">        return getInternalRandom().nextInt(maxValue);</span>
+<span class="fc" id="L73">        return getInternalRandom().nextInt(maxValue);</span>
     }
     
     /**
@@ -73,10 +81,10 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */
     public void fill(int[] array, int maxValue) {
-<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L77">            array[i] = nextInt(maxValue);</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L85">            array[i] = nextInt(maxValue);</span>
         }
-<span class="fc" id="L79">    }</span>
+<span class="fc" id="L87">    }</span>
     
     /**
      * Returns array of random uniform integer values within 0 and provided
@@ -87,12 +95,12 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public int[] nextInts(int length, int maxValue) {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L91">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L99">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L93">        int[] array = new int[length];</span>
-<span class="fc" id="L94">        fill(array, maxValue);</span>
-<span class="fc" id="L95">        return array;</span>
+<span class="fc" id="L101">        int[] array = new int[length];</span>
+<span class="fc" id="L102">        fill(array, maxValue);</span>
+<span class="fc" id="L103">        return array;</span>
     }
     
     /**
@@ -107,12 +115,12 @@ public class UniformRandomizer extends Randomizer {
      */
     public int nextInt(int minValue, int maxValue) {
         
-<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L111">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L119">            throw new IllegalArgumentException();</span>
         }
         
-<span class="fc" id="L114">        int diff = maxValue - minValue;</span>
-<span class="fc" id="L115">        return getInternalRandom().nextInt(diff) + minValue;</span>
+<span class="fc" id="L122">        int diff = maxValue - minValue;</span>
+<span class="fc" id="L123">        return getInternalRandom().nextInt(diff) + minValue;</span>
     }
     
     /**
@@ -126,15 +134,15 @@ public class UniformRandomizer extends Randomizer {
      * minValue.
      */
     public void fill(int[] array, int minValue, int maxValue) {
-<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L130">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L138">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L132">        int diff = maxValue - minValue;</span>
+<span class="fc" id="L140">        int diff = maxValue - minValue;</span>
         
-<span class="fc bfc" id="L134" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L135">            array[i] = getInternalRandom().nextInt(diff) + minValue;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L143">            array[i] = getInternalRandom().nextInt(diff) + minValue;</span>
         }
-<span class="fc" id="L137">    }</span>
+<span class="fc" id="L145">    }</span>
     
     /**
      * Returns array of random uniform integer values within provided minValue 
@@ -146,9 +154,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */    
     public int[] nextInts(int length, int minValue, int maxValue) {
-<span class="fc" id="L149">        int[] array = new int[length];</span>
-<span class="fc" id="L150">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L151">        return array;</span>
+<span class="fc" id="L157">        int[] array = new int[length];</span>
+<span class="fc" id="L158">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L159">        return array;</span>
     }
     
     /**
@@ -159,7 +167,7 @@ public class UniformRandomizer extends Randomizer {
      */
     @Override
     public long nextLong() {
-<span class="fc" id="L162">        return getInternalRandom().nextLong();</span>
+<span class="fc" id="L170">        return getInternalRandom().nextLong();</span>
     }
         
     /**
@@ -171,7 +179,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */    
     public long nextLong(long maxValue) {
-<span class="fc" id="L174">        return nextLong(0, maxValue);</span>
+<span class="fc" id="L182">        return nextLong(0, maxValue);</span>
     }
     
     /**
@@ -182,10 +190,10 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */    
     public void fill(long[] array, long maxValue) {
-<span class="fc bfc" id="L185" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L186">            array[i] = nextLong(maxValue);</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L194">            array[i] = nextLong(maxValue);</span>
         }
-<span class="fc" id="L188">    }</span>
+<span class="fc" id="L196">    }</span>
     
     /**
      * Returns array of random uniform long values within 0 and provided
@@ -196,9 +204,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */    
     public long[] nextLongs(int length, long maxValue) {
-<span class="fc" id="L199">        long[] array = new long[length];</span>
-<span class="fc" id="L200">        fill(array, maxValue);</span>
-<span class="fc" id="L201">        return array;</span>
+<span class="fc" id="L207">        long[] array = new long[length];</span>
+<span class="fc" id="L208">        fill(array, maxValue);</span>
+<span class="fc" id="L209">        return array;</span>
     }
     
     /**
@@ -213,12 +221,12 @@ public class UniformRandomizer extends Randomizer {
      */    
     public long nextLong(long minValue, long maxValue) {
         
-<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L217">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L225">            throw new IllegalArgumentException();</span>
         }
         
-<span class="fc" id="L220">        long diff = maxValue - minValue;</span>
-<span class="fc" id="L221">        return (Math.abs(getInternalRandom().nextLong()) % diff) + minValue;</span>
+<span class="fc" id="L228">        long diff = maxValue - minValue;</span>
+<span class="fc" id="L229">        return (Math.abs(getInternalRandom().nextLong()) % diff) + minValue;</span>
     }
     
     /**
@@ -232,10 +240,10 @@ public class UniformRandomizer extends Randomizer {
      * minValue.
      */    
     public void fill(long[] array, long minValue, long maxValue) {
-<span class="fc bfc" id="L235" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L236">            array[i] = nextLong(minValue, maxValue);</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L244">            array[i] = nextLong(minValue, maxValue);</span>
         }
-<span class="fc" id="L238">    }</span>
+<span class="fc" id="L246">    }</span>
     
     /**
      * Returns array of random uniform long values within provided minValue 
@@ -247,9 +255,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */        
     public long[] nextLongs(int length, long minValue, long maxValue) {
-<span class="fc" id="L250">        long[] array = new long[length];</span>
-<span class="fc" id="L251">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L252">        return array;</span>
+<span class="fc" id="L258">        long[] array = new long[length];</span>
+<span class="fc" id="L259">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L260">        return array;</span>
     }
 
     /**
@@ -261,7 +269,7 @@ public class UniformRandomizer extends Randomizer {
      */    
     @Override
     public float nextFloat() {
-<span class="fc" id="L264">        return getInternalRandom().nextFloat();</span>
+<span class="fc" id="L272">        return getInternalRandom().nextFloat();</span>
     }    
     
     /**
@@ -273,7 +281,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */
     public float nextFloat(float maxValue) {
-<span class="fc" id="L276">        return nextFloat(0.0f, maxValue);</span>
+<span class="fc" id="L284">        return nextFloat(0.0f, maxValue);</span>
     }
     
     /**
@@ -284,10 +292,10 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */        
     public void fill(float[] array, float maxValue) {
-<span class="fc bfc" id="L287" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L288">            array[i] = nextFloat(maxValue);</span>
+<span class="fc bfc" id="L295" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L296">            array[i] = nextFloat(maxValue);</span>
         }
-<span class="fc" id="L290">    }</span>
+<span class="fc" id="L298">    }</span>
     
     /**
      * Returns array of random uniform floating point values within 0.0 and 
@@ -298,9 +306,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */        
     public float[] nextFloats(int length, float maxValue) {
-<span class="fc" id="L301">        float[] array = new float[length];</span>
-<span class="fc" id="L302">        fill(array, maxValue);</span>
-<span class="fc" id="L303">        return array;</span>
+<span class="fc" id="L309">        float[] array = new float[length];</span>
+<span class="fc" id="L310">        fill(array, maxValue);</span>
+<span class="fc" id="L311">        return array;</span>
     }
     
     /**
@@ -315,12 +323,12 @@ public class UniformRandomizer extends Randomizer {
      */        
     public float nextFloat(float minValue, float maxValue) {
         
-<span class="fc bfc" id="L318" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L319">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L327">            throw new IllegalArgumentException();</span>
         }
         
-<span class="fc" id="L322">        float diff = maxValue - minValue;</span>
-<span class="fc" id="L323">        return getInternalRandom().nextFloat() * diff + minValue;</span>
+<span class="fc" id="L330">        float diff = maxValue - minValue;</span>
+<span class="fc" id="L331">        return getInternalRandom().nextFloat() * diff + minValue;</span>
     }
     
     /**
@@ -334,10 +342,10 @@ public class UniformRandomizer extends Randomizer {
      * minValue.
      */        
     public void fill(float[] array, float minValue, float maxValue) {
-<span class="fc bfc" id="L337" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L338">            array[i] = nextFloat(minValue, maxValue);</span>
+<span class="fc bfc" id="L345" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L346">            array[i] = nextFloat(minValue, maxValue);</span>
         }
-<span class="fc" id="L340">    }</span>
+<span class="fc" id="L348">    }</span>
     
     /**
      * Returns array of random uniform floating point values within provided 
@@ -349,9 +357,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */            
     public float[] nextFloats(int length, float minValue, float maxValue) {
-<span class="fc" id="L352">        float[] array = new float[length];</span>
-<span class="fc" id="L353">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L354">        return array;</span>
+<span class="fc" id="L360">        float[] array = new float[length];</span>
+<span class="fc" id="L361">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L362">        return array;</span>
     }
     
     /**
@@ -363,7 +371,7 @@ public class UniformRandomizer extends Randomizer {
      */        
     @Override
     public double nextDouble() {
-<span class="fc" id="L366">        return getInternalRandom().nextDouble();</span>
+<span class="fc" id="L374">        return getInternalRandom().nextDouble();</span>
     }
     
     /**
@@ -375,7 +383,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */
     public double nextDouble(double maxValue) {
-<span class="fc" id="L378">        return nextDouble(0.0, maxValue);</span>
+<span class="fc" id="L386">        return nextDouble(0.0, maxValue);</span>
     }    
     
     /**
@@ -386,10 +394,10 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided value is negative.
      */            
     public void fill(double[] array, double maxValue) {
-<span class="fc bfc" id="L389" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L390">            array[i] = nextDouble(maxValue);</span>
+<span class="fc bfc" id="L397" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L398">            array[i] = nextDouble(maxValue);</span>
         }
-<span class="fc" id="L392">    }</span>
+<span class="fc" id="L400">    }</span>
     
     /**
      * Returns array of random uniform double precision floating point values 
@@ -400,9 +408,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */            
     public double[] nextDoubles(int length, double maxValue) {
-<span class="fc" id="L403">        double[] array = new double[length];</span>
-<span class="fc" id="L404">        fill(array, maxValue);</span>
-<span class="fc" id="L405">        return array;</span>
+<span class="fc" id="L411">        double[] array = new double[length];</span>
+<span class="fc" id="L412">        fill(array, maxValue);</span>
+<span class="fc" id="L413">        return array;</span>
     }
     
     /**
@@ -417,12 +425,12 @@ public class UniformRandomizer extends Randomizer {
      */            
     public double nextDouble(double minValue, double maxValue) {
 
-<span class="fc bfc" id="L420" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L421">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L428" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L429">            throw new IllegalArgumentException();</span>
         }
         
-<span class="fc" id="L424">        double diff = maxValue - minValue;</span>
-<span class="fc" id="L425">        return getInternalRandom().nextDouble() * diff + minValue;</span>
+<span class="fc" id="L432">        double diff = maxValue - minValue;</span>
+<span class="fc" id="L433">        return getInternalRandom().nextDouble() * diff + minValue;</span>
     } 
     
     /**
@@ -436,10 +444,10 @@ public class UniformRandomizer extends Randomizer {
      * minValue.
      */            
     public void fill(double[] array, double minValue, double maxValue) {
-<span class="fc bfc" id="L439" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L440">            array[i] = nextDouble(minValue, maxValue);</span>
+<span class="fc bfc" id="L447" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L448">            array[i] = nextDouble(minValue, maxValue);</span>
         }
-<span class="fc" id="L442">    }</span>
+<span class="fc" id="L450">    }</span>
     
     /**
      * Returns array of random uniform floating point values within provided 
@@ -451,9 +459,9 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */    
     public double[] nextDoubles(int length, double minValue, double maxValue) {
-<span class="fc" id="L454">        double[] array = new double[length];</span>
-<span class="fc" id="L455">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L456">        return array;</span>
+<span class="fc" id="L462">        double[] array = new double[length];</span>
+<span class="fc" id="L463">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L464">        return array;</span>
     }
     
     /**
@@ -462,7 +470,7 @@ public class UniformRandomizer extends Randomizer {
      */
     @Override
     public RandomizerType getType() {
-<span class="fc" id="L465">        return RandomizerType.UNIFORM_RANDOMIZER;</span>
+<span class="fc" id="L473">        return RandomizerType.UNIFORM_RANDOMIZER;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

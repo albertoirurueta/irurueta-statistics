@@ -49,6 +49,14 @@ public class GaussianRandomizer extends Randomizer {
 
     /**
      * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    public GaussianRandomizer() {
+<span class="fc" id="L55">        this(new Random());</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Constructor.
      * Because neither mMean or standard deviation are provided, values
      * DEFAULT_MEAN and DEFAULT_STANDARD_DEVIATION will be used instead.
      * @param internalRandom Internal Random instance in charge of generating
@@ -56,10 +64,10 @@ public class GaussianRandomizer extends Randomizer {
      * @throws NullPointerException thrown if provided internal random is null.
      */
     public GaussianRandomizer(Random internalRandom) {
-<span class="fc" id="L59">        super(internalRandom);</span>
-<span class="fc" id="L60">        mMean = DEFAULT_MEAN;</span>
-<span class="fc" id="L61">        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;</span>
-<span class="fc" id="L62">    }</span>
+<span class="fc" id="L67">        super(internalRandom);</span>
+<span class="fc" id="L68">        mMean = DEFAULT_MEAN;</span>
+<span class="fc" id="L69">        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;</span>
+<span class="fc" id="L70">    }</span>
     
     /**
      * Constructor.
@@ -73,21 +81,21 @@ public class GaussianRandomizer extends Randomizer {
      */
     public GaussianRandomizer(Random internalRandom, double mean, 
             double standardDeviation) {
-<span class="fc" id="L76">        super(internalRandom);</span>
+<span class="fc" id="L84">        super(internalRandom);</span>
         
-<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
-<span class="fc" id="L79">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
+<span class="fc" id="L87">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L81">        mMean = mean;</span>
-<span class="fc" id="L82">        mStandardDeviation = standardDeviation;</span>
-<span class="fc" id="L83">    }</span>
+<span class="fc" id="L89">        mMean = mean;</span>
+<span class="fc" id="L90">        mStandardDeviation = standardDeviation;</span>
+<span class="fc" id="L91">    }</span>
     
     /**
      * Returns mMean value to be used for Gaussian random value generation.
      * @return Mean value.
      */
     public double getmMean() {
-<span class="fc" id="L90">        return mMean;</span>
+<span class="fc" id="L98">        return mMean;</span>
     }
     
     /**
@@ -95,8 +103,8 @@ public class GaussianRandomizer extends Randomizer {
      * @param mean Mean value.
      */
     public void setmMean(double mean) {
-<span class="fc" id="L98">        mMean = mean;</span>
-<span class="fc" id="L99">    }</span>
+<span class="fc" id="L106">        mMean = mean;</span>
+<span class="fc" id="L107">    }</span>
     
     /**
      * Returns standard deviation to be used for Gaussian random value 
@@ -104,7 +112,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Standard deviation.
      */
     public double getStandardDeviation() {
-<span class="fc" id="L107">        return mStandardDeviation;</span>
+<span class="fc" id="L115">        return mStandardDeviation;</span>
     }
     
     /**
@@ -115,11 +123,11 @@ public class GaussianRandomizer extends Randomizer {
      */
     public void setStandardDeviation(double standardDeviation) {
         
-<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
-<span class="fc" id="L119">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
+<span class="fc" id="L127">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L121">        mStandardDeviation = standardDeviation;</span>
-<span class="fc" id="L122">    }</span>
+<span class="fc" id="L129">        mStandardDeviation = standardDeviation;</span>
+<span class="fc" id="L130">    }</span>
 
     /**
      * Returns next random boolean value. The probability of returning true
@@ -128,7 +136,7 @@ public class GaussianRandomizer extends Randomizer {
      */    
     @Override
     public boolean nextBoolean() {
-<span class="fc" id="L131">        return nextBoolean(mMean);</span>
+<span class="fc" id="L139">        return nextBoolean(mMean);</span>
     }
     
     /**
@@ -140,7 +148,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Next random boolean value.
      */
     public boolean nextBoolean(double threshold) {
-<span class="fc bfc" id="L143" title="All 2 branches covered.">        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) &lt;</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) &lt;</span>
                 threshold;
     }
     
@@ -153,10 +161,10 @@ public class GaussianRandomizer extends Randomizer {
      * true or false.
      */
     public void fill(boolean[] array, double threshold) {
-<span class="fc bfc" id="L156" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L157">            array[i] = nextBoolean(threshold);</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L165">            array[i] = nextBoolean(threshold);</span>
         }
-<span class="fc" id="L159">    }</span>
+<span class="fc" id="L167">    }</span>
     
     /**
      * Returns array of booleans having provided length and containing random
@@ -171,13 +179,13 @@ public class GaussianRandomizer extends Randomizer {
      */
     public boolean[] nextBooleans(int length, double threshold) {
         
-<span class="pc bpc" id="L174" title="1 of 2 branches missed.">        if (length &lt;= 0) {</span>
-<span class="nc" id="L175">            throw new IllegalArgumentException();</span>
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">        if (length &lt;= 0) {</span>
+<span class="nc" id="L183">            throw new IllegalArgumentException();</span>
         }
         
-<span class="fc" id="L178">        boolean[] array = new boolean[length];</span>
-<span class="fc" id="L179">        fill(array, threshold);</span>
-<span class="fc" id="L180">        return array;</span>
+<span class="fc" id="L186">        boolean[] array = new boolean[length];</span>
+<span class="fc" id="L187">        fill(array, threshold);</span>
+<span class="fc" id="L188">        return array;</span>
     }
     
     /**
@@ -187,7 +195,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public int nextInt() {
-<span class="fc" id="L190">        return (int)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L198">        return (int)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
     }    
 
@@ -198,7 +206,7 @@ public class GaussianRandomizer extends Randomizer {
      */    
     @Override
     public long nextLong() {
-<span class="fc" id="L201">        return (long)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L209">        return (long)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
     }
 
@@ -209,7 +217,7 @@ public class GaussianRandomizer extends Randomizer {
      */        
     @Override
     public float nextFloat() {
-<span class="fc" id="L212">        return (float)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L220">        return (float)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
     }
 
@@ -220,7 +228,7 @@ public class GaussianRandomizer extends Randomizer {
      */            
     @Override
     public double nextDouble() {
-<span class="fc" id="L223">        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;</span>
+<span class="fc" id="L231">        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;</span>
     }    
     
     /**
@@ -229,7 +237,7 @@ public class GaussianRandomizer extends Randomizer {
      */    
     @Override
     public RandomizerType getType() {
-<span class="fc" id="L232">        return RandomizerType.GAUSSIAN_RANDOMIZER;</span>
+<span class="fc" id="L240">        return RandomizerType.GAUSSIAN_RANDOMIZER;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
