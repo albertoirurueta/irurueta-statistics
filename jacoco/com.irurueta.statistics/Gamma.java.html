@@ -458,11 +458,11 @@ package com.irurueta.statistics;
 <span class="fc bfc" id="L458" title="All 2 branches covered.">        if (a &gt; 1.) {</span>
 <span class="fc" id="L459">            lna1 = Math.log(a1);</span>
 <span class="fc" id="L460">            afac = Math.exp(a1 * (lna1 - 1.) - gln);</span>
-<span class="pc bpc" id="L461" title="1 of 2 branches missed.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
+<span class="fc bfc" id="L461" title="All 2 branches covered.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
 <span class="fc" id="L462">            t = Math.sqrt(-2. * Math.log(pp));</span>
 <span class="fc" id="L463">            x = (2.30753 + t * 0.27061) / (1. + t * (0.99229 + t * 0.04481)) - t;</span>
-<span class="pc bpc" id="L464" title="1 of 2 branches missed.">            if (p &lt; 0.5) {</span>
-<span class="nc" id="L465">                x = -x;</span>
+<span class="fc bfc" id="L464" title="All 2 branches covered.">            if (p &lt; 0.5) {</span>
+<span class="fc" id="L465">                x = -x;</span>
             }
 <span class="fc" id="L467">            x = Math.max(1.e-3, a * Math.pow(1. - 1. / (9. * a) - x / (3. * Math.sqrt(a)), 3));</span>
         } else {
@@ -473,7 +473,7 @@ package com.irurueta.statistics;
 <span class="fc" id="L473">                x = 1. - Math.log(1. - (p - t) / (1. - t));</span>
             }
         }
-<span class="fc bfc" id="L476" title="All 2 branches covered.">        for (j = 0; j &lt; 12; j++) {</span>
+<span class="pc bpc" id="L476" title="1 of 2 branches missed.">        for (j = 0; j &lt; 12; j++) {</span>
 <span class="pc bpc" id="L477" title="1 of 2 branches missed.">            if (x &lt;= 0.0) {</span>
 <span class="nc" id="L478">                return 0.0;</span>
             }
