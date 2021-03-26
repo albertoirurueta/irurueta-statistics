@@ -29,448 +29,479 @@ public class UniformRandomizer extends Randomizer {
     public UniformRandomizer() {
 <span class="fc" id="L30">        super();</span>
 <span class="fc" id="L31">    }</span>
-    
+
     /**
      * Constructor.
+     *
      * @param internalRandom Internal Random instance in charge of generating
-     * pseudo-random values.
+     *                       pseudo-random values.
      * @throws NullPointerException thrown if provided internal random is null.
      */
-    public UniformRandomizer(Random internalRandom) {
-<span class="fc" id="L40">        super(internalRandom);</span>
-<span class="fc" id="L41">    }</span>
+    public UniformRandomizer(final Random internalRandom) {
+<span class="fc" id="L41">        super(internalRandom);</span>
+<span class="fc" id="L42">    }</span>
 
     /**
      * Returns next boolean value following a uniform distribution (e.g. the
      * probability of returning either true or false is 50%).
+     *
      * @return Next boolean value following a uniform distribution.
-     */    
+     */
     @Override
     public boolean nextBoolean() {
-<span class="fc" id="L50">        return getInternalRandom().nextBoolean();</span>
+<span class="fc" id="L52">        return getInternalRandom().nextBoolean();</span>
     }
-        
+
     /**
      * Returns next random integer value within the range of integer values and
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @return Next integer value following a uniform distribution.
      */
     @Override
     public int nextInt() {
-<span class="fc" id="L61">        return getInternalRandom().nextInt();</span>
+<span class="fc" id="L64">        return getInternalRandom().nextInt();</span>
     }
-        
+
     /**
      * Returns next random integer value within 0 and provided value following
-     * a uniform distribution (e.g. each possible value has approximately the 
+     * a uniform distribution (e.g. each possible value has approximately the
      * same probability to be picked).
+     *
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next integer value following a uniform distribution.
      * @throws IllegalArgumentException if provided values is negative.
      */
-    public int nextInt(int maxValue) {
-<span class="fc" id="L73">        return getInternalRandom().nextInt(maxValue);</span>
+    public int nextInt(final int maxValue) {
+<span class="fc" id="L77">        return getInternalRandom().nextInt(maxValue);</span>
     }
-    
+
     /**
      * Fills provided array with uniform integer values within 0 and provided
      * maxValue following a uniform distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public void fill(int[] array, int maxValue) {
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L85">            array[i] = nextInt(maxValue);</span>
+    public void fill(final int[] array, final int maxValue) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L90">            array[i] = nextInt(maxValue);</span>
         }
-<span class="fc" id="L87">    }</span>
-    
+<span class="fc" id="L92">    }</span>
+
     /**
      * Returns array of random uniform integer values within 0 and provided
      * maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform integers.
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
-    public int[] nextInts(int length, int maxValue) {
-<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
-<span class="fc" id="L99">            throw new IllegalArgumentException();</span>
+    public int[] nextInts(final int length, final int maxValue) {
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L105">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L101">        int[] array = new int[length];</span>
-<span class="fc" id="L102">        fill(array, maxValue);</span>
-<span class="fc" id="L103">        return array;</span>
+<span class="fc" id="L107">        final int[] array = new int[length];</span>
+<span class="fc" id="L108">        fill(array, maxValue);</span>
+<span class="fc" id="L109">        return array;</span>
     }
-    
+
     /**
      * Returns next random integer value between the range of provided values
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next integer value following a uniform distribution.
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
-     * or equal than minValue.
+     *                                  or equal than minValue.
      */
-    public int nextInt(int minValue, int maxValue) {
-        
-<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L119">            throw new IllegalArgumentException();</span>
+    public int nextInt(final int minValue, final int maxValue) {
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L126">            throw new IllegalArgumentException();</span>
         }
-        
-<span class="fc" id="L122">        int diff = maxValue - minValue;</span>
-<span class="fc" id="L123">        return getInternalRandom().nextInt(diff) + minValue;</span>
+
+<span class="fc" id="L129">        final int diff = maxValue - minValue;</span>
+<span class="fc" id="L130">        return getInternalRandom().nextInt(diff) + minValue;</span>
     }
-    
+
     /**
      * Fills provided array with uniform integer values within provided
-     * minValue (inclusive) and maxValue (exclusive) following a uniform 
+     * minValue (inclusive) and maxValue (exclusive) following a uniform
      * distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if maxValue is smaller or equal than
-     * minValue.
+     *                                  minValue.
      */
-    public void fill(int[] array, int minValue, int maxValue) {
-<span class="fc bfc" id="L137" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L138">            throw new IllegalArgumentException();</span>
+    public void fill(final int[] array, final int minValue, final int maxValue) {
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L146">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L140">        int diff = maxValue - minValue;</span>
-        
-<span class="fc bfc" id="L142" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L143">            array[i] = getInternalRandom().nextInt(diff) + minValue;</span>
+<span class="fc" id="L148">        final int diff = maxValue - minValue;</span>
+
+<span class="fc bfc" id="L150" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L151">            array[i] = getInternalRandom().nextInt(diff) + minValue;</span>
         }
-<span class="fc" id="L145">    }</span>
-    
+<span class="fc" id="L153">    }</span>
+
     /**
-     * Returns array of random uniform integer values within provided minValue 
+     * Returns array of random uniform integer values within provided minValue
      * and maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform integers.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */    
-    public int[] nextInts(int length, int minValue, int maxValue) {
-<span class="fc" id="L157">        int[] array = new int[length];</span>
-<span class="fc" id="L158">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L159">        return array;</span>
+     */
+    public int[] nextInts(final int length, final int minValue, final int maxValue) {
+<span class="fc" id="L166">        final int[] array = new int[length];</span>
+<span class="fc" id="L167">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L168">        return array;</span>
     }
-    
+
     /**
      * Returns next random long value within the range of long values and
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @return Next long value following a uniform distribution.
      */
     @Override
     public long nextLong() {
-<span class="fc" id="L170">        return getInternalRandom().nextLong();</span>
+<span class="fc" id="L180">        return getInternalRandom().nextLong();</span>
     }
-        
+
     /**
      * Returns next random long value within 0 and provided value following
-     * a uniform distribution (e.g. each possible value has approximately the 
+     * a uniform distribution (e.g. each possible value has approximately the
      * same probability to be picked).
+     *
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next long value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
-     */    
-    public long nextLong(long maxValue) {
-<span class="fc" id="L182">        return nextLong(0, maxValue);</span>
+     */
+    public long nextLong(final long maxValue) {
+<span class="fc" id="L193">        return nextLong(0, maxValue);</span>
     }
-    
+
     /**
      * Fills provided array with uniform long values within 0 and provided
      * maxValue following a uniform distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if provided value is negative.
-     */    
-    public void fill(long[] array, long maxValue) {
-<span class="fc bfc" id="L193" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L194">            array[i] = nextLong(maxValue);</span>
+     */
+    public void fill(final long[] array, final long maxValue) {
+<span class="fc bfc" id="L205" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L206">            array[i] = nextLong(maxValue);</span>
         }
-<span class="fc" id="L196">    }</span>
-    
+<span class="fc" id="L208">    }</span>
+
     /**
      * Returns array of random uniform long values within 0 and provided
      * maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform long integers.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */    
-    public long[] nextLongs(int length, long maxValue) {
-<span class="fc" id="L207">        long[] array = new long[length];</span>
-<span class="fc" id="L208">        fill(array, maxValue);</span>
-<span class="fc" id="L209">        return array;</span>
+     */
+    public long[] nextLongs(final int length, final long maxValue) {
+<span class="fc" id="L220">        final long[] array = new long[length];</span>
+<span class="fc" id="L221">        fill(array, maxValue);</span>
+<span class="fc" id="L222">        return array;</span>
     }
-    
+
     /**
      * Returns next random long value between the range of provided values
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next long value following a uniform distribution.
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
-     * or equal than minValue.
-     */    
-    public long nextLong(long minValue, long maxValue) {
-        
-<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L225">            throw new IllegalArgumentException();</span>
+     *                                  or equal than minValue.
+     */
+    public long nextLong(final long minValue, final long maxValue) {
+
+<span class="fc bfc" id="L238" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L239">            throw new IllegalArgumentException();</span>
         }
-        
-<span class="fc" id="L228">        long diff = maxValue - minValue;</span>
-<span class="fc" id="L229">        return (Math.abs(getInternalRandom().nextLong()) % diff) + minValue;</span>
+
+<span class="fc" id="L242">        final long diff = maxValue - minValue;</span>
+<span class="fc" id="L243">        return (Math.abs(getInternalRandom().nextLong()) % diff) + minValue;</span>
     }
-    
+
     /**
      * Fills provided array with uniform long values within provided
-     * minValue (inclusive) and maxValue (exclusive) following a uniform 
+     * minValue (inclusive) and maxValue (exclusive) following a uniform
      * distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if maxValue is smaller or equal than
-     * minValue.
-     */    
-    public void fill(long[] array, long minValue, long maxValue) {
-<span class="fc bfc" id="L243" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L244">            array[i] = nextLong(minValue, maxValue);</span>
+     *                                  minValue.
+     */
+    public void fill(final long[] array, final long minValue, final long maxValue) {
+<span class="fc bfc" id="L258" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L259">            array[i] = nextLong(minValue, maxValue);</span>
         }
-<span class="fc" id="L246">    }</span>
-    
+<span class="fc" id="L261">    }</span>
+
     /**
-     * Returns array of random uniform long values within provided minValue 
+     * Returns array of random uniform long values within provided minValue
      * and maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform integers.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */        
-    public long[] nextLongs(int length, long minValue, long maxValue) {
-<span class="fc" id="L258">        long[] array = new long[length];</span>
-<span class="fc" id="L259">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L260">        return array;</span>
+     */
+    public long[] nextLongs(final int length, final long minValue, final long maxValue) {
+<span class="fc" id="L274">        final long[] array = new long[length];</span>
+<span class="fc" id="L275">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L276">        return array;</span>
     }
 
     /**
      * Returns next random floating-point value within the range 0.0 and 1.0
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
-     * @return Next float value following a uniform distribution between 0.0 and 
+     *
+     * @return Next float value following a uniform distribution between 0.0 and
      * 1.0.
-     */    
+     */
     @Override
     public float nextFloat() {
-<span class="fc" id="L272">        return getInternalRandom().nextFloat();</span>
-    }    
-    
+<span class="fc" id="L289">        return getInternalRandom().nextFloat();</span>
+    }
+
     /**
      * Returns next random floating-point value between 0.0 and provided value
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public float nextFloat(float maxValue) {
-<span class="fc" id="L284">        return nextFloat(0.0f, maxValue);</span>
+    public float nextFloat(final float maxValue) {
+<span class="fc" id="L302">        return nextFloat(0.0f, maxValue);</span>
     }
-    
+
     /**
      * Fills provided array with floating point values within 0.0 and provided
      * maxValue following a uniform distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if provided value is negative.
-     */        
-    public void fill(float[] array, float maxValue) {
-<span class="fc bfc" id="L295" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L296">            array[i] = nextFloat(maxValue);</span>
+     */
+    public void fill(final float[] array, final float maxValue) {
+<span class="fc bfc" id="L314" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L315">            array[i] = nextFloat(maxValue);</span>
         }
-<span class="fc" id="L298">    }</span>
-    
+<span class="fc" id="L317">    }</span>
+
     /**
-     * Returns array of random uniform floating point values within 0.0 and 
+     * Returns array of random uniform floating point values within 0.0 and
      * provided maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform floating point.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */        
-    public float[] nextFloats(int length, float maxValue) {
-<span class="fc" id="L309">        float[] array = new float[length];</span>
-<span class="fc" id="L310">        fill(array, maxValue);</span>
-<span class="fc" id="L311">        return array;</span>
+     */
+    public float[] nextFloats(final int length, final float maxValue) {
+<span class="fc" id="L329">        final float[] array = new float[length];</span>
+<span class="fc" id="L330">        fill(array, maxValue);</span>
+<span class="fc" id="L331">        return array;</span>
     }
-    
+
     /**
-     * Returns next random floating-point value between the range of provided 
-     * values following a uniform distribution (e.g. each possible value has 
+     * Returns next random floating-point value between the range of provided
+     * values following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
-     * or equal than minValue.
-     */        
-    public float nextFloat(float minValue, float maxValue) {
-        
-<span class="fc bfc" id="L326" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L327">            throw new IllegalArgumentException();</span>
+     *                                  or equal than minValue.
+     */
+    public float nextFloat(final float minValue, final float maxValue) {
+
+<span class="fc bfc" id="L347" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L348">            throw new IllegalArgumentException();</span>
         }
-        
-<span class="fc" id="L330">        float diff = maxValue - minValue;</span>
-<span class="fc" id="L331">        return getInternalRandom().nextFloat() * diff + minValue;</span>
+
+<span class="fc" id="L351">        final float diff = maxValue - minValue;</span>
+<span class="fc" id="L352">        return getInternalRandom().nextFloat() * diff + minValue;</span>
     }
-    
+
     /**
      * Fills provided array with uniform floating point values within provided
-     * minValue (inclusive) and maxValue (exclusive) following a uniform 
+     * minValue (inclusive) and maxValue (exclusive) following a uniform
      * distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if maxValue is smaller or equal than
-     * minValue.
-     */        
-    public void fill(float[] array, float minValue, float maxValue) {
-<span class="fc bfc" id="L345" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L346">            array[i] = nextFloat(minValue, maxValue);</span>
+     *                                  minValue.
+     */
+    public void fill(final float[] array, final float minValue, final float maxValue) {
+<span class="fc bfc" id="L367" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L368">            array[i] = nextFloat(minValue, maxValue);</span>
         }
-<span class="fc" id="L348">    }</span>
-    
+<span class="fc" id="L370">    }</span>
+
     /**
-     * Returns array of random uniform floating point values within provided 
+     * Returns array of random uniform floating point values within provided
      * minValue and maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random floating point values.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */            
-    public float[] nextFloats(int length, float minValue, float maxValue) {
-<span class="fc" id="L360">        float[] array = new float[length];</span>
-<span class="fc" id="L361">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L362">        return array;</span>
+     */
+    public float[] nextFloats(final int length, final float minValue, final float maxValue) {
+<span class="fc" id="L383">        final float[] array = new float[length];</span>
+<span class="fc" id="L384">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L385">        return array;</span>
     }
-    
+
     /**
-     * Returns next random double precision floating-point value within the 
-     * range 0.0 and 1.0 following a uniform distribution (e.g. each possible 
+     * Returns next random double precision floating-point value within the
+     * range 0.0 and 1.0 following a uniform distribution (e.g. each possible
      * value has approximately the same probability to be picked).
-     * @return Next float value following a uniform distribution between 0.0 and 
+     *
+     * @return Next float value following a uniform distribution between 0.0 and
      * 1.0.
-     */        
+     */
     @Override
     public double nextDouble() {
-<span class="fc" id="L374">        return getInternalRandom().nextDouble();</span>
+<span class="fc" id="L398">        return getInternalRandom().nextDouble();</span>
     }
-    
+
     /**
      * Returns next random floating-point value between 0.0 and provided value
-     * following a uniform distribution (e.g. each possible value has 
+     * following a uniform distribution (e.g. each possible value has
      * approximately the same probability to be picked).
+     *
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException if provided value is negative.
      */
-    public double nextDouble(double maxValue) {
-<span class="fc" id="L386">        return nextDouble(0.0, maxValue);</span>
-    }    
-    
+    public double nextDouble(final double maxValue) {
+<span class="fc" id="L411">        return nextDouble(0.0, maxValue);</span>
+    }
+
     /**
-     * Fills provided array with double precision floating point values within 
+     * Fills provided array with double precision floating point values within
      * 0.0 and provided maxValue following a uniform distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if provided value is negative.
-     */            
-    public void fill(double[] array, double maxValue) {
-<span class="fc bfc" id="L397" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L398">            array[i] = nextDouble(maxValue);</span>
+     */
+    public void fill(final double[] array, final double maxValue) {
+<span class="fc bfc" id="L423" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L424">            array[i] = nextDouble(maxValue);</span>
         }
-<span class="fc" id="L400">    }</span>
-    
+<span class="fc" id="L426">    }</span>
+
     /**
-     * Returns array of random uniform double precision floating point values 
+     * Returns array of random uniform double precision floating point values
      * within 0.0 and provided maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random uniform double precision floating point values.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */            
-    public double[] nextDoubles(int length, double maxValue) {
-<span class="fc" id="L411">        double[] array = new double[length];</span>
-<span class="fc" id="L412">        fill(array, maxValue);</span>
-<span class="fc" id="L413">        return array;</span>
+     */
+    public double[] nextDoubles(final int length, final double maxValue) {
+<span class="fc" id="L438">        final double[] array = new double[length];</span>
+<span class="fc" id="L439">        fill(array, maxValue);</span>
+<span class="fc" id="L440">        return array;</span>
     }
-    
+
     /**
-     * Returns next random double precision floating-point value between the 
-     * range of provided values following a uniform distribution (e.g. each 
+     * Returns next random double precision floating-point value between the
+     * range of provided values following a uniform distribution (e.g. each
      * possible value has approximately the same probability to be picked).
+     *
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Next floating-point value following a uniform distribution.
      * @throws IllegalArgumentException Exception thrown if maxValue is smaller
-     * or equal than minValue.
-     */            
-    public double nextDouble(double minValue, double maxValue) {
+     *                                  or equal than minValue.
+     */
+    public double nextDouble(final double minValue, final double maxValue) {
 
-<span class="fc bfc" id="L428" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
-<span class="fc" id="L429">            throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L456" title="All 2 branches covered.">        if (maxValue &lt;= minValue) {</span>
+<span class="fc" id="L457">            throw new IllegalArgumentException();</span>
         }
-        
-<span class="fc" id="L432">        double diff = maxValue - minValue;</span>
-<span class="fc" id="L433">        return getInternalRandom().nextDouble() * diff + minValue;</span>
-    } 
-    
+
+<span class="fc" id="L460">        final double diff = maxValue - minValue;</span>
+<span class="fc" id="L461">        return getInternalRandom().nextDouble() * diff + minValue;</span>
+    }
+
     /**
-     * Fills provided array with uniform double precision floating point values 
-     * within provided minValue (inclusive) and maxValue (exclusive) following 
+     * Fills provided array with uniform double precision floating point values
+     * within provided minValue (inclusive) and maxValue (exclusive) following
      * a uniform distribution.
-     * @param array Array to be filled.
+     *
+     * @param array    Array to be filled.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @throws IllegalArgumentException if maxValue is smaller or equal than
-     * minValue.
-     */            
-    public void fill(double[] array, double minValue, double maxValue) {
-<span class="fc bfc" id="L447" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L448">            array[i] = nextDouble(minValue, maxValue);</span>
+     *                                  minValue.
+     */
+    public void fill(final double[] array, final double minValue, final double maxValue) {
+<span class="fc bfc" id="L476" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L477">            array[i] = nextDouble(minValue, maxValue);</span>
         }
-<span class="fc" id="L450">    }</span>
-    
+<span class="fc" id="L479">    }</span>
+
     /**
-     * Returns array of random uniform floating point values within provided 
+     * Returns array of random uniform floating point values within provided
      * minValue and maxValue.
-     * @param length Length of array to be returned.
+     *
+     * @param length   Length of array to be returned.
      * @param minValue Minimum value to be returned (inclusive).
      * @param maxValue Maximum value to be returned (exclusive).
      * @return Array of random floating point values.
      * @throws IllegalArgumentException if provided values are zero or negative.
-     */    
-    public double[] nextDoubles(int length, double minValue, double maxValue) {
-<span class="fc" id="L462">        double[] array = new double[length];</span>
-<span class="fc" id="L463">        fill(array, minValue, maxValue);</span>
-<span class="fc" id="L464">        return array;</span>
+     */
+    public double[] nextDoubles(final int length, final double minValue, final double maxValue) {
+<span class="fc" id="L492">        final double[] array = new double[length];</span>
+<span class="fc" id="L493">        fill(array, minValue, maxValue);</span>
+<span class="fc" id="L494">        return array;</span>
     }
-    
+
     /**
      * Returns the randomizer type of this instance.
+     *
      * @return Randomizer type.
      */
     @Override
     public RandomizerType getType() {
-<span class="fc" id="L473">        return RandomizerType.UNIFORM_RANDOMIZER;</span>
+<span class="fc" id="L504">        return RandomizerType.UNIFORM_RANDOMIZER;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

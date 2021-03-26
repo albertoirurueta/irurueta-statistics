@@ -20,7 +20,7 @@ import java.util.Random;
 /**
  * Generates pseudo-random values following a Gaussian distribution having
  * the specified mMean and standard deviation. By default mMean is equal to
- * DEFAULT_MEAN and the standard deviation is equal to 
+ * DEFAULT_MEAN and the standard deviation is equal to
  * DEFAULT_STANDARD_DEVIATION.
  */
 public class GaussianRandomizer extends Randomizer {
@@ -41,7 +41,7 @@ public class GaussianRandomizer extends Randomizer {
      * Contains mMean value to be used for random value generation.
      */
     private double mMean;
-    
+
     /**
      * Standard deviation value to be used for random value generation.
      */
@@ -59,185 +59,200 @@ public class GaussianRandomizer extends Randomizer {
      * Constructor.
      * Because neither mMean or standard deviation are provided, values
      * DEFAULT_MEAN and DEFAULT_STANDARD_DEVIATION will be used instead.
+     *
      * @param internalRandom Internal Random instance in charge of generating
-     * pseudo-random values.
+     *                       pseudo-random values.
      * @throws NullPointerException thrown if provided internal random is null.
      */
-    public GaussianRandomizer(Random internalRandom) {
-<span class="fc" id="L67">        super(internalRandom);</span>
-<span class="fc" id="L68">        mMean = DEFAULT_MEAN;</span>
-<span class="fc" id="L69">        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;</span>
-<span class="fc" id="L70">    }</span>
-    
+    public GaussianRandomizer(final Random internalRandom) {
+<span class="fc" id="L68">        super(internalRandom);</span>
+<span class="fc" id="L69">        mMean = DEFAULT_MEAN;</span>
+<span class="fc" id="L70">        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;</span>
+<span class="fc" id="L71">    }</span>
+
     /**
      * Constructor.
-     * @param internalRandom Internal Random instance if charge of generating
-     * pseudo-random values.
-     * @param mean Mean value of generated Gaussian values.
+     *
+     * @param internalRandom    Internal Random instance if charge of generating
+     *                          pseudo-random values.
+     * @param mean              Mean value of generated Gaussian values.
      * @param standardDeviation Standard deviation of generated Gaussian values.
-     * @throws IllegalArgumentException  thrown if provided standard deviation
-     * is negative or zero.
-     * @throws NullPointerException if provided internal Random instance is null.
+     * @throws IllegalArgumentException thrown if provided standard deviation
+     *                                  is negative or zero.
+     * @throws NullPointerException     if provided internal Random instance is null.
      */
-    public GaussianRandomizer(Random internalRandom, double mean, 
-            double standardDeviation) {
-<span class="fc" id="L84">        super(internalRandom);</span>
-        
-<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
-<span class="fc" id="L87">            throw new IllegalArgumentException();</span>
+    public GaussianRandomizer(final Random internalRandom, final double mean,
+                              final double standardDeviation) {
+<span class="fc" id="L86">        super(internalRandom);</span>
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
+<span class="fc" id="L89">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L89">        mMean = mean;</span>
-<span class="fc" id="L90">        mStandardDeviation = standardDeviation;</span>
-<span class="fc" id="L91">    }</span>
-    
+<span class="fc" id="L91">        mMean = mean;</span>
+<span class="fc" id="L92">        mStandardDeviation = standardDeviation;</span>
+<span class="fc" id="L93">    }</span>
+
     /**
      * Returns mMean value to be used for Gaussian random value generation.
+     *
      * @return Mean value.
      */
-    public double getmMean() {
-<span class="fc" id="L98">        return mMean;</span>
+    public double getMean() {
+<span class="fc" id="L101">        return mMean;</span>
     }
-    
+
     /**
      * Sets mMean value to be used for Gaussian random value generation.
+     *
      * @param mean Mean value.
      */
-    public void setmMean(double mean) {
-<span class="fc" id="L106">        mMean = mean;</span>
-<span class="fc" id="L107">    }</span>
-    
+    public void setMean(final double mean) {
+<span class="fc" id="L110">        mMean = mean;</span>
+<span class="fc" id="L111">    }</span>
+
     /**
-     * Returns standard deviation to be used for Gaussian random value 
+     * Returns standard deviation to be used for Gaussian random value
      * generation.
+     *
      * @return Standard deviation.
      */
     public double getStandardDeviation() {
-<span class="fc" id="L115">        return mStandardDeviation;</span>
+<span class="fc" id="L120">        return mStandardDeviation;</span>
     }
-    
+
     /**
      * Sets standard deviation to be used for Gaussian random value generation.
+     *
      * @param standardDeviation Standard deviation.
      * @throws IllegalArgumentException exception thrown if provided standard
-     * deviation is negative or zero.
+     *                                  deviation is negative or zero.
      */
-    public void setStandardDeviation(double standardDeviation) {
-        
-<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
-<span class="fc" id="L127">            throw new IllegalArgumentException();</span>
+    public void setStandardDeviation(final double standardDeviation) {
+
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        if (standardDeviation &lt;= 0.0) {</span>
+<span class="fc" id="L133">            throw new IllegalArgumentException();</span>
         }
-<span class="fc" id="L129">        mStandardDeviation = standardDeviation;</span>
-<span class="fc" id="L130">    }</span>
+<span class="fc" id="L135">        mStandardDeviation = standardDeviation;</span>
+<span class="fc" id="L136">    }</span>
 
     /**
      * Returns next random boolean value. The probability of returning true
      * is equal to obtaining a Gaussian value below the mMean, which is 50%.
+     *
      * @return Next boolean value.
-     */    
+     */
     @Override
     public boolean nextBoolean() {
-<span class="fc" id="L139">        return nextBoolean(mMean);</span>
+<span class="fc" id="L146">        return nextBoolean(mMean);</span>
     }
-    
+
     /**
      * Returns next random boolean value. The probability of returning true
-     * is equal to obtaining a Gaussian value below the provided threshold, 
+     * is equal to obtaining a Gaussian value below the provided threshold,
      * which is equal to erfc function.
+     *
      * @param threshold Threshold to determine whether returned values will be
-     * true or false.
+     *                  true or false.
      * @return Next random boolean value.
      */
-    public boolean nextBoolean(double threshold) {
-<span class="fc bfc" id="L151" title="All 2 branches covered.">        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) &lt;</span>
+    public boolean nextBoolean(final double threshold) {
+<span class="fc bfc" id="L159" title="All 2 branches covered.">        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) &lt;</span>
                 threshold;
     }
-    
+
     /**
-     * Fills provided array with random booleans where the probability 
-     * of returning true is equal to obtaining a Gaussian value below the 
+     * Fills provided array with random booleans where the probability
+     * of returning true is equal to obtaining a Gaussian value below the
      * provided threshold, which is equal to erfc function.
-     * @param array array to be filled.
+     *
+     * @param array     array to be filled.
      * @param threshold Threshold to determine whether generated values will be
-     * true or false.
+     *                  true or false.
      */
-    public void fill(boolean[] array, double threshold) {
-<span class="fc bfc" id="L164" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
-<span class="fc" id="L165">            array[i] = nextBoolean(threshold);</span>
+    public void fill(final boolean[] array, final double threshold) {
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L174">            array[i] = nextBoolean(threshold);</span>
         }
-<span class="fc" id="L167">    }</span>
-    
+<span class="fc" id="L176">    }</span>
+
     /**
      * Returns array of booleans having provided length and containing random
      * boolean balues. The probability of returning true is equal to
      * obtaining a Gaussian value below the provided threshold, which is equal
      * to erfc funciton.
-     * @param length Length of array to be created.
+     *
+     * @param length    Length of array to be created.
      * @param threshold Threshold to determine whether returned values will be
-     * true or false.
+     *                  true or false.
      * @return Array of random booleans.
      * @throws IllegalArgumentException if provided length is zero or negative.
      */
-    public boolean[] nextBooleans(int length, double threshold) {
-        
-<span class="pc bpc" id="L182" title="1 of 2 branches missed.">        if (length &lt;= 0) {</span>
-<span class="nc" id="L183">            throw new IllegalArgumentException();</span>
+    public boolean[] nextBooleans(final int length, final double threshold) {
+
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">        if (length &lt;= 0) {</span>
+<span class="nc" id="L193">            throw new IllegalArgumentException();</span>
         }
-        
-<span class="fc" id="L186">        boolean[] array = new boolean[length];</span>
-<span class="fc" id="L187">        fill(array, threshold);</span>
-<span class="fc" id="L188">        return array;</span>
+
+<span class="fc" id="L196">        final boolean[] array = new boolean[length];</span>
+<span class="fc" id="L197">        fill(array, threshold);</span>
+<span class="fc" id="L198">        return array;</span>
     }
-    
+
     /**
      * Returns next random Gaussian integer value having provided mMean and
      * standard deviation.
-     * @return  Next random Gaussian integer value.
+     *
+     * @return Next random Gaussian integer value.
      */
     @Override
     public int nextInt() {
-<span class="fc" id="L198">        return (int)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L209">        return (int) (mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
-    }    
+    }
 
     /**
      * Returns next random Gaussian long value having provided mMean and
      * standard deviation.
-     * @return  Next random Gaussian long value.
-     */    
+     *
+     * @return Next random Gaussian long value.
+     */
     @Override
     public long nextLong() {
-<span class="fc" id="L209">        return (long)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L221">        return (long) (mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
     }
 
     /**
      * Returns next random Gaussian floating-point value having provided mMean
      * and standard deviation.
-     * @return  Next random Gaussian floating-point value.
-     */        
+     *
+     * @return Next random Gaussian floating-point value.
+     */
     @Override
     public float nextFloat() {
-<span class="fc" id="L220">        return (float)(mStandardDeviation * getInternalRandom().nextGaussian() +</span>
+<span class="fc" id="L233">        return (float) (mStandardDeviation * getInternalRandom().nextGaussian() +</span>
                 mMean);
     }
 
     /**
      * Returns next random Gaussian double precision floating-point value having
      * provided mMean and standard deviation.
-     * @return  Next random Gaussian double precision floating-point value.
-     */            
+     *
+     * @return Next random Gaussian double precision floating-point value.
+     */
     @Override
     public double nextDouble() {
-<span class="fc" id="L231">        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;</span>
-    }    
-    
+<span class="fc" id="L245">        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;</span>
+    }
+
     /**
      * Returns the randomizer type of this instance.
+     *
      * @return Randomizer type.
-     */    
+     */
     @Override
     public RandomizerType getType() {
-<span class="fc" id="L240">        return RandomizerType.GAUSSIAN_RANDOMIZER;</span>
+<span class="fc" id="L255">        return RandomizerType.GAUSSIAN_RANDOMIZER;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
