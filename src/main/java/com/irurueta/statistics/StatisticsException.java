@@ -19,36 +19,39 @@ package com.irurueta.statistics;
  * Base exception for com.irurueta.statistics package.
  */
 public class StatisticsException extends Exception {
-    
+
     /**
      * Constructor.
      */
     public StatisticsException() {
         super();
     }
-    
+
     /**
      * Constructor with String containing message.
+     *
      * @param message message indicating the cause of the exception.
      */
-    public StatisticsException(String message) {
+    public StatisticsException(final String message) {
         super(message);
     }
-    
+
     /**
      * Constructor with message and cause.
+     *
      * @param message message describing the cause of the exception.
-     * @param cause instance containing the cause of the exception.
+     * @param cause   instance containing the cause of the exception.
      */
-    public StatisticsException(String message, Throwable cause) {
+    public StatisticsException(final String message, final Throwable cause) {
         super(message, cause);
     }
-    
+
     /**
      * Constructor with cause.
+     *
      * @param cause instance containing the cause of the exception.
      */
-    public StatisticsException(Throwable cause) {
+    public StatisticsException(final Throwable cause) {
         super(cause);
     }
 }

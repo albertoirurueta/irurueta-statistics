@@ -19,36 +19,39 @@ package com.irurueta.statistics;
  * Exception thrown when maximum number of iterations is exceeded.
  */
 public class MaxIterationsExceededException extends StatisticsException {
-    
+
     /**
      * Constructor.
      */
     public MaxIterationsExceededException() {
         super();
     }
-    
+
     /**
      * Constructor with String containing message.
+     *
      * @param message message indicating the cause of the exception.
      */
-    public MaxIterationsExceededException(String message) {
+    public MaxIterationsExceededException(final String message) {
         super(message);
     }
-    
+
     /**
      * Constructor with message and cause.
+     *
      * @param message message describing the cause of the exception.
-     * @param cause instance containing the cause of the exception.
+     * @param cause   instance containing the cause of the exception.
      */
-    public MaxIterationsExceededException(String message, Throwable cause) {
+    public MaxIterationsExceededException(final String message, final Throwable cause) {
         super(message, cause);
     }
-    
+
     /**
      * Constructor with cause.
+     *
      * @param cause instance containing the cause of the exception.
      */
-    public MaxIterationsExceededException(Throwable cause) {
+    public MaxIterationsExceededException(final Throwable cause) {
         super(cause);
     }
 }
