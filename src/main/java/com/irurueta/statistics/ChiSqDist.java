@@ -149,7 +149,7 @@ public class ChiSqDist {
      * @throws IllegalArgumentException       if provided chi square value is
      *                                        negative.
      * @throws MaxIterationsExceededException if convergence of incomplete gamma
-     *                                        funciton cannot be reached. This is rarely thrown and happens usually for
+     *                                        function cannot be reached. This is rarely thrown and happens usually for
      *                                        numerically unstable input values.
      */
     public double cdf(final double x2) throws MaxIterationsExceededException {

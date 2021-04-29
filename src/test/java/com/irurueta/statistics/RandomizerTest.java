@@ -22,7 +22,6 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-@SuppressWarnings("Duplicates")
 public class RandomizerTest {
 
     private static final int NUM_SAMPLES = 1000000;
@@ -64,7 +63,7 @@ public class RandomizerTest {
         randomizer = null;
         try {
             randomizer = Randomizer.create((Random) null);
-            fail("NullPointerExceptioen expected but not thrown");
+            fail("NullPointerException expected but not thrown");
         } catch (final NullPointerException ignore) {
         }
         //noinspection all

@@ -56,6 +56,7 @@ public class UniformRandomizerTest {
             fail("NullPointerException was expected but not thrown");
         } catch (final NullPointerException ignore) {
         }
+        //noinspection ConstantConditions
         assertNull(randomizer);
     }
 

@@ -274,10 +274,11 @@ public class NormalDistTest {
         assertEquals(dist.mahalanobisDistance(x),
                 NormalDist.mahalanobisDistance(x, mean, std), 0.0);
 
-        assertEquals(dist.mahalanobisDistance(x), Math.abs(x - mean) / std,
+        double tmp = Math.abs(x - mean) / std;
+        assertEquals(dist.mahalanobisDistance(x), tmp,
                 ABSOLUTE_ERROR);
         assertEquals(NormalDist.mahalanobisDistance(x, mean, std),
-                Math.abs(x - mean) / std, ABSOLUTE_ERROR);
+                tmp, ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
         try {

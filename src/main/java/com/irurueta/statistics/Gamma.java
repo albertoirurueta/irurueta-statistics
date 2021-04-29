@@ -18,7 +18,7 @@ package com.irurueta.statistics;
 
 /**
  * Defines the gamma function, which is a function that extends the concept of
- * factorials from natural to real and complex numbers (except cero and negative
+ * factorials from natural to real and complex numbers (except zero and negative
  * integer values).
  * If argument of gamma function is natural and positive, then it relates to
  * factorials as: Gamma(n) = (n - 1)!
@@ -68,7 +68,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * Indicates whether factorials have been initialized and stored in a table
      * for future faster access.
      */
-    private static boolean factorialsInitialied;
+    private static boolean factorialsInitialized;
 
     /**
      * Table where factorials are cached for faster future access.
@@ -145,8 +145,8 @@ public class Gamma extends GaussLegendreQuadrature {
             throw new IllegalArgumentException("factrl out of range");
         }
 
-        if (!factorialsInitialied) {
-            factorialsInitialied = true;
+        if (!factorialsInitialized) {
+            factorialsInitialized = true;
             factorialsTable = new double[171];
             factorialsTable[0] = 1.;
             for (int i = 1; i < (MAX_FACTORIALS + 1); i++) {
@@ -201,7 +201,7 @@ public class Gamma extends GaussLegendreQuadrature {
             return Math.floor(0.5 + factrl(n) / (factrl(k) * factrl(n - k)));
         }
 
-        // The floor function cleans up roundoff error for smaller values of n
+        // The floor function cleans up round-off error for smaller values of n
         // and k.
         return Math.floor(0.5 + Math.exp(factln(n) - factln(k) - factln(n - k)));
     }
@@ -249,7 +249,7 @@ public class Gamma extends GaussLegendreQuadrature {
      *
      * @param a a parameter.
      * @param x x parameter.
-     * @return value of incoplete gamma function.
+     * @return value of incomplete gamma function.
      * @throws IllegalArgumentException       if provided values are invalid.
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
@@ -434,7 +434,6 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      *                                        exceeded.
      */
-    @SuppressWarnings("Duplicates")
     public double invgammp(final double p, final double a) throws MaxIterationsExceededException {
         int j;
         double x;

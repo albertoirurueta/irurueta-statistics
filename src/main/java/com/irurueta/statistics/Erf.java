@@ -70,7 +70,7 @@ public class Erf {
     /**
      * Evaluates the error function at x.
      *
-     * @param x value to evualte the error function at.
+     * @param x value to evaluate the error function at.
      * @return value of the error function.
      */
     public static double erf(final double x) {
@@ -153,7 +153,7 @@ public class Erf {
         double dd = 0.0;
         if (z < 0.0) {
             throw new IllegalArgumentException(
-                    "erfccheb requires nonnegative argument");
+                    "erfccheb requires non-negative argument");
         }
 
         t = 2.0 / (2.0 + z);
