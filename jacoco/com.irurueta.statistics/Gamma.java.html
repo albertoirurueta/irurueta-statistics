@@ -18,7 +18,7 @@ package com.irurueta.statistics;
 
 /**
  * Defines the gamma function, which is a function that extends the concept of
- * factorials from natural to real and complex numbers (except cero and negative
+ * factorials from natural to real and complex numbers (except zero and negative
  * integer values).
  * If argument of gamma function is natural and positive, then it relates to
  * factorials as: Gamma(n) = (n - 1)!
@@ -68,7 +68,7 @@ package com.irurueta.statistics;
      * Indicates whether factorials have been initialized and stored in a table
      * for future faster access.
      */
-    private static boolean factorialsInitialied;
+    private static boolean factorialsInitialized;
 
     /**
      * Table where factorials are cached for faster future access.
@@ -145,8 +145,8 @@ package com.irurueta.statistics;
 <span class="fc" id="L145">            throw new IllegalArgumentException(&quot;factrl out of range&quot;);</span>
         }
 
-<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (!factorialsInitialied) {</span>
-<span class="fc" id="L149">            factorialsInitialied = true;</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        if (!factorialsInitialized) {</span>
+<span class="fc" id="L149">            factorialsInitialized = true;</span>
 <span class="fc" id="L150">            factorialsTable = new double[171];</span>
 <span class="fc" id="L151">            factorialsTable[0] = 1.;</span>
 <span class="fc bfc" id="L152" title="All 2 branches covered.">            for (int i = 1; i &lt; (MAX_FACTORIALS + 1); i++) {</span>
@@ -201,7 +201,7 @@ package com.irurueta.statistics;
 <span class="fc" id="L201">            return Math.floor(0.5 + factrl(n) / (factrl(k) * factrl(n - k)));</span>
         }
 
-        // The floor function cleans up roundoff error for smaller values of n
+        // The floor function cleans up round-off error for smaller values of n
         // and k.
 <span class="nc" id="L206">        return Math.floor(0.5 + Math.exp(factln(n) - factln(k) - factln(n - k)));</span>
     }
@@ -249,7 +249,7 @@ package com.irurueta.statistics;
      *
      * @param a a parameter.
      * @param x x parameter.
-     * @return value of incoplete gamma function.
+     * @return value of incomplete gamma function.
      * @throws IllegalArgumentException       if provided values are invalid.
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
@@ -434,7 +434,6 @@ package com.irurueta.statistics;
      * @throws MaxIterationsExceededException if maximum number of iterations is
      *                                        exceeded.
      */
-    @SuppressWarnings(&quot;Duplicates&quot;)
     public double invgammp(final double p, final double a) throws MaxIterationsExceededException {
         int j;
         double x;
@@ -442,57 +441,57 @@ package com.irurueta.statistics;
         double t;
         double u;
         final double pp;
-<span class="fc" id="L445">        double lna1 = 0.0;</span>
-<span class="fc" id="L446">        double afac = 0.0;</span>
-<span class="fc" id="L447">        final double a1 = a - 1.0;</span>
-<span class="fc" id="L448">        gln = gammln(a);</span>
-<span class="pc bpc" id="L449" title="1 of 2 branches missed.">        if (a &lt;= 0.) {</span>
-<span class="nc" id="L450">            throw new IllegalArgumentException(&quot;a must be pos in invgammap&quot;);</span>
+<span class="fc" id="L444">        double lna1 = 0.0;</span>
+<span class="fc" id="L445">        double afac = 0.0;</span>
+<span class="fc" id="L446">        final double a1 = a - 1.0;</span>
+<span class="fc" id="L447">        gln = gammln(a);</span>
+<span class="pc bpc" id="L448" title="1 of 2 branches missed.">        if (a &lt;= 0.) {</span>
+<span class="nc" id="L449">            throw new IllegalArgumentException(&quot;a must be pos in invgammap&quot;);</span>
         }
-<span class="pc bpc" id="L452" title="1 of 2 branches missed.">        if (p &gt;= 1.) {</span>
-<span class="nc" id="L453">            return Math.max(100., a + 100. * Math.sqrt(a));</span>
+<span class="pc bpc" id="L451" title="1 of 2 branches missed.">        if (p &gt;= 1.) {</span>
+<span class="nc" id="L452">            return Math.max(100., a + 100. * Math.sqrt(a));</span>
         }
-<span class="pc bpc" id="L455" title="1 of 2 branches missed.">        if (p &lt;= 0.) {</span>
-<span class="nc" id="L456">            return 0.0;</span>
+<span class="pc bpc" id="L454" title="1 of 2 branches missed.">        if (p &lt;= 0.) {</span>
+<span class="nc" id="L455">            return 0.0;</span>
         }
-<span class="fc bfc" id="L458" title="All 2 branches covered.">        if (a &gt; 1.) {</span>
-<span class="fc" id="L459">            lna1 = Math.log(a1);</span>
-<span class="fc" id="L460">            afac = Math.exp(a1 * (lna1 - 1.) - gln);</span>
-<span class="fc bfc" id="L461" title="All 2 branches covered.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
-<span class="fc" id="L462">            t = Math.sqrt(-2. * Math.log(pp));</span>
-<span class="fc" id="L463">            x = (2.30753 + t * 0.27061) / (1. + t * (0.99229 + t * 0.04481)) - t;</span>
-<span class="fc bfc" id="L464" title="All 2 branches covered.">            if (p &lt; 0.5) {</span>
-<span class="fc" id="L465">                x = -x;</span>
+<span class="fc bfc" id="L457" title="All 2 branches covered.">        if (a &gt; 1.) {</span>
+<span class="fc" id="L458">            lna1 = Math.log(a1);</span>
+<span class="fc" id="L459">            afac = Math.exp(a1 * (lna1 - 1.) - gln);</span>
+<span class="fc bfc" id="L460" title="All 2 branches covered.">            pp = p &lt; 0.5 ? p : 1. - p;</span>
+<span class="fc" id="L461">            t = Math.sqrt(-2. * Math.log(pp));</span>
+<span class="fc" id="L462">            x = (2.30753 + t * 0.27061) / (1. + t * (0.99229 + t * 0.04481)) - t;</span>
+<span class="fc bfc" id="L463" title="All 2 branches covered.">            if (p &lt; 0.5) {</span>
+<span class="fc" id="L464">                x = -x;</span>
             }
-<span class="fc" id="L467">            x = Math.max(1.e-3, a * Math.pow(1. - 1. / (9. * a) - x / (3. * Math.sqrt(a)), 3));</span>
+<span class="fc" id="L466">            x = Math.max(1.e-3, a * Math.pow(1. - 1. / (9. * a) - x / (3. * Math.sqrt(a)), 3));</span>
         } else {
-<span class="fc" id="L469">            t = 1.0 - a * (0.253 + a * 0.12);</span>
-<span class="pc bpc" id="L470" title="1 of 2 branches missed.">            if (p &lt; t) {</span>
-<span class="nc" id="L471">                x = Math.pow(p / t, 1. / a);</span>
+<span class="fc" id="L468">            t = 1.0 - a * (0.253 + a * 0.12);</span>
+<span class="pc bpc" id="L469" title="1 of 2 branches missed.">            if (p &lt; t) {</span>
+<span class="nc" id="L470">                x = Math.pow(p / t, 1. / a);</span>
             } else {
-<span class="fc" id="L473">                x = 1. - Math.log(1. - (p - t) / (1. - t));</span>
+<span class="fc" id="L472">                x = 1. - Math.log(1. - (p - t) / (1. - t));</span>
             }
         }
-<span class="pc bpc" id="L476" title="1 of 2 branches missed.">        for (j = 0; j &lt; 12; j++) {</span>
-<span class="pc bpc" id="L477" title="1 of 2 branches missed.">            if (x &lt;= 0.0) {</span>
-<span class="nc" id="L478">                return 0.0;</span>
+<span class="pc bpc" id="L475" title="1 of 2 branches missed.">        for (j = 0; j &lt; 12; j++) {</span>
+<span class="pc bpc" id="L476" title="1 of 2 branches missed.">            if (x &lt;= 0.0) {</span>
+<span class="nc" id="L477">                return 0.0;</span>
             }
-<span class="fc" id="L480">            err = gammp(a, x) - p;</span>
-<span class="fc bfc" id="L481" title="All 2 branches covered.">            if (a &gt; 1.) {</span>
-<span class="fc" id="L482">                t = afac * Math.exp(-(x - a1) + a1 * (Math.log(x) - lna1));</span>
+<span class="fc" id="L479">            err = gammp(a, x) - p;</span>
+<span class="fc bfc" id="L480" title="All 2 branches covered.">            if (a &gt; 1.) {</span>
+<span class="fc" id="L481">                t = afac * Math.exp(-(x - a1) + a1 * (Math.log(x) - lna1));</span>
             } else {
-<span class="fc" id="L484">                t = Math.exp(-x + a1 * Math.log(x) - gln);</span>
+<span class="fc" id="L483">                t = Math.exp(-x + a1 * Math.log(x) - gln);</span>
             }
-<span class="fc" id="L486">            u = err / t;</span>
-<span class="fc" id="L487">            x -= (t = u / (1. - 0.5 * Math.min(1., u * ((a - 1.) / x - 1))));</span>
-<span class="pc bpc" id="L488" title="1 of 2 branches missed.">            if (x &lt;= 0.) {</span>
-<span class="nc" id="L489">                x = 0.5 * (x + t);</span>
+<span class="fc" id="L485">            u = err / t;</span>
+<span class="fc" id="L486">            x -= (t = u / (1. - 0.5 * Math.min(1., u * ((a - 1.) / x - 1))));</span>
+<span class="pc bpc" id="L487" title="1 of 2 branches missed.">            if (x &lt;= 0.) {</span>
+<span class="nc" id="L488">                x = 0.5 * (x + t);</span>
             }
-<span class="fc bfc" id="L491" title="All 2 branches covered.">            if (Math.abs(t) &lt; EPS * x) {</span>
-<span class="fc" id="L492">                break;</span>
+<span class="fc bfc" id="L490" title="All 2 branches covered.">            if (Math.abs(t) &lt; EPS * x) {</span>
+<span class="fc" id="L491">                break;</span>
             }
         }
-<span class="fc" id="L495">        return x;</span>
+<span class="fc" id="L494">        return x;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -488,7 +488,7 @@ public class NormalDist {
          * Evaluates derivative of a function at point x.
          *
          * @param x point x where derivative is evaluated.
-         * @return derivative of one dimenstional function at point x.
+         * @return derivative of one dimensional function at point x.
          */
         double evaluateDerivative(final double x);
     }

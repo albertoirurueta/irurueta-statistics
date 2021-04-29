@@ -177,9 +177,9 @@ public class GaussianRandomizer extends Randomizer {
 
     /**
      * Returns array of booleans having provided length and containing random
-     * boolean balues. The probability of returning true is equal to
+     * boolean values. The probability of returning true is equal to
      * obtaining a Gaussian value below the provided threshold, which is equal
-     * to erfc funciton.
+     * to erfc function.
      *
      * @param length    Length of array to be created.
      * @param threshold Threshold to determine whether returned values will be

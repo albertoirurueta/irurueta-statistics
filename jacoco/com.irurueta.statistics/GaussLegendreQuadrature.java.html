@@ -22,7 +22,7 @@ public class GaussLegendreQuadrature {
     /**
      * Length of quadrature arrays.
      */
-    public static final int N_GAU = 18;
+    protected static final int N_GAU = 18;
 
     /**
      * Y values.

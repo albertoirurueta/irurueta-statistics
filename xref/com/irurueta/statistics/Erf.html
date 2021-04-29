@@ -78,7 +78,7 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     * Evaluates the error function at x.</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * @param x value to evualte the error function at.</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * @param x value to evaluate the error function at.</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * @return value of the error function.</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">double</strong> erf(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> x) {
@@ -161,7 +161,7 @@
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">double</strong> dd = 0.0;
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         <strong class="jxr_keyword">if</strong> (z &lt; 0.0) {
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>                     <span class="jxr_string">"erfccheb requires nonnegative argument"</span>);
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>                     <span class="jxr_string">"erfccheb requires non-negative argument"</span>);
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>         }
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>         t = 2.0 / (2.0 + z);
