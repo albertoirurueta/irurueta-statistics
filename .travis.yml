@@ -47,7 +47,7 @@ deploy:
   keep-history: true
   local-dir: ./target/site
   on:
-    branch: master
+    branch: develop
 
 after_success:
 - ./cd/before-deploy.sh
