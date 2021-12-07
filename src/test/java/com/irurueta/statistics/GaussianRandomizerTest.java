@@ -332,7 +332,7 @@ public class GaussianRandomizerTest {
 
         standardDeviation = Math.sqrt(sqrSum - mean);
 
-        assertEquals(mean, MEAN, RELATIVE_ERROR * MEAN);
+        assertEquals(mean, MEAN, 2.0 * RELATIVE_ERROR * MEAN);
         assertEquals(standardDeviation, STANDARD_DEVIATION,
                 RELATIVE_ERROR * STANDARD_DEVIATION);
     }
