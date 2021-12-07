@@ -30,6 +30,7 @@ addons:
 branches:
   only:
   - develop
+  - master
 #if timeout occurs, add travis_wait as in example below:
 #script: travis_wait mvn clean jacoco:prepare-agent install jacoco:report site
 
