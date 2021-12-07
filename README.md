@@ -20,3 +20,28 @@ Utility classes for statistics
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_irurueta-statistics&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-statistics)
 
 [Maven Site Report](http://albertoirurueta.github.io/irurueta-statistics)
+
+## Usage
+
+Add the following dependency to your project:
+
+Latest release:
+```
+<dependency>
+    <groupId>com.irurueta</groupId>
+    <artifactId>irurueta-statistics</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope>
+</dependency>
+```
+
+Latest snapshot:
+```
+<dependency>
+    <groupId>com.irurueta</groupId>
+    <artifactId>irurueta-statistics</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <scope>compile</scope>
+</dependency>
+```
+
