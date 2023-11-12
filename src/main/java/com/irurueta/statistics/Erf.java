@@ -20,17 +20,17 @@ package com.irurueta.statistics;
  * The error function (or Gaussian function) is a special function typically
  * used in statistics and probability or to solve partial differential
  * equations.
- * The error function is defined as the integral between a interval of an
+ * The error function is defined as the integral between a given interval of an
  * exponential with a negative squared exponent (like gaussian functions).
  * Such integral can be used for purposes like obtaining the probability of
  * gaussian distributions, because such probability is the integral of a pdf
  * having a similar expression as the error function.
- * The error function (a.k.a erf) has the following properties:
+ * The error function (a.k.a. erf) has the following properties:
  * - is an odd function erf(-x) = -erf(x)
  * - erf(0) = 0
  * - erf(infinity) = 1
  * <p>
- * Typically also the complementary error function (a.k.a erfc) is also used,
+ * Typically, also the complementary error function (a.k.a. erfc) is also used,
  * and it is defined as erfc(x) = 1 - erf(x)
  * The complementary error function has the following properties:
  * - erfc(0) = 1

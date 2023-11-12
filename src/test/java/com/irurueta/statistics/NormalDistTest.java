@@ -41,8 +41,8 @@ public class NormalDistTest {
         // test empty constructor
         NormalDist dist = new NormalDist();
 
-        assertEquals(dist.getMean(), 0.0, 0.0);
-        assertEquals(dist.getStandardDeviation(), 1.0, 0.0);
+        assertEquals(0.0, dist.getMean(), 0.0);
+        assertEquals(1.0, dist.getStandardDeviation(), 0.0);
 
         // test constructor with mean and standard deviation
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
@@ -52,8 +52,8 @@ public class NormalDistTest {
         dist = new NormalDist(mean, std);
 
         // check correctness
-        assertEquals(dist.getMean(), mean, 0.0);
-        assertEquals(dist.getStandardDeviation(), std, 0.0);
+        assertEquals(mean, dist.getMean(), 0.0);
+        assertEquals(std, dist.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
         dist = null;
@@ -73,13 +73,13 @@ public class NormalDistTest {
         final NormalDist dist = new NormalDist();
 
         // check default value
-        assertEquals(dist.getMean(), 0.0, 0.0);
+        assertEquals(0.0, dist.getMean(), 0.0);
 
         // set new value
         dist.setMean(mean);
 
         // check correctness
-        assertEquals(dist.getMean(), mean, 0.0);
+        assertEquals(mean, dist.getMean(), 0.0);
     }
 
     @Test
@@ -90,13 +90,13 @@ public class NormalDistTest {
         final NormalDist dist = new NormalDist();
 
         // check default value
-        assertEquals(dist.getStandardDeviation(), 1.0, 0.0);
+        assertEquals(1.0, dist.getStandardDeviation(), 0.0);
 
         // set new value
         dist.setStandardDeviation(std);
 
         // check correctness
-        assertEquals(dist.getStandardDeviation(), std, 0.0);
+        assertEquals(std, dist.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
         try {
@@ -114,15 +114,14 @@ public class NormalDistTest {
         final NormalDist dist = new NormalDist();
 
         // check default value
-        assertEquals(dist.getVariance(), 1.0, ABSOLUTE_ERROR);
+        assertEquals(1.0, dist.getVariance(), ABSOLUTE_ERROR);
 
         // set new value
         dist.setVariance(var);
 
         // check correctness
-        assertEquals(dist.getVariance(), var, ABSOLUTE_ERROR);
-        assertEquals(dist.getStandardDeviation(), Math.sqrt(var),
-                ABSOLUTE_ERROR);
+        assertEquals(var, dist.getVariance(), ABSOLUTE_ERROR);
+        assertEquals(Math.sqrt(var), dist.getStandardDeviation(), ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
         try {
@@ -142,11 +141,10 @@ public class NormalDistTest {
 
         final NormalDist dist = new NormalDist(mean, std);
 
-        assertEquals(dist.p(x), NormalDist.p(x, mean, std), 0.0);
+        assertEquals(NormalDist.p(x, mean, std), dist.p(x), 0.0);
 
-        assertEquals(dist.p(mean), 0.398942280401432678 / std, ABSOLUTE_ERROR);
-        assertEquals(NormalDist.p(mean, mean, std), 0.398942280401432678 / std,
-                ABSOLUTE_ERROR);
+        assertEquals(0.398942280401432678 / std, dist.p(mean), ABSOLUTE_ERROR);
+        assertEquals(0.398942280401432678 / std, NormalDist.p(mean, mean, std), ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
         try {
@@ -166,30 +164,30 @@ public class NormalDistTest {
 
         final NormalDist dist = new NormalDist(mean, std);
 
-        assertEquals(dist.cdf(x), NormalDist.cdf(x, mean, std), 0.0);
+        assertEquals(NormalDist.cdf(x, mean, std), dist.cdf(x), 0.0);
 
-        assertEquals(dist.cdf(mean - 3.0 * std), 0.00135, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean - 2.0 * std), 0.02275, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean - std), 0.15866, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean), 0.5, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean + std), 0.84134, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean + 2.0 * std), 0.97725, LARGE_ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(mean + 3.0 * std), 0.99865, LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.00135, dist.cdf(mean - 3.0 * std), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.02275, dist.cdf(mean - 2.0 * std), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.15866, dist.cdf(mean - std), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.5, dist.cdf(mean), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.84134, dist.cdf(mean + std), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.97725, dist.cdf(mean + 2.0 * std), LARGE_ABSOLUTE_ERROR);
+        assertEquals(0.99865, dist.cdf(mean + 3.0 * std), LARGE_ABSOLUTE_ERROR);
 
 
-        assertEquals(NormalDist.cdf(mean - 3.0 * std, mean, std), 0.00135,
+        assertEquals(0.00135, NormalDist.cdf(mean - 3.0 * std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean - 2.0 * std, mean, std), 0.02275,
+        assertEquals(0.02275, NormalDist.cdf(mean - 2.0 * std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean - std, mean, std), 0.15866,
+        assertEquals(0.15866, NormalDist.cdf(mean - std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean, mean, std), 0.5,
+        assertEquals(0.5, NormalDist.cdf(mean, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean + std, mean, std), 0.84134,
+        assertEquals(0.84134, NormalDist.cdf(mean + std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean + 2.0 * std, mean, std), 0.97725,
+        assertEquals(0.97725, NormalDist.cdf(mean + 2.0 * std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
-        assertEquals(NormalDist.cdf(mean + 3.0 * std, mean, std), 0.99865,
+        assertEquals(0.99865, NormalDist.cdf(mean + 3.0 * std, mean, std),
                 LARGE_ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
@@ -222,10 +220,8 @@ public class NormalDistTest {
             assertEquals(dist.invcdf(dist.cdf(x)), x, ABSOLUTE_ERROR);
             assertEquals(dist.cdf(dist.invcdf(p)), p, ABSOLUTE_ERROR);
 
-            assertEquals(NormalDist.invcdf(NormalDist.cdf(x, mean, std), mean, std),
-                    x, ABSOLUTE_ERROR);
-            assertEquals(NormalDist.cdf(NormalDist.invcdf(p, mean, std), mean, std),
-                    p, ABSOLUTE_ERROR);
+            assertEquals(x, NormalDist.invcdf(NormalDist.cdf(x, mean, std), mean, std), ABSOLUTE_ERROR);
+            assertEquals(p, NormalDist.cdf(NormalDist.invcdf(p, mean, std), mean, std), ABSOLUTE_ERROR);
 
             // Force IllegalArgumentException
             try {
@@ -275,10 +271,8 @@ public class NormalDistTest {
                 NormalDist.mahalanobisDistance(x, mean, std), 0.0);
 
         double tmp = Math.abs(x - mean) / std;
-        assertEquals(dist.mahalanobisDistance(x), tmp,
-                ABSOLUTE_ERROR);
-        assertEquals(NormalDist.mahalanobisDistance(x, mean, std),
-                tmp, ABSOLUTE_ERROR);
+        assertEquals(tmp, dist.mahalanobisDistance(x), ABSOLUTE_ERROR);
+        assertEquals(tmp, NormalDist.mahalanobisDistance(x, mean, std), ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
         try {
@@ -311,64 +305,50 @@ public class NormalDistTest {
         NormalDist.propagate(evaluator, mean, standardDeviation, result);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
+        assertEquals(result.getMean(), evaluator.evaluate(mean), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
 
         result = NormalDist.propagate(evaluator, mean, standardDeviation);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
 
         result = new NormalDist();
         NormalDist.propagate(evaluator, dist, result);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
 
         result = NormalDist.propagate(evaluator, dist);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
 
         result = new NormalDist();
         dist.propagateThisDistribution(evaluator, result);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
-
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
         result = dist.propagateThisDistribution(evaluator);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
-
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
         // generate a large number of Gaussian random samples and propagate them
         // through function f(x) = sin(x)
@@ -389,9 +369,9 @@ public class NormalDistTest {
 
         resultStandardDeviation = Math.sqrt(sqrSum - resultMean * resultMean);
 
-        assertEquals(result.getMean(), resultMean,
+        assertEquals(resultMean, result.getMean(),
                 RELATIVE_ERROR * Math.abs(resultMean));
-        assertEquals(result.getStandardDeviation(), resultStandardDeviation,
+        assertEquals(resultStandardDeviation, result.getStandardDeviation(),
                 RELATIVE_ERROR * resultStandardDeviation);
     }
 
@@ -418,43 +398,32 @@ public class NormalDistTest {
         NormalDist.propagate(evaluator, mean, standardDeviation, result);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
 
         result = NormalDist.propagate(evaluator, mean, standardDeviation);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
-
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
         result = new NormalDist();
         NormalDist.propagate(evaluator, dist, result);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
-
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
         result = NormalDist.propagate(evaluator, dist);
 
         // check correctness
-        assertEquals(result.getMean(), evaluator.evaluate(mean),
-                ABSOLUTE_ERROR);
-        assertEquals(result.getStandardDeviation(),
-                Math.abs(evaluator.evaluateDerivative(mean) *
-                        standardDeviation), ABSOLUTE_ERROR);
-
+        assertEquals(evaluator.evaluate(mean), result.getMean(), ABSOLUTE_ERROR);
+        assertEquals(Math.abs(evaluator.evaluateDerivative(mean) * standardDeviation),
+                result.getStandardDeviation(), ABSOLUTE_ERROR);
 
         // generate a large number of Gaussian random samples and propagate them
         // through function f(x) = x^2
@@ -475,9 +444,9 @@ public class NormalDistTest {
 
         resultStandardDeviation = Math.sqrt(sqrSum - resultMean * resultMean);
 
-        assertEquals(result.getMean(), resultMean,
+        assertEquals(resultMean, result.getMean(),
                 RELATIVE_ERROR * Math.abs(resultMean));
-        assertEquals(result.getStandardDeviation(), resultStandardDeviation,
+        assertEquals(resultStandardDeviation, result.getStandardDeviation(),
                 RELATIVE_ERROR * resultStandardDeviation);
     }
 }

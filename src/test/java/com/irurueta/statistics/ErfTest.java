@@ -30,9 +30,9 @@ public class ErfTest {
 
     @Test
     public void testErf() {
-        assertEquals(Erf.erf(0.0), 0.0, ABSOLUTE_ERROR);
-        assertEquals(Erf.erf(Double.POSITIVE_INFINITY), 1.0, ABSOLUTE_ERROR);
-        assertEquals(Erf.erf(Double.MAX_VALUE), 1.0, ABSOLUTE_ERROR);
+        assertEquals(0.0, Erf.erf(0.0), ABSOLUTE_ERROR);
+        assertEquals(1.0, Erf.erf(Double.POSITIVE_INFINITY), ABSOLUTE_ERROR);
+        assertEquals(1.0, Erf.erf(Double.MAX_VALUE), ABSOLUTE_ERROR);
 
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
         final double value = randomizer.nextDouble(MIN_RANDOM_VALUE,
@@ -43,15 +43,15 @@ public class ErfTest {
 
     @Test
     public void testErfc() {
-        assertEquals(Erf.erfc(0.0), 1.0, ABSOLUTE_ERROR);
-        assertEquals(Erf.erfc(Double.POSITIVE_INFINITY), 0.0, ABSOLUTE_ERROR);
-        assertEquals(Erf.erfc(Double.MAX_VALUE), 0.0, ABSOLUTE_ERROR);
+        assertEquals(1.0, Erf.erfc(0.0), ABSOLUTE_ERROR);
+        assertEquals(0.0, Erf.erfc(Double.POSITIVE_INFINITY), ABSOLUTE_ERROR);
+        assertEquals(0.0, Erf.erfc(Double.MAX_VALUE), ABSOLUTE_ERROR);
 
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
         final double value = randomizer.nextDouble(MIN_RANDOM_VALUE,
                 MAX_RANDOM_VALUE);
 
-        assertEquals(Erf.erfc(-value), 2.0 - Erf.erfc(value), ABSOLUTE_ERROR);
+        assertEquals(2.0 - Erf.erfc(value), Erf.erfc(-value), ABSOLUTE_ERROR);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ErfTest {
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
         final double value = randomizer.nextDouble(); //between 0.0 and 1.0
 
-        assertEquals(Erf.erfc(Erf.inverfc(value)), value, ABSOLUTE_ERROR);
+        assertEquals(value, Erf.erfc(Erf.inverfc(value)), ABSOLUTE_ERROR);
     }
 
     @Test
@@ -67,6 +67,6 @@ public class ErfTest {
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
         final double value = randomizer.nextDouble(); //between 0.0 and 1.0
 
-        assertEquals(Erf.erf(Erf.inverf(value)), value, ABSOLUTE_ERROR);
+        assertEquals(value, Erf.erf(Erf.inverf(value)), ABSOLUTE_ERROR);
     }
 }

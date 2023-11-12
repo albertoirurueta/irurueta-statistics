@@ -29,7 +29,7 @@ public class GammaTest {
     public void testConstructorAndGetGln() {
         final Gamma g = new Gamma();
 
-        assertEquals(g.getGln(), 0.0, 0.0);
+        assertEquals(0.0, g.getGln(), 0.0);
     }
 
     @Test
@@ -37,12 +37,12 @@ public class GammaTest {
         // gamma function is related to factorial for positive natural
         // numbers so that gamma(x) = (x-1)!. Gammln returns its logarithm
 
-        assertEquals(Gamma.gammln(1.0), 0.0, 0.0);
-        assertEquals(Gamma.gammln(2.0), Math.log(1.0), 0.0);
-        assertEquals(Gamma.gammln(3.0), Math.log(2.0), ABSOLUTE_ERROR);
-        assertEquals(Gamma.gammln(4.0), Math.log(3.0 * 2.0 * 1.0),
+        assertEquals(0.0, Gamma.gammln(1.0), 0.0);
+        assertEquals(Math.log(1.0), Gamma.gammln(2.0), 0.0);
+        assertEquals(Math.log(2.0), Gamma.gammln(3.0), ABSOLUTE_ERROR);
+        assertEquals(Math.log(3.0 * 2.0 * 1.0), Gamma.gammln(4.0),
                 ABSOLUTE_ERROR);
-        assertEquals(Gamma.gammln(5.0), Math.log(4.0 * 3.0 * 2.0 * 1.0),
+        assertEquals(Math.log(4.0 * 3.0 * 2.0 * 1.0), Gamma.gammln(5.0),
                 ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
@@ -55,14 +55,14 @@ public class GammaTest {
 
     @Test
     public void testFactrl() {
-        assertEquals(Gamma.factrl(0), 1.0, 0.0);
-        assertEquals(Gamma.factrl(1), 1.0, 0.0);
-        assertEquals(Gamma.factrl(2), 2.0, 0.0);
-        assertEquals(Gamma.factrl(3), 3.0 * 2.0, 0.0);
-        assertEquals(Gamma.factrl(4), 4.0 * 3.0 * 2.0, 0.0);
-        assertEquals(Gamma.factrl(5), 5.0 * 4.0 * 3.0 * 2.0, 0.0);
-        assertEquals(Gamma.factrl(6), 6.0 * 5.0 * 4.0 * 3.0 * 2.0, 0.0);
-        assertEquals(Gamma.factrl(7), 7.0 * 6.0 * 5.0 * 4.0 * 3.0 * 2.0, 0.0);
+        assertEquals(1.0, Gamma.factrl(0), 0.0);
+        assertEquals(1.0, Gamma.factrl(1), 0.0);
+        assertEquals(2.0, Gamma.factrl(2), 0.0);
+        assertEquals(3.0 * 2.0, Gamma.factrl(3), 0.0);
+        assertEquals(4.0 * 3.0 * 2.0, Gamma.factrl(4), 0.0);
+        assertEquals(5.0 * 4.0 * 3.0 * 2.0, Gamma.factrl(5), 0.0);
+        assertEquals(6.0 * 5.0 * 4.0 * 3.0 * 2.0, Gamma.factrl(6), 0.0);
+        assertEquals(7.0 * 6.0 * 5.0 * 4.0 * 3.0 * 2.0, Gamma.factrl(7), 0.0);
 
         // Force IllegalArgumentException
         try {
@@ -126,15 +126,12 @@ public class GammaTest {
     @Test
     public void testBeta() {
 
-        assertEquals(Gamma.beta(1.0, 2.0),
-                Gamma.factrl(0) * Gamma.factrl(1) /
-                        Gamma.factrl(1 + 2 - 1), ABSOLUTE_ERROR);
-        assertEquals(Gamma.beta(2.0, 3.0),
-                Gamma.factrl(1) * Gamma.factrl(2) /
-                        Gamma.factrl(2 + 3 - 1), ABSOLUTE_ERROR);
-        assertEquals(Gamma.beta(3.0, 4.0),
-                Gamma.factrl(2) * Gamma.factrl(3) /
-                        Gamma.factrl(3 + 4 - 1), ABSOLUTE_ERROR);
+        assertEquals(Gamma.factrl(0) * Gamma.factrl(1) / Gamma.factrl(1 + 2 - 1),
+                Gamma.beta(1.0, 2.0), ABSOLUTE_ERROR);
+        assertEquals(Gamma.factrl(1) * Gamma.factrl(2) / Gamma.factrl(2 + 3 - 1),
+                Gamma.beta(2.0, 3.0), ABSOLUTE_ERROR);
+        assertEquals(Gamma.factrl(2) * Gamma.factrl(3) / Gamma.factrl(3 + 4 - 1),
+                Gamma.beta(3.0, 4.0), ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
         try {
@@ -153,17 +150,17 @@ public class GammaTest {
     public void testGammpAndGammq() throws MaxIterationsExceededException {
         final Gamma g = new Gamma();
 
-        assertEquals(g.gammp(1.0, 2.0), 1.0 - g.gammq(1.0, 2.0),
+        assertEquals(1.0 - g.gammq(1.0, 2.0), g.gammp(1.0, 2.0),
                 ABSOLUTE_ERROR);
-        assertEquals(g.gammp(2.0, 3.0), 1.0 - g.gammq(2.0, 3.0),
+        assertEquals(1.0 - g.gammq(2.0, 3.0), g.gammp(2.0, 3.0),
                 ABSOLUTE_ERROR);
         assertEquals(g.gammp(3.0, 4.0), 1.0 - g.gammq(3.0, 4.0),
                 ABSOLUTE_ERROR);
 
-        assertEquals(g.gammp(1.0, 0.0), 0.0, 0.0);
+        assertEquals(0.0, g.gammp(1.0, 0.0), 0.0);
 
         try {
-            assertEquals(g.gammp(1.0, Double.POSITIVE_INFINITY), 1.0,
+            assertEquals(1.0, g.gammp(1.0, Double.POSITIVE_INFINITY),
                     ABSOLUTE_ERROR);
             fail("MaxIterationsExceededException expected but not thrown");
         } catch (final MaxIterationsExceededException ignore) {
@@ -174,11 +171,11 @@ public class GammaTest {
     public void testInvgammp() throws MaxIterationsExceededException {
         final Gamma g = new Gamma();
 
-        assertEquals(g.invgammp(g.gammp(1.0, 2.0), 1.0), 2.0,
+        assertEquals(2.0, g.invgammp(g.gammp(1.0, 2.0), 1.0),
                 ABSOLUTE_ERROR);
-        assertEquals(g.invgammp(g.gammp(2.0, 3.0), 2.0), 3.0,
+        assertEquals(3.0, g.invgammp(g.gammp(2.0, 3.0), 2.0),
                 ABSOLUTE_ERROR);
-        assertEquals(g.invgammp(g.gammp(3.0, 4.0), 3.0), 4.0,
+        assertEquals(4.0, g.invgammp(g.gammp(3.0, 4.0), 3.0),
                 ABSOLUTE_ERROR);
     }
 }

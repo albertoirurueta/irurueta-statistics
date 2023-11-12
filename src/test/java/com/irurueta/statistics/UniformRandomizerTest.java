@@ -90,9 +90,9 @@ public class UniformRandomizerTest {
                 ((double) NUM_SAMPLES - 1.0);
 
         // Check correctness of results.
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * BIG_RELATIVE_ERROR);
     }
 
@@ -116,9 +116,9 @@ public class UniformRandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
     }
 
@@ -142,9 +142,9 @@ public class UniformRandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
     }
 
@@ -216,9 +216,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -263,9 +263,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -310,9 +310,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -357,9 +357,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -403,9 +403,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -449,9 +449,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -530,9 +530,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -577,9 +577,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -624,9 +624,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -666,9 +666,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -712,9 +712,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -758,9 +758,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -800,9 +800,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
     }
 
@@ -862,9 +862,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -909,9 +909,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -956,9 +956,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -998,9 +998,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1044,9 +1044,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1090,9 +1090,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1132,9 +1132,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
     }
 
@@ -1194,9 +1194,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1241,9 +1241,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1288,9 +1288,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1330,9 +1330,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1376,9 +1376,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1422,9 +1422,9 @@ public class UniformRandomizerTest {
 
         // Check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -1438,7 +1438,7 @@ public class UniformRandomizerTest {
     @Test
     public void testGetType() {
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
+        assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
     }
 
     @Test
@@ -1466,6 +1466,9 @@ public class UniformRandomizerTest {
     @Test
     public void testSetSeed() {
         final UniformRandomizer randomizer = new UniformRandomizer(new Random());
+
+        assertNotNull(randomizer);
+
         final long seed = 0;
         randomizer.setSeed(seed);
     }

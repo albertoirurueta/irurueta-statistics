@@ -19,7 +19,7 @@ import java.util.Random;
 
 /**
  * Generates pseudo-random values following a Gaussian distribution having
- * the specified mMean and standard deviation. By default mMean is equal to
+ * the specified mMean and standard deviation. By default, mMean is equal to
  * DEFAULT_MEAN and the standard deviation is equal to
  * DEFAULT_STANDARD_DEVIATION.
  */
@@ -57,7 +57,7 @@ public class GaussianRandomizer extends Randomizer {
 
     /**
      * Constructor.
-     * Because neither mMean or standard deviation are provided, values
+     * Because neither mMean nor standard deviation are provided, values
      * DEFAULT_MEAN and DEFAULT_STANDARD_DEVIATION will be used instead.
      *
      * @param internalRandom Internal Random instance in charge of generating

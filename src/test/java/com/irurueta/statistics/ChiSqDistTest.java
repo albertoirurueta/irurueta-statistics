@@ -35,7 +35,7 @@ public class ChiSqDistTest {
 
         ChiSqDist dist = new ChiSqDist(nu);
 
-        assertEquals(dist.getNu(), nu, 0.0);
+        assertEquals(nu, dist.getNu(), 0.0);
 
         // Force IllegalArgumentException
         dist = null;
@@ -56,13 +56,13 @@ public class ChiSqDistTest {
         final ChiSqDist dist = new ChiSqDist(nu);
 
         // check initial value
-        assertEquals(dist.getNu(), nu, 0.0);
+        assertEquals(nu, dist.getNu(), 0.0);
 
         // set new value
         dist.setNu(nu2);
 
         // check correctness
-        assertEquals(dist.getNu(), nu2, 0.0);
+        assertEquals(nu2, dist.getNu(), 0.0);
 
         // Force IllegalArgumentException
         try {
@@ -81,10 +81,10 @@ public class ChiSqDistTest {
         final ChiSqDist dist = new ChiSqDist(nu);
 
         // check
-        assertEquals(dist.p(x2), ChiSqDist.p(x2, nu), 0.0);
+        assertEquals(ChiSqDist.p(x2, nu), dist.p(x2), 0.0);
 
-        assertEquals(dist.p(Double.MAX_VALUE), 0.0, ABSOLUTE_ERROR);
-        assertEquals(ChiSqDist.p(Double.MAX_VALUE, nu), 0.0,
+        assertEquals(0.0, dist.p(Double.MAX_VALUE), ABSOLUTE_ERROR);
+        assertEquals(0.0, ChiSqDist.p(Double.MAX_VALUE, nu),
                 ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
@@ -119,8 +119,8 @@ public class ChiSqDistTest {
         final ChiSqDist dist = new ChiSqDist(nu);
 
         // check correctness
-        assertEquals(dist.cdf(x2min), ChiSqDist.cdf(x2min, nu), 0.0);
-        assertEquals(dist.cdf(x2max), ChiSqDist.cdf(x2max, nu), 0.0);
+        assertEquals(ChiSqDist.cdf(x2min, nu), dist.cdf(x2min), 0.0);
+        assertEquals(ChiSqDist.cdf(x2max, nu), dist.cdf(x2max), 0.0);
 
         assertTrue(dist.cdf(x2min) <= dist.cdf(x2max));
         assertTrue(ChiSqDist.cdf(x2min, nu) <= ChiSqDist.cdf(x2max, nu));
@@ -155,12 +155,12 @@ public class ChiSqDistTest {
 
         final ChiSqDist dist = new ChiSqDist(nu);
 
-        assertEquals(dist.invcdf(dist.cdf(x2)), x2, ABSOLUTE_ERROR);
-        assertEquals(dist.cdf(dist.invcdf(p)), p, ABSOLUTE_ERROR);
+        assertEquals(x2, dist.invcdf(dist.cdf(x2)), ABSOLUTE_ERROR);
+        assertEquals(p, dist.cdf(dist.invcdf(p)), ABSOLUTE_ERROR);
 
-        assertEquals(ChiSqDist.invcdf(ChiSqDist.cdf(x2, nu), nu), x2,
+        assertEquals(x2, ChiSqDist.invcdf(ChiSqDist.cdf(x2, nu), nu),
                 ABSOLUTE_ERROR);
-        assertEquals(ChiSqDist.cdf(ChiSqDist.invcdf(p, nu), nu), p,
+        assertEquals(p, ChiSqDist.cdf(ChiSqDist.invcdf(p, nu), nu),
                 ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException

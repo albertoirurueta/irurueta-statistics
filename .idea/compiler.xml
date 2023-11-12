@@ -19,8 +19,5 @@
         <module name="irurueta-statistics" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="irurueta-statistics" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

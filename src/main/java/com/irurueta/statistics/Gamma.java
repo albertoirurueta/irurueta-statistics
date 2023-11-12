@@ -76,7 +76,7 @@ public class Gamma extends GaussLegendreQuadrature {
     private static double[] factorialsTable;
 
     /**
-     * Indicates whether logarithm of factorials have been initialized and
+     * Indicates whether logarithm of factorials has been initialized and
      * stored in a table for future faster access.
      */
     private static boolean logarithmOfFactorialsInitialized;
