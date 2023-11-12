@@ -24,7 +24,7 @@ public class ChiSqDist {
 
     /**
      * Nu parameter of chi square distribution.
-     * Typically this parameter is provided as an integer value indicating the
+     * Typically, this parameter is provided as an integer value indicating the
      * number of degrees of freedom.
      */
     private double mNu;
@@ -54,7 +54,7 @@ public class ChiSqDist {
 
     /**
      * Returns nu parameter of chi square distribution.
-     * Typically this parameter is an integer value indicating the number of
+     * Typically, this parameter is an integer value indicating the number of
      * degrees of freedom.
      *
      * @return nu parameter of chi square distribution.
@@ -65,7 +65,7 @@ public class ChiSqDist {
 
     /**
      * Sets nu parameter of chi square distribution.
-     * Typically this parameter is an integer value indicating the number of
+     * Typically, this parameter is an integer value indicating the number of
      * degrees of freedom.
      *
      * @param nu nu parameter of chi square distribution.
@@ -87,7 +87,7 @@ public class ChiSqDist {
      *
      * @param x2 chi square value where p.d.f. is evaluated. Must be greater
      *           than 0.0.
-     * @param nu nu parameter of chi square distribution. Typically this is an
+     * @param nu nu parameter of chi square distribution. Typically, this is an
      *           integer value indicating the number of degrees of freedom. Must be
      *           greater than 0.0.
      * @return evaluation of p.d.f.
@@ -120,7 +120,7 @@ public class ChiSqDist {
      *
      * @param x2 chi square value where c.d.f. is evaluated. Must be positive or
      *           zero.
-     * @param nu nu parameter of chi square distribution. Typically this is an
+     * @param nu nu parameter of chi square distribution. Typically, this is an
      *           integer value indicating the number of degrees of freedom. Must be
      *           greater than 0.0.
      * @return evaluation of c.d.f.
@@ -165,7 +165,7 @@ public class ChiSqDist {
      *
      * @param p  value to evaluate the inverse c.d.f. at. This value is
      *           equivalent to a probability and must be between 0.0 and 1.0.
-     * @param nu nu parameter of chi square distribution. Typically this is an
+     * @param nu nu parameter of chi square distribution. Typically, this is an
      *           integer value indicating the number of degrees of freedom. Must be
      *           greater than 0.0.
      * @return the value x2 for which the c.d.f. has value p.
@@ -210,7 +210,7 @@ public class ChiSqDist {
      *
      * @param x2  chi square value where p.d.f. is evaluated. Must be greater
      *            than 0.0.
-     * @param nu  nu parameter of chi square distribution. Typically this is an
+     * @param nu  nu parameter of chi square distribution. Typically, this is an
      *            integer value indicating the number of degrees of freedom. Must be
      *            greater than 0.0.
      * @param fac actor to multiply p.d.f of chi squared by.
@@ -233,7 +233,7 @@ public class ChiSqDist {
      *
      * @param x2    chi square value where c.d.f. is evaluated. Must be positive
      *              or zero.
-     * @param nu    nu parameter of chi square distribution. Typically this is an
+     * @param nu    nu parameter of chi square distribution. Typically, this is an
      *              integer value indicating the number of degrees of freedom. Must be
      *              greater than 0.0.
      * @param gamma a gamma instance to evaluate the incomplete gamma function.
@@ -263,7 +263,7 @@ public class ChiSqDist {
      *
      * @param p     value to evaluate the inverse c.d.f. at. This value is
      *              equivalent to a probability and must be between 0.0 and 1.0.
-     * @param nu    nu parameter of chi square distribution. Typically this is an
+     * @param nu    nu parameter of chi square distribution. Typically, this is an
      *              integer value indicating the number of degrees of freedom. Must be
      *              greater than 0.0.
      * @param gamma a gamma instance to evaluate the inverse incomplete gamma
@@ -289,7 +289,7 @@ public class ChiSqDist {
     /**
      * Computes constant factor to multiply p.d.f. of chi squared by.
      *
-     * @param nu nu parameter of chi square distribution. Typically this
+     * @param nu nu parameter of chi square distribution. Typically, this
      *           parameter is provided as an integer value indicating the number of
      *           degrees of freedom.
      * @return constant factor to multiply p.d.f. of chi squared.

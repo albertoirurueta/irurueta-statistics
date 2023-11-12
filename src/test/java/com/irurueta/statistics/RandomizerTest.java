@@ -42,22 +42,22 @@ public class RandomizerTest {
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
-        assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
+        assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         // test create with secure parameter
         randomizer = Randomizer.create(false);
         assertNotNull(randomizer.getInternalRandom());
-        assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
+        assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         randomizer = Randomizer.create(true);
         assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
-        assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
+        assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         // test create with Random
         final Random random = new SecureRandom();
         randomizer = Randomizer.create(random);
         assertSame(randomizer.getInternalRandom(), random);
-        assertEquals(randomizer.getType(), Randomizer.DEFAULT_RANDOMIZER_TYPE);
+        assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         // Force NullPointerException
         randomizer = null;
@@ -76,7 +76,7 @@ public class RandomizerTest {
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
-        assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
+        assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER);
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
@@ -84,41 +84,41 @@ public class RandomizerTest {
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
-        assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
+        assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
 
         // test create with RandomizerType and secure parameter
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
                 false);
         assertNotNull(randomizer.getInternalRandom());
-        assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
+        assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
                 true);
         assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
-        assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
+        assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
                 false);
         assertNotNull(randomizer.getInternalRandom());
-        assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
+        assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
                 true);
         assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
-        assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
+        assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
 
         // test create with RandomizerType and internal Random
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
                 random);
         assertSame(randomizer.getInternalRandom(), random);
-        assertEquals(randomizer.getType(), RandomizerType.GAUSSIAN_RANDOMIZER);
+        assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
                 random);
         assertSame(randomizer.getInternalRandom(), random);
-        assertEquals(randomizer.getType(), RandomizerType.UNIFORM_RANDOMIZER);
+        assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
         // Force NullPointerException
         randomizer = null;
@@ -138,7 +138,6 @@ public class RandomizerTest {
         }
         //noinspection all
         assertNull(randomizer);
-
     }
 
     @Test
@@ -167,6 +166,9 @@ public class RandomizerTest {
     @Test
     public void testSetSeed() {
         final Randomizer randomizer = Randomizer.create();
+
+        assertNotNull(randomizer);
+
         final long seed = 0;
         randomizer.setSeed(seed);
     }
@@ -186,9 +188,9 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals((double) trueCounter / (double) NUM_SAMPLES, 0.5,
+        assertEquals(0.5, (double) trueCounter / (double) NUM_SAMPLES,
                 ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) NUM_SAMPLES, 0.5,
+        assertEquals(0.5, (double) falseCounter / (double) NUM_SAMPLES,
                 ABSOLUTE_ERROR);
     }
 
@@ -212,9 +214,9 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
     }
 
@@ -238,9 +240,9 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), 0.5,
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
                 ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
@@ -412,9 +414,9 @@ public class RandomizerTest {
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
     }
 
@@ -450,9 +452,9 @@ public class RandomizerTest {
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
@@ -492,9 +494,9 @@ public class RandomizerTest {
 
         // check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
     }
 
@@ -532,9 +534,9 @@ public class RandomizerTest {
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
     }
 
@@ -570,9 +572,9 @@ public class RandomizerTest {
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
+        assertEquals(estimatedMeanValue, meanValue,
                 estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
+        assertEquals(estimatedVariance, variance,
                 estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException

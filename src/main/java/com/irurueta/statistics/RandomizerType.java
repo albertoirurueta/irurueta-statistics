@@ -25,7 +25,7 @@ public enum RandomizerType {
      * distributed.
      */
     UNIFORM_RANDOMIZER,
-    
+
     /**
      * Type used for Gaussian randomizers where generated values are distributed
      * following a Gaussian distribution.

@@ -39,13 +39,13 @@ import java.util.Random;
 public abstract class Randomizer {
 
     /**
-     * Indicates that by default non secured random instance is used if none
+     * Indicates that by default non-secured random instance is used if none
      * is provided.
      */
     public static final boolean USE_SECURE_RANDOM_BY_DEFAULT = false;
 
     /**
-     * Indicates default randomizer type if non is provided. By default uniform
+     * Indicates default randomizer type if non is provided. By default, uniform
      * randomizers are created.
      */
     public static final RandomizerType DEFAULT_RANDOMIZER_TYPE =
