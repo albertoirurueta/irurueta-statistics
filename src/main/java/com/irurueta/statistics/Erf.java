@@ -152,8 +152,7 @@ public class Erf {
         double d = 0.0;
         double dd = 0.0;
         if (z < 0.0) {
-            throw new IllegalArgumentException(
-                    "erfccheb requires non-negative argument");
+            throw new IllegalArgumentException("erfccheb requires non-negative argument");
         }
 
         t = 2.0 / (2.0 + z);

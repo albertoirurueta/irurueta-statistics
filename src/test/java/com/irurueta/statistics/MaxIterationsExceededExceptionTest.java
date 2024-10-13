@@ -15,18 +15,15 @@
  */
 package com.irurueta.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MaxIterationsExceededExceptionTest {
+class MaxIterationsExceededExceptionTest {
 
     @Test
-    public void testConstructor() {
-
-        MaxIterationsExceededException ex;
-
-        ex = new MaxIterationsExceededException();
+    void testConstructor() {
+        var ex = new MaxIterationsExceededException();
         assertNotNull(ex);
 
         ex = new MaxIterationsExceededException("message");

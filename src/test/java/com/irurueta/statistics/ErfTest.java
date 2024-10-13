@@ -15,13 +15,13 @@
  */
 package com.irurueta.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ErfTest {
+class ErfTest {
 
     private static final double ABSOLUTE_ERROR = 1e-6;
 
@@ -29,43 +29,41 @@ public class ErfTest {
     private static final double MAX_RANDOM_VALUE = 100.0;
 
     @Test
-    public void testErf() {
+    void testErf() {
         assertEquals(0.0, Erf.erf(0.0), ABSOLUTE_ERROR);
         assertEquals(1.0, Erf.erf(Double.POSITIVE_INFINITY), ABSOLUTE_ERROR);
         assertEquals(1.0, Erf.erf(Double.MAX_VALUE), ABSOLUTE_ERROR);
 
-        final UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        final double value = randomizer.nextDouble(MIN_RANDOM_VALUE,
-                MAX_RANDOM_VALUE);
+        final var randomizer = new UniformRandomizer();
+        final var value = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
         assertEquals(Erf.erf(-value), -Erf.erf(value), ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testErfc() {
+    void testErfc() {
         assertEquals(1.0, Erf.erfc(0.0), ABSOLUTE_ERROR);
         assertEquals(0.0, Erf.erfc(Double.POSITIVE_INFINITY), ABSOLUTE_ERROR);
         assertEquals(0.0, Erf.erfc(Double.MAX_VALUE), ABSOLUTE_ERROR);
 
-        final UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        final double value = randomizer.nextDouble(MIN_RANDOM_VALUE,
-                MAX_RANDOM_VALUE);
+        final var randomizer = new UniformRandomizer();
+        final var value = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
 
         assertEquals(2.0 - Erf.erfc(value), Erf.erfc(-value), ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testInverfc() {
-        final UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        final double value = randomizer.nextDouble(); //between 0.0 and 1.0
+    void testInverfc() {
+        final var randomizer = new UniformRandomizer(new Random());
+        final var value = randomizer.nextDouble(); //between 0.0 and 1.0
 
         assertEquals(value, Erf.erfc(Erf.inverfc(value)), ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testInverf() {
-        final UniformRandomizer randomizer = new UniformRandomizer(new Random());
-        final double value = randomizer.nextDouble(); //between 0.0 and 1.0
+    void testInverf() {
+        final var randomizer = new UniformRandomizer(new Random());
+        final var value = randomizer.nextDouble(); //between 0.0 and 1.0
 
         assertEquals(value, Erf.erf(Erf.inverf(value)), ABSOLUTE_ERROR);
     }

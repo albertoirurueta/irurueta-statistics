@@ -15,14 +15,14 @@
  */
 package com.irurueta.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RandomizerTest {
+class RandomizerTest {
 
     private static final int NUM_SAMPLES = 1000000;
     private static final double RELATIVE_ERROR = 0.05;
@@ -31,14 +31,14 @@ public class RandomizerTest {
     private static final int LENGTH = 100;
 
     @Test
-    public void testCreate() {
+    void testCreate() {
 
         Randomizer randomizer;
 
         // test create without parameters
         randomizer = Randomizer.create();
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
-            assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+            assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
@@ -50,29 +50,22 @@ public class RandomizerTest {
         assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         randomizer = Randomizer.create(true);
-        assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+        assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         // test create with Random
-        final Random random = new SecureRandom();
+        final var random = new SecureRandom();
         randomizer = Randomizer.create(random);
         assertSame(randomizer.getInternalRandom(), random);
         assertEquals(Randomizer.DEFAULT_RANDOMIZER_TYPE, randomizer.getType());
 
         // Force NullPointerException
-        randomizer = null;
-        try {
-            randomizer = Randomizer.create((Random) null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-        //noinspection all
-        assertNull(randomizer);
+        assertThrows(NullPointerException.class, () -> Randomizer.create((Random) null));
 
         // test create with RandomizerType
         randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER);
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
-            assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+            assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
@@ -80,7 +73,7 @@ public class RandomizerTest {
 
         randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER);
         if (Randomizer.USE_SECURE_RANDOM_BY_DEFAULT) {
-            assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+            assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         } else {
             assertNotNull(randomizer.getInternalRandom());
         }
@@ -88,62 +81,42 @@ public class RandomizerTest {
 
 
         // test create with RandomizerType and secure parameter
-        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
-                false);
+        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER, false);
         assertNotNull(randomizer.getInternalRandom());
         assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
-        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
-                true);
-        assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER, true);
+        assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
-        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
-                false);
+        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER, false);
         assertNotNull(randomizer.getInternalRandom());
         assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
-        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
-                true);
-        assertTrue(randomizer.getInternalRandom() instanceof SecureRandom);
+        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER, true);
+        assertInstanceOf(SecureRandom.class, randomizer.getInternalRandom());
         assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
-
 
         // test create with RandomizerType and internal Random
-        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
-                random);
+        randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER, random);
         assertSame(randomizer.getInternalRandom(), random);
         assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
 
-        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
-                random);
+        randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER, random);
         assertSame(randomizer.getInternalRandom(), random);
         assertEquals(RandomizerType.UNIFORM_RANDOMIZER, randomizer.getType());
 
         // Force NullPointerException
-        randomizer = null;
-        try {
-            randomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
-                    null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-        //noinspection all
-        assertNull(randomizer);
-        try {
-            randomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
-                    null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-        //noinspection all
-        assertNull(randomizer);
+        assertThrows(NullPointerException.class, () -> Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER,
+                null));
+        assertThrows(NullPointerException.class, () -> Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER,
+                null));
     }
 
     @Test
-    public void testGetSetInternalRandomizer() {
+    void testGetSetInternalRandomizer() {
         Random random = new Random();
-        final Randomizer randomizer = Randomizer.create(random);
+        final var randomizer = Randomizer.create(random);
 
         assertSame(random, randomizer.getInternalRandom());
 
@@ -155,27 +128,22 @@ public class RandomizerTest {
         assertSame(random, randomizer.getInternalRandom());
 
         // Force NullPointerException
-        try {
-            randomizer.setInternalRandom(null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-
+        assertThrows(NullPointerException.class, () -> randomizer.setInternalRandom(null));
     }
 
     @Test
-    public void testSetSeed() {
-        final Randomizer randomizer = Randomizer.create();
+    void testSetSeed() {
+        final var randomizer = Randomizer.create();
 
         assertNotNull(randomizer);
 
-        final long seed = 0;
+        final var seed = 0;
         randomizer.setSeed(seed);
     }
 
     @Test
-    public void testNextBoolean() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextBoolean() {
+        final var randomizer = Randomizer.create();
 
         int falseCounter = 0;
         int trueCounter = 0;
@@ -188,17 +156,15 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals(0.5, (double) trueCounter / (double) NUM_SAMPLES,
-                ABSOLUTE_ERROR);
-        assertEquals(0.5, (double) falseCounter / (double) NUM_SAMPLES,
-                ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) trueCounter / (double) NUM_SAMPLES, ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) falseCounter / (double) NUM_SAMPLES, ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testFillWithBooleans() {
-        final Randomizer randomizer = Randomizer.create();
+    void testFillWithBooleans() {
+        final var randomizer = Randomizer.create();
 
-        final boolean[] array = new boolean[LENGTH];
+        final var array = new boolean[LENGTH];
         int falseCounter = 0;
         int trueCounter = 0;
         for (int i = 0; i < NUM_SAMPLES; i++) {
@@ -214,15 +180,13 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
-                ABSOLUTE_ERROR);
-        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
-                ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH), ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH), ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testNextBooleans() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextBooleans() {
+        final var randomizer = Randomizer.create();
 
         boolean[] array;
         int falseCounter = 0;
@@ -240,120 +204,100 @@ public class RandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
-                ABSOLUTE_ERROR);
-        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
-                ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) trueCounter / (double) (NUM_SAMPLES * LENGTH), ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) falseCounter / (double) (NUM_SAMPLES * LENGTH), ABSOLUTE_ERROR);
 
         // Force IllegalArgumentException
-        try {
-            randomizer.nextBooleans(-1);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.nextBooleans(-1));
     }
 
     @Test
-    public void testNextInt() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextInt() {
+        final var randomizer = Randomizer.create();
 
         int randomValue;
         for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextInt();
-            assertTrue(randomValue < Integer.MAX_VALUE &&
-                    randomValue > -Integer.MAX_VALUE);
+            assertTrue(randomValue < Integer.MAX_VALUE && randomValue > -Integer.MAX_VALUE);
         }
     }
 
     @Test
-    public void testFillWithIntegers() {
-        final Randomizer randomizer = Randomizer.create();
+    void testFillWithIntegers() {
+        final var randomizer = Randomizer.create();
 
-        final int[] array = new int[LENGTH];
+        final var array = new int[LENGTH];
         randomizer.fill(array);
 
         // check correctness
         for (int i = 0; i < LENGTH; i++) {
-            assertTrue(array[i] < Integer.MAX_VALUE &&
-                    array[i] > -Integer.MAX_VALUE);
+            assertTrue(array[i] < Integer.MAX_VALUE && array[i] > -Integer.MAX_VALUE);
         }
     }
 
     @Test
-    public void testNextInts() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextInts() {
+        final var randomizer = Randomizer.create();
 
-        final int[] array = randomizer.nextInts(LENGTH);
+        final var array = randomizer.nextInts(LENGTH);
 
         // check correctness
         for (int i = 0; i < LENGTH; i++) {
-            assertTrue(array[i] < Integer.MAX_VALUE &&
-                    array[i] > -Integer.MAX_VALUE);
+            assertTrue(array[i] < Integer.MAX_VALUE && array[i] > -Integer.MAX_VALUE);
         }
 
         // Force IllegalArgumentException
-        try {
-            randomizer.nextInts(-1);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.nextInts(-1));
     }
 
     @Test
-    public void testNextLong() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextLong() {
+        final var randomizer = Randomizer.create();
 
         long randomValue;
         for (int i = 0; i < NUM_SAMPLES; i++) {
             randomValue = randomizer.nextLong();
-            assertTrue(randomValue < Long.MAX_VALUE &&
-                    randomValue > -Long.MAX_VALUE);
+            assertTrue(randomValue < Long.MAX_VALUE && randomValue > -Long.MAX_VALUE);
         }
     }
 
     @Test
-    public void testFillWithLongs() {
-        final Randomizer randomizer = Randomizer.create();
+    void testFillWithLongs() {
+        final var randomizer = Randomizer.create();
 
-        final long[] array = new long[LENGTH];
+        final var array = new long[LENGTH];
         randomizer.fill(array);
 
         // check correctness
         for (int i = 0; i < LENGTH; i++) {
-            assertTrue(array[i] < Long.MAX_VALUE &&
-                    array[i] > -Long.MAX_VALUE);
+            assertTrue(array[i] < Long.MAX_VALUE && array[i] > -Long.MAX_VALUE);
         }
     }
 
     @Test
-    public void testNextLongs() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextLongs() {
+        final var randomizer = Randomizer.create();
 
-        final long[] array = randomizer.nextLongs(LENGTH);
+        final var array = randomizer.nextLongs(LENGTH);
 
         // check correctness
         for (int i = 0; i < LENGTH; i++) {
-            assertTrue(array[i] < Long.MAX_VALUE &&
-                    array[i] > -Long.MAX_VALUE);
+            assertTrue(array[i] < Long.MAX_VALUE && array[i] > -Long.MAX_VALUE);
         }
 
         // Force IllegalArgumentException
-        try {
-            randomizer.nextLongs(-1);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.nextLongs(-1));
     }
 
     @Test
-    public void testNextFloat() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextFloat() {
+        final var randomizer = Randomizer.create();
 
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -367,31 +311,28 @@ public class RandomizerTest {
             sqrSum += (double) randomValue * (double) randomValue;
         }
 
-        final double estimatedMeanValue = sum / (double) NUM_SAMPLES;
-        final double estimatedVariance = (sqrSum - (double) NUM_SAMPLES *
-                estimatedMeanValue * estimatedMeanValue) /
+        final var estimatedMeanValue = sum / (double) NUM_SAMPLES;
+        final var estimatedVariance = (sqrSum - (double) NUM_SAMPLES * estimatedMeanValue * estimatedMeanValue) /
                 ((double) NUM_SAMPLES - 1.0);
 
         // check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(meanValue, estimatedMeanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(variance, estimatedVariance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(meanValue, estimatedMeanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(variance, estimatedVariance, estimatedVariance * RELATIVE_ERROR);
     }
 
     @Test
-    public void testFillWithFloats() {
-        final Randomizer randomizer = Randomizer.create();
+    void testFillWithFloats() {
+        final var randomizer = Randomizer.create();
 
-        final float[] array = new float[LENGTH];
+        final var array = new float[LENGTH];
 
         // check correctness
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -407,28 +348,26 @@ public class RandomizerTest {
             }
         }
 
-        final double estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
-        final double estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
+        final var estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
+        final var estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
                 estimatedMeanValue * estimatedMeanValue) /
                 ((double) (NUM_SAMPLES * LENGTH) - 1.0);
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(estimatedMeanValue, meanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(estimatedVariance, variance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(estimatedMeanValue, meanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(estimatedVariance, variance, estimatedVariance * RELATIVE_ERROR);
     }
 
     @Test
-    public void testNextFloats() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextFloats() {
+        final var randomizer = Randomizer.create();
 
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -445,35 +384,28 @@ public class RandomizerTest {
             }
         }
 
-        final double estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
-        final double estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
-                estimatedMeanValue * estimatedMeanValue) /
-                ((double) (NUM_SAMPLES * LENGTH) - 1.0);
+        final var estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
+        final var estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) / ((double) (NUM_SAMPLES * LENGTH) - 1.0);
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(estimatedMeanValue, meanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(estimatedVariance, variance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(estimatedMeanValue, meanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(estimatedVariance, variance, estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
-        try {
-            randomizer.nextFloats(-1);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.nextFloats(-1));
     }
 
     @Test
-    public void testNextDouble() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextDouble() {
+        final var randomizer = Randomizer.create();
 
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -487,31 +419,28 @@ public class RandomizerTest {
             sqrSum += randomValue * randomValue;
         }
 
-        final double estimatedMeanValue = sum / (double) NUM_SAMPLES;
-        final double estimatedVariance = (sqrSum - (double) NUM_SAMPLES *
-                estimatedMeanValue * estimatedMeanValue) /
+        final var estimatedMeanValue = sum / (double) NUM_SAMPLES;
+        final var estimatedVariance = (sqrSum - (double) NUM_SAMPLES * estimatedMeanValue * estimatedMeanValue) /
                 ((double) NUM_SAMPLES - 1.0);
 
         // check correctness of results by checking against the expected mean
         // and variance of a uniform distribution
-        assertEquals(estimatedMeanValue, meanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(estimatedVariance, variance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(estimatedMeanValue, meanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(estimatedVariance, variance, estimatedVariance * RELATIVE_ERROR);
     }
 
     @Test
-    public void testFillWithDoubles() {
-        final Randomizer randomizer = Randomizer.create();
+    void testFillWithDoubles() {
+        final var randomizer = Randomizer.create();
 
-        final double[] array = new double[LENGTH];
+        final var array = new double[LENGTH];
 
         // check correctness
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -527,28 +456,25 @@ public class RandomizerTest {
             }
         }
 
-        final double estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
-        final double estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
-                estimatedMeanValue * estimatedMeanValue) /
-                ((double) (NUM_SAMPLES * LENGTH) - 1.0);
+        final var estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
+        final var estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) / ((double) (NUM_SAMPLES * LENGTH) - 1.0);
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(estimatedMeanValue, meanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(estimatedVariance, variance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(estimatedMeanValue, meanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(estimatedVariance, variance, estimatedVariance * RELATIVE_ERROR);
     }
 
     @Test
-    public void testNextDoubles() {
-        final Randomizer randomizer = Randomizer.create();
+    void testNextDoubles() {
+        final var randomizer = Randomizer.create();
 
-        final double minValue = 0.0;
-        final double maxValue = 1.0;
+        final var minValue = 0.0;
+        final var maxValue = 1.0;
 
-        final double meanValue = 0.5;
-        final double variance = 1.0 / 12.0;
+        final var meanValue = 0.5;
+        final var variance = 1.0 / 12.0;
 
         double sum = 0.0;
         double sqrSum = 0.0;
@@ -565,23 +491,16 @@ public class RandomizerTest {
             }
         }
 
-        final double estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
-        final double estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
-                estimatedMeanValue * estimatedMeanValue) /
-                ((double) (NUM_SAMPLES * LENGTH) - 1.0);
+        final var estimatedMeanValue = sum / (double) (NUM_SAMPLES * LENGTH);
+        final var estimatedVariance = (sqrSum - (double) (NUM_SAMPLES * LENGTH) *
+                estimatedMeanValue * estimatedMeanValue) / ((double) (NUM_SAMPLES * LENGTH) - 1.0);
 
         // check correctness of results by checking against the expected mean and
         // variance of a uniform distribution
-        assertEquals(estimatedMeanValue, meanValue,
-                estimatedMeanValue * RELATIVE_ERROR);
-        assertEquals(estimatedVariance, variance,
-                estimatedVariance * RELATIVE_ERROR);
+        assertEquals(estimatedMeanValue, meanValue, estimatedMeanValue * RELATIVE_ERROR);
+        assertEquals(estimatedVariance, variance, estimatedVariance * RELATIVE_ERROR);
 
         // Force IllegalArgumentException
-        try {
-            randomizer.nextDoubles(-1);
-            fail("IllegalArgumentException expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.nextDoubles(-1));
     }
 }

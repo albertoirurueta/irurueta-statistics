@@ -15,14 +15,14 @@
  */
 package com.irurueta.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class GaussianRandomizerTest {
+class GaussianRandomizerTest {
 
     private static final int NUM_SAMPLES = 1000000;
     private static final double RELATIVE_ERROR = 0.05;
@@ -34,69 +34,56 @@ public class GaussianRandomizerTest {
     private static final int LENGTH = 100;
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         GaussianRandomizer randomizer;
 
         // test 1st constructor
         randomizer = new GaussianRandomizer();
         assertNotNull(randomizer);
-        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(),
-                0.0);
-        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION,
-                randomizer.getStandardDeviation(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // test 2nd constructor
+        randomizer = new GaussianRandomizer( MEAN, STANDARD_DEVIATION);
+        assertNotNull(randomizer);
+        assertEquals(MEAN, randomizer.getMean(), 0.0);
+        assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
+
+        // Force IllegalArgumentException
+        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(new Random(), MEAN,
+                -STANDARD_DEVIATION));
+
+        // test 3rd constructor
         randomizer = new GaussianRandomizer(new Random());
         assertNotNull(randomizer);
-        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(),
-                0.0);
-        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION,
-                randomizer.getStandardDeviation(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         randomizer = new GaussianRandomizer(new SecureRandom());
         assertNotNull(randomizer);
-        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(),
-                0.0);
-        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION,
-                randomizer.getStandardDeviation(), 0.0);
-
+        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // Force NullPointerException
-        randomizer = null;
-        try {
-            randomizer = new GaussianRandomizer(null);
-            fail("NullPointerException was expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
-        assertNull(randomizer);
+        assertThrows(NullPointerException.class, () -> new GaussianRandomizer(null));
 
-
-        // tet 2nd constructor
-        randomizer = new GaussianRandomizer(new Random(), MEAN,
-                STANDARD_DEVIATION);
+        // tet 4th constructor
+        randomizer = new GaussianRandomizer(new Random(), MEAN, STANDARD_DEVIATION);
         assertNotNull(randomizer);
         assertEquals(MEAN, randomizer.getMean(), 0.0);
-        assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(),
-                0.0);
+        assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
-        randomizer = null;
-        try {
-            randomizer = new GaussianRandomizer(new Random(), MEAN,
-                    -STANDARD_DEVIATION);
-            fail("IllegalArgumentException was expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
-        assertNull(randomizer);
+        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(new Random(), MEAN,
+                -STANDARD_DEVIATION));
     }
 
     @Test
-    public void testGetSetMean() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random());
+    void testGetSetMean() {
+        final var randomizer = new GaussianRandomizer();
 
         // check default mean
-        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(),
-                0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_MEAN, randomizer.getMean(), 0.0);
 
         // set new mean
         randomizer.setMean(MEAN);
@@ -106,32 +93,25 @@ public class GaussianRandomizerTest {
     }
 
     @Test
-    public void testGetSetStandardDeviation() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random());
+    void testGetSetStandardDeviation() {
+        final var randomizer = new GaussianRandomizer();
 
         // check default mean
-        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION,
-                randomizer.getStandardDeviation(), 0.0);
+        assertEquals(GaussianRandomizer.DEFAULT_STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // set new standard deviation
         randomizer.setStandardDeviation(STANDARD_DEVIATION);
 
         // check correctness
-        assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(),
-                0.0);
+        assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
-        try {
-            randomizer.setStandardDeviation(-STANDARD_DEVIATION);
-            fail("IllegalArgumentException was expected but not thrown");
-        } catch (final IllegalArgumentException ignore) {
-        }
+        assertThrows(IllegalArgumentException.class, () -> randomizer.setStandardDeviation(-STANDARD_DEVIATION));
     }
 
     @Test
-    public void testNextBoolean() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextBoolean() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         int falseCounter = 0;
         int trueCounter = 0;
@@ -144,23 +124,20 @@ public class GaussianRandomizerTest {
         }
 
         // check that both true and false are equally probable
-        assertEquals(0.5, (double) trueCounter / (double) NUM_SAMPLES,
-                ABSOLUTE_ERROR);
-        assertEquals(0.5, (double) falseCounter / (double) NUM_SAMPLES,
-                ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) trueCounter / (double) NUM_SAMPLES, ABSOLUTE_ERROR);
+        assertEquals(0.5, (double) falseCounter / (double) NUM_SAMPLES, ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testNextBooleanWithThreshold() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextBooleanWithThreshold() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
-        final double threshold = MEAN + STANDARD_DEVIATION;
+        final var threshold = MEAN + STANDARD_DEVIATION;
         // by setting a threshold at 2 standard deviation distance from MEAN,
         // then by using the erfc function we can determine that true will be
         // generated 84% of the time and false 16%
-        final double probTrue = 0.8413;
-        final double probFalse = 1.0 - probTrue;
+        final var probTrue = 0.8413;
+        final var probFalse = 1.0 - probTrue;
 
         int falseCounter = 0;
         int trueCounter = 0;
@@ -172,25 +149,22 @@ public class GaussianRandomizerTest {
             }
         }
 
-        assertEquals((double) trueCounter / (double) NUM_SAMPLES, probTrue,
-                ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) NUM_SAMPLES, probFalse,
-                ABSOLUTE_ERROR);
+        assertEquals((double) trueCounter / (double) NUM_SAMPLES, probTrue, ABSOLUTE_ERROR);
+        assertEquals((double) falseCounter / (double) NUM_SAMPLES, probFalse, ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testFillWithBooleansAndThreshold() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testFillWithBooleansAndThreshold() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
-        final boolean[] array = new boolean[LENGTH];
+        final var array = new boolean[LENGTH];
 
-        final double threshold = MEAN + STANDARD_DEVIATION;
+        final var threshold = MEAN + STANDARD_DEVIATION;
         // by setting a threshold at 2 standard deviation distance from MEAN,
         // then by using the erfc function we can determine that true will be
         // generates 84% of the time and false 16%
-        final double probTrue = 0.8413;
-        final double probFalse = 1.0 - probTrue;
+        final var probTrue = 0.8413;
+        final var probFalse = 1.0 - probTrue;
 
         int falseCounter = 0;
         int trueCounter = 0;
@@ -207,25 +181,22 @@ public class GaussianRandomizerTest {
             }
         }
 
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
-                probTrue, ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
-                probFalse, ABSOLUTE_ERROR);
+        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), probTrue, ABSOLUTE_ERROR);
+        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), probFalse, ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testNextBooleansAndThreshold() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextBooleansAndThreshold() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         boolean[] array;
 
-        final double threshold = MEAN + STANDARD_DEVIATION;
+        final var threshold = MEAN + STANDARD_DEVIATION;
         // by setting a threshold at 2 standard deviation distance from MEAN,
         // then by using the erfc function we can determine that true will be
         // generates 84% of the time and false 16%
-        final double probTrue = 0.8413;
-        final double probFalse = 1.0 - probTrue;
+        final var probTrue = 0.8413;
+        final var probFalse = 1.0 - probTrue;
 
         int falseCounter = 0;
         int trueCounter = 0;
@@ -242,21 +213,17 @@ public class GaussianRandomizerTest {
             }
         }
 
-        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH),
-                probTrue, ABSOLUTE_ERROR);
-        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH),
-                probFalse, ABSOLUTE_ERROR);
+        assertEquals((double) trueCounter / (double) (NUM_SAMPLES * LENGTH), probTrue, ABSOLUTE_ERROR);
+        assertEquals((double) falseCounter / (double) (NUM_SAMPLES * LENGTH), probFalse, ABSOLUTE_ERROR);
     }
 
     @Test
-    public void testNextInt() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextInt() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         double mean = 0.0;
         double sqrSum = 0.0;
-        final double standardDeviation;
-        final int num = 2 * NUM_SAMPLES;
+        final var num = 2 * NUM_SAMPLES;
         int value;
         for (int i = 0; i < num; i++) {
             value = randomizer.nextInt();
@@ -264,21 +231,18 @@ public class GaussianRandomizerTest {
             sqrSum += (double) value * (double) value / (double) num;
         }
 
-        standardDeviation = Math.sqrt(sqrSum - mean);
+        final var standardDeviation = Math.sqrt(sqrSum - mean);
 
         assertEquals(MEAN, mean, RELATIVE_ERROR * MEAN);
-        assertEquals(STANDARD_DEVIATION, standardDeviation,
-                RELATIVE_ERROR * STANDARD_DEVIATION);
+        assertEquals(STANDARD_DEVIATION, standardDeviation, RELATIVE_ERROR * STANDARD_DEVIATION);
     }
 
     @Test
-    public void testNextLong() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextLong() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         double mean = 0.0;
         double sqrSum = 0.0;
-        final double standardDeviation;
         long value;
         for (int i = 0; i < NUM_SAMPLES; i++) {
             value = randomizer.nextLong();
@@ -286,21 +250,18 @@ public class GaussianRandomizerTest {
             sqrSum += (double) value * (double) value / (double) NUM_SAMPLES;
         }
 
-        standardDeviation = Math.sqrt(sqrSum - mean);
+        final var standardDeviation = Math.sqrt(sqrSum - mean);
 
         assertEquals(MEAN, mean, RELATIVE_ERROR * MEAN);
-        assertEquals(STANDARD_DEVIATION, standardDeviation,
-                RELATIVE_ERROR * STANDARD_DEVIATION);
+        assertEquals(STANDARD_DEVIATION, standardDeviation, RELATIVE_ERROR * STANDARD_DEVIATION);
     }
 
     @Test
-    public void testNextFloat() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextFloat() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         double mean = 0.0;
         double sqrSum = 0.0;
-        final double standardDeviation;
         float value;
         for (int i = 0; i < NUM_SAMPLES; i++) {
             value = randomizer.nextFloat();
@@ -308,21 +269,18 @@ public class GaussianRandomizerTest {
             sqrSum += (double) value * (double) value / (double) NUM_SAMPLES;
         }
 
-        standardDeviation = Math.sqrt(sqrSum - mean);
+        final var standardDeviation = Math.sqrt(sqrSum - mean);
 
         assertEquals(MEAN, mean, RELATIVE_ERROR * MEAN);
-        assertEquals(STANDARD_DEVIATION, standardDeviation,
-                RELATIVE_ERROR * STANDARD_DEVIATION);
+        assertEquals(STANDARD_DEVIATION, standardDeviation, RELATIVE_ERROR * STANDARD_DEVIATION);
     }
 
     @Test
-    public void testNextDouble() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random(),
-                MEAN, STANDARD_DEVIATION);
+    void testNextDouble() {
+        final var randomizer = new GaussianRandomizer(MEAN, STANDARD_DEVIATION);
 
         double mean = 0.0;
         double sqrSum = 0.0;
-        final double standardDeviation;
         double value;
         for (int i = 0; i < NUM_SAMPLES; i++) {
             value = randomizer.nextDouble();
@@ -330,21 +288,20 @@ public class GaussianRandomizerTest {
             sqrSum += value * value / (double) NUM_SAMPLES;
         }
 
-        standardDeviation = Math.sqrt(sqrSum - mean);
+        final var standardDeviation = Math.sqrt(sqrSum - mean);
 
         assertEquals(MEAN, mean, 2.0 * RELATIVE_ERROR * MEAN);
-        assertEquals(STANDARD_DEVIATION, standardDeviation,
-                RELATIVE_ERROR * STANDARD_DEVIATION);
+        assertEquals(STANDARD_DEVIATION, standardDeviation, RELATIVE_ERROR * STANDARD_DEVIATION);
     }
 
     @Test
-    public void testGetType() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random());
+    void testGetType() {
+        final var randomizer = new GaussianRandomizer();
         assertEquals(RandomizerType.GAUSSIAN_RANDOMIZER, randomizer.getType());
     }
 
     @Test
-    public void testGetSetInternalRandomizer() {
+    void testGetSetInternalRandomizer() {
         Random random = new Random();
         final GaussianRandomizer randomizer = new GaussianRandomizer(random);
 
@@ -358,21 +315,16 @@ public class GaussianRandomizerTest {
         assertSame(random, randomizer.getInternalRandom());
 
         // Force NullPointerException
-        try {
-            randomizer.setInternalRandom(null);
-            fail("NullPointerException expected but not thrown");
-        } catch (final NullPointerException ignore) {
-        }
+        assertThrows(NullPointerException.class, () -> randomizer.setInternalRandom(null));
     }
 
     @Test
-    public void testSetSeed() {
-        final GaussianRandomizer randomizer = new GaussianRandomizer(new Random());
+     void testSetSeed() {
+        final var randomizer = new GaussianRandomizer();
 
         assertNotNull(randomizer);
 
         final long seed = 0;
         randomizer.setSeed(seed);
     }
-
 }

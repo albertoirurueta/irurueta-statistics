@@ -27,18 +27,18 @@ public class ChiSqDist {
      * Typically, this parameter is provided as an integer value indicating the
      * number of degrees of freedom.
      */
-    private double mNu;
+    private double nu;
 
     /**
      * Constant factor to multiply p.d.f of chi squared by. This factor depends
      * on nu parameter.
      */
-    private double mFac;
+    private double fac;
 
     /**
      * A gamma function instance to be reused for memory efficiency.
      */
-    private final Gamma mGamma;
+    private final Gamma gamma;
 
     /**
      * Constructor.
@@ -48,7 +48,7 @@ public class ChiSqDist {
      *                                  zero.
      */
     public ChiSqDist(final double nu) {
-        mGamma = new Gamma();
+        gamma = new Gamma();
         setNu(nu);
     }
 
@@ -60,7 +60,7 @@ public class ChiSqDist {
      * @return nu parameter of chi square distribution.
      */
     public double getNu() {
-        return mNu;
+        return nu;
     }
 
     /**
@@ -77,8 +77,8 @@ public class ChiSqDist {
             throw new IllegalArgumentException();
         }
 
-        mNu = nu;
-        mFac = fac(nu);
+        this.nu = nu;
+        fac = fac(nu);
     }
 
     /**
@@ -111,7 +111,7 @@ public class ChiSqDist {
      * @throws IllegalArgumentException if x2 is negative or zero.
      */
     public double p(final double x2) {
-        return internalP(x2, mNu, mFac);
+        return internalP(x2, nu, fac);
     }
 
     /**
@@ -153,7 +153,7 @@ public class ChiSqDist {
      *                                        numerically unstable input values.
      */
     public double cdf(final double x2) throws MaxIterationsExceededException {
-        return internalCdf(x2, mNu, mGamma);
+        return internalCdf(x2, nu, gamma);
     }
 
     /**
@@ -200,7 +200,7 @@ public class ChiSqDist {
      *                                        happens usually for numerically unstable values.
      */
     public double invcdf(final double p) throws MaxIterationsExceededException {
-        return internalInvcdf(p, mNu, mGamma);
+        return internalInvcdf(p, nu, gamma);
     }
 
     /**
@@ -279,8 +279,7 @@ public class ChiSqDist {
             throws MaxIterationsExceededException {
 
         if (p < 0.0 || p >= 1.0) {
-            throw new IllegalArgumentException(
-                    "probability value must be between 0.0 and 1.0");
+            throw new IllegalArgumentException("probability value must be between 0.0 and 1.0");
         }
 
         return 2.0 * gamma.invgammp(p, 0.5 * nu);

@@ -48,15 +48,14 @@ public abstract class Randomizer {
      * Indicates default randomizer type if non is provided. By default, uniform
      * randomizers are created.
      */
-    public static final RandomizerType DEFAULT_RANDOMIZER_TYPE =
-            RandomizerType.UNIFORM_RANDOMIZER;
+    public static final RandomizerType DEFAULT_RANDOMIZER_TYPE = RandomizerType.UNIFORM_RANDOMIZER;
 
     /**
      * Instance in charge of generating pseudo-random values. Secure instances
      * can be used if the generated values need to be ensured to be "more"
      * random at the expense of higher computational cost.
      */
-    private Random mInternalRandom;
+    private Random internalRandom;
 
     /**
      * Constructor.
@@ -78,7 +77,7 @@ public abstract class Randomizer {
         if (internalRandom == null) {
             throw new NullPointerException();
         }
-        mInternalRandom = internalRandom;
+        this.internalRandom = internalRandom;
     }
 
     /**
@@ -87,7 +86,7 @@ public abstract class Randomizer {
      * @return instance in charge of generating pseudo-random values.
      */
     public Random getInternalRandom() {
-        return mInternalRandom;
+        return internalRandom;
     }
 
     /**
@@ -101,7 +100,7 @@ public abstract class Randomizer {
         if (internalRandom == null) {
             throw new NullPointerException();
         }
-        mInternalRandom = internalRandom;
+        this.internalRandom = internalRandom;
     }
 
     /**
@@ -126,7 +125,7 @@ public abstract class Randomizer {
      * @param seed Value to be used as seed
      */
     public void setSeed(final long seed) {
-        mInternalRandom.setSeed(seed);
+        internalRandom.setSeed(seed);
     }
 
     /**
@@ -377,8 +376,7 @@ public abstract class Randomizer {
      * @return A Randomizer instance using provided randomizer type and secure
      * mode.
      */
-    public static Randomizer create(
-            final RandomizerType type, final boolean useSecureRandom) {
+    public static Randomizer create(final RandomizerType type, final boolean useSecureRandom) {
         if (useSecureRandom) {
             return create(type, new SecureRandom());
         } else {
@@ -397,19 +395,16 @@ public abstract class Randomizer {
      * random instance.
      * @throws NullPointerException Exception thrown if internal random is null.
      */
-    public static Randomizer create(
-            final RandomizerType type, final Random internalRandom) {
+    public static Randomizer create(final RandomizerType type, final Random internalRandom) {
 
         if (internalRandom == null) {
             throw new NullPointerException();
         }
 
-        switch (type) {
-            case GAUSSIAN_RANDOMIZER:
-                return new GaussianRandomizer(internalRandom);
-            case UNIFORM_RANDOMIZER:
-            default:
-                return new UniformRandomizer(internalRandom);
+        if (type == RandomizerType.GAUSSIAN_RANDOMIZER) {
+            return new GaussianRandomizer(internalRandom);
+        } else {
+            return new UniformRandomizer(internalRandom);
         }
     }
 }

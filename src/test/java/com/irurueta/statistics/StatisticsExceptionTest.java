@@ -15,15 +15,15 @@
  */
 package com.irurueta.statistics;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class StatisticsExceptionTest {
+class StatisticsExceptionTest {
 
     @Test
-    public void testConstructor() {
-        StatisticsException ex = new StatisticsException();
+    void testConstructor() {
+        var ex = new StatisticsException();
         assertNotNull(ex);
 
         ex = new StatisticsException("message");

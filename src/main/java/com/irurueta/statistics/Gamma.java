@@ -227,8 +227,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws IllegalArgumentException       if provided values are invalid.
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
-    public double gammp(final double a, final double x)
-            throws MaxIterationsExceededException {
+    public double gammp(final double a, final double x) throws MaxIterationsExceededException {
         if (x < 0.0 || a <= 0.0) {
             throw new IllegalArgumentException("bad args in gammp");
         }
@@ -253,8 +252,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws IllegalArgumentException       if provided values are invalid.
      * @throws MaxIterationsExceededException if convergence cannot be reached.
      */
-    public double gammq(final double a, final double x)
-            throws MaxIterationsExceededException {
+    public double gammq(final double a, final double x) throws MaxIterationsExceededException {
         if (x < 0.0 || a <= 0.0) {
             throw new IllegalArgumentException("bad args in gammq");
         }
@@ -280,8 +278,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      *                                        exceeded.
      */
-    private double gser(final double a, final double x)
-            throws MaxIterationsExceededException {
+    private double gser(final double a, final double x) throws MaxIterationsExceededException {
         return gser(a, x, DEFAULT_MAX_ITERATIONS);
     }
 
@@ -297,8 +294,7 @@ public class Gamma extends GaussLegendreQuadrature {
      *                                        exceeded.
      */
     @SuppressWarnings("SameParameterValue")
-    private double gser(final double a, final double x, final int maxIterations)
-            throws MaxIterationsExceededException {
+    private double gser(final double a, final double x, final int maxIterations) throws MaxIterationsExceededException {
         double sum;
         double del;
         double ap;
@@ -330,8 +326,7 @@ public class Gamma extends GaussLegendreQuadrature {
      * @throws MaxIterationsExceededException if maximum number of iterations is
      *                                        exceeded.
      */
-    private double gcf(final double a, final double x)
-            throws MaxIterationsExceededException {
+    private double gcf(final double a, final double x) throws MaxIterationsExceededException {
         return gcf(a, x, DEFAULT_MAX_ITERATIONS);
     }
 
@@ -347,8 +342,7 @@ public class Gamma extends GaussLegendreQuadrature {
      *                                        exceeded.
      */
     @SuppressWarnings("SameParameterValue")
-    private double gcf(final double a, final double x, final int maxIterations)
-            throws MaxIterationsExceededException {
+    private double gcf(final double a, final double x, final int maxIterations) throws MaxIterationsExceededException {
         int i;
         double an;
         double b;
