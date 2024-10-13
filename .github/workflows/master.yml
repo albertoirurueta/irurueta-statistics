@@ -32,7 +32,7 @@ jobs:
         mvn site -Djacoco.skip -DskipTests -P '!extras'        
 
     - name: Setup sonarqube
-      uses: wwarchant/setup-sonar-scanner@v7
+      uses: warchant/setup-sonar-scanner@v7
 
     - name: Send to sonarqube
       env:
