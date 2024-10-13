@@ -86,7 +86,7 @@ public class BuildInfo {
      * Singleton stored in a soft reference (to keep it cached in memory unless
      * memory is claimed).
      */
-    private static SoftReference<BuildInfo> mReference;
+    private static SoftReference<BuildInfo> reference;
 
     /**
      * Build timestamp.
@@ -154,9 +154,9 @@ public class BuildInfo {
      */
     public static synchronized BuildInfo getInstance() {
         BuildInfo info;
-        if (mReference == null || (info = mReference.get()) == null) {
+        if (reference == null || (info = reference.get()) == null) {
             info = new BuildInfo();
-            mReference = new SoftReference<>(info);
+            reference = new SoftReference<>(info);
         }
 
         return info;
