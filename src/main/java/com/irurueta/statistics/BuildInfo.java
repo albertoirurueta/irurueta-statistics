@@ -15,7 +15,6 @@
  */
 package com.irurueta.statistics;
 
-import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -128,7 +127,7 @@ public class BuildInfo {
      */
     private BuildInfo() {
         // loads properties file data
-        try (final InputStream stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
+        try (final var stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
             final var props = new Properties();
             props.load(stream);
 
