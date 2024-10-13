@@ -39,20 +39,20 @@ public class NormalDist {
     /**
      * Mean value of Gaussian distribution.
      */
-    private double mMu;
+    private double mu;
 
     /**
      * Standard deviation of Gaussian distribution.
      */
-    private double mSig;
+    private double sig;
 
     /**
      * Constructor. Initializes a Gaussian distribution with zero mean and
      * unitary standard deviation (i.e. N(0,1)).
      */
     public NormalDist() {
-        mMu = 0.0;
-        mSig = 1.0;
+        mu = 0.0;
+        sig = 1.0;
     }
 
     /**
@@ -74,7 +74,7 @@ public class NormalDist {
      * @return mean value of Gaussian distribution.
      */
     public double getMean() {
-        return mMu;
+        return mu;
     }
 
     /**
@@ -83,7 +83,7 @@ public class NormalDist {
      * @param mu mean value of Gaussian distribution.
      */
     public final void setMean(final double mu) {
-        mMu = mu;
+        this.mu = mu;
     }
 
     /**
@@ -92,7 +92,7 @@ public class NormalDist {
      * @return standard deviation of Gaussian distribution.
      */
     public double getStandardDeviation() {
-        return mSig;
+        return sig;
     }
 
     /**
@@ -106,7 +106,7 @@ public class NormalDist {
         if (sig <= 0.0) {
             throw new IllegalArgumentException();
         }
-        mSig = sig;
+        this.sig = sig;
     }
 
     /**
@@ -115,7 +115,7 @@ public class NormalDist {
      * @return variance of Gaussian distribution.
      */
     public double getVariance() {
-        return mSig * mSig;
+        return sig * sig;
     }
 
     /**
@@ -130,7 +130,7 @@ public class NormalDist {
             throw new IllegalArgumentException(
                     "variance must be greater than zero");
         }
-        mSig = Math.sqrt(variance);
+        sig = Math.sqrt(variance);
     }
 
     /**
@@ -162,7 +162,7 @@ public class NormalDist {
      * @return evaluation of p.d.f.
      */
     public double p(final double x) {
-        return internalP(x, mMu, mSig);
+        return internalP(x, mu, sig);
     }
 
     /**
@@ -202,7 +202,7 @@ public class NormalDist {
      * @return evaluation of c.d.f.
      */
     public double cdf(final double x) {
-        return internalCdf(x, mMu, mSig);
+        return internalCdf(x, mu, sig);
     }
 
     /**
@@ -223,8 +223,7 @@ public class NormalDist {
      */
     public static double invcdf(final double p, final double mu, final double sig) {
         if (sig <= 0.0) {
-            throw new IllegalArgumentException(
-                    "standard deviation must be greater than zero");
+            throw new IllegalArgumentException("standard deviation must be greater than zero");
         }
 
         return internalInvcdf(p, mu, sig);
@@ -245,7 +244,7 @@ public class NormalDist {
      *                                  between 0.0 and 1.0.
      */
     public double invcdf(final double p) {
-        return internalInvcdf(p, mMu, mSig);
+        return internalInvcdf(p, mu, sig);
     }
 
     /**
@@ -261,8 +260,7 @@ public class NormalDist {
      */
     public static double mahalanobisDistance(final double x, final double mu, final double sig) {
         if (sig <= 0.0) {
-            throw new IllegalArgumentException(
-                    "standard deviation must be greater than zero");
+            throw new IllegalArgumentException("standard deviation must be greater than zero");
         }
 
         return internalMahalanobisDistance(x, mu, sig);
@@ -276,7 +274,7 @@ public class NormalDist {
      * @return Mahalanobis distance of provided point respect to current mean.
      */
     public double mahalanobisDistance(final double x) {
-        return internalMahalanobisDistance(x, mMu, mSig);
+        return internalMahalanobisDistance(x, mu, sig);
     }
 
     /**
@@ -293,8 +291,7 @@ public class NormalDist {
      *                                  or negative.
      */
     private static double internalP(final double x, final double mu, final double sig) {
-        return (GAUSSIAN_NORM / sig) * Math.exp(-0.5 *
-                Math.pow((x - mu) / sig, 2.0));
+        return (GAUSSIAN_NORM / sig) * Math.exp(-0.5 * Math.pow((x - mu) / sig, 2.0));
     }
 
     /**
@@ -337,8 +334,7 @@ public class NormalDist {
     private static double internalInvcdf(final double p, final double mu, final double sig)
             throws IllegalArgumentException {
         if (p <= 0.0 || p >= 1.0) {
-            throw new IllegalArgumentException(
-                    "probability value must be between 0.0 and 1.0");
+            throw new IllegalArgumentException("probability value must be between 0.0 and 1.0");
         }
         return -SQRT2 * sig * Erf.inverfc(2.0 * p) + mu;
     }
@@ -352,8 +348,7 @@ public class NormalDist {
      * @param sig standard deviation of Gaussian distribution.
      * @return Mahalanobis distance of provided point respect to mean.
      */
-    private static double internalMahalanobisDistance(
-            final double x, final double mu, final double sig) {
+    private static double internalMahalanobisDistance(final double x, final double mu, final double sig) {
         return Math.abs(x - mu) / sig;
     }
 
@@ -372,10 +367,10 @@ public class NormalDist {
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
     public static void propagate(
-            final DerivativeEvaluator evaluator, final double mean,
-            final double standardDeviation, final NormalDist result) {
-        final double evaluation = evaluator.evaluate(mean);
-        final double derivative = evaluator.evaluateDerivative(mean);
+            final DerivativeEvaluator evaluator, final double mean, final double standardDeviation,
+            final NormalDist result) {
+        final var evaluation = evaluator.evaluate(mean);
+        final var derivative = evaluator.evaluateDerivative(mean);
         result.setMean(evaluation);
         result.setStandardDeviation(Math.abs(derivative * standardDeviation));
     }
@@ -394,9 +389,8 @@ public class NormalDist {
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
     public static NormalDist propagate(
-            final DerivativeEvaluator evaluator,
-            final double mean, final double standardDeviation) {
-        final NormalDist result = new NormalDist();
+            final DerivativeEvaluator evaluator, final double mean, final double standardDeviation) {
+        final var result = new NormalDist();
         propagate(evaluator, mean, standardDeviation, result);
         return result;
     }
@@ -413,11 +407,8 @@ public class NormalDist {
      *                  stored.
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
-    public static void propagate(
-            final DerivativeEvaluator evaluator, final NormalDist dist,
-            final NormalDist result) {
-        propagate(evaluator, dist.getMean(), dist.getStandardDeviation(),
-                result);
+    public static void propagate(final DerivativeEvaluator evaluator, final NormalDist dist, final NormalDist result) {
+        propagate(evaluator, dist.getMean(), dist.getStandardDeviation(), result);
     }
 
     /**
@@ -431,9 +422,8 @@ public class NormalDist {
      * @return a new propagated Gaussian distribution.
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
-    public static NormalDist propagate(
-            final DerivativeEvaluator evaluator, final NormalDist dist) {
-        final NormalDist result = new NormalDist();
+    public static NormalDist propagate(final DerivativeEvaluator evaluator, final NormalDist dist) {
+        final var result = new NormalDist();
         propagate(evaluator, dist, result);
         return result;
     }
@@ -449,8 +439,7 @@ public class NormalDist {
      *                  stored.
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
-    public void propagateThisDistribution(
-            final DerivativeEvaluator evaluator, final NormalDist result) {
+    public void propagateThisDistribution(final DerivativeEvaluator evaluator, final NormalDist result) {
         propagate(evaluator, this, result);
     }
 
@@ -465,7 +454,7 @@ public class NormalDist {
      * @see <a href="https://github.com/joansola/slamtb">propagateUncertainty.m at https://github.com/joansola/slamtb</a>
      */
     public NormalDist propagateThisDistribution(final DerivativeEvaluator evaluator) {
-        final NormalDist result = new NormalDist();
+        final var result = new NormalDist();
         propagateThisDistribution(evaluator, result);
         return result;
     }

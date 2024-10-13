@@ -40,12 +40,12 @@ public class GaussianRandomizer extends Randomizer {
     /**
      * Contains mMean value to be used for random value generation.
      */
-    private double mMean;
+    private double mean;
 
     /**
      * Standard deviation value to be used for random value generation.
      */
-    private double mStandardDeviation;
+    private double standardDeviation;
 
     /**
      * Constructor.
@@ -53,6 +53,20 @@ public class GaussianRandomizer extends Randomizer {
      */
     public GaussianRandomizer() {
         this(new Random());
+    }
+
+    /**
+     * Constructor.
+     * Uses default {@link Random} implementation.
+     *
+     * @param mean              Mean value of generated Gaussian values.
+     * @param standardDeviation Standard deviation of generated Gaussian values.
+     * @throws IllegalArgumentException thrown if provided standard deviation
+     *                                  is negative or zero.
+     * @throws NullPointerException     if provided internal Random instance is null.
+     */
+    public GaussianRandomizer(final double mean, final double standardDeviation) {
+        this(new Random(), mean, standardDeviation);
     }
 
     /**
@@ -66,8 +80,8 @@ public class GaussianRandomizer extends Randomizer {
      */
     public GaussianRandomizer(final Random internalRandom) {
         super(internalRandom);
-        mMean = DEFAULT_MEAN;
-        mStandardDeviation = DEFAULT_STANDARD_DEVIATION;
+        mean = DEFAULT_MEAN;
+        standardDeviation = DEFAULT_STANDARD_DEVIATION;
     }
 
     /**
@@ -81,15 +95,14 @@ public class GaussianRandomizer extends Randomizer {
      *                                  is negative or zero.
      * @throws NullPointerException     if provided internal Random instance is null.
      */
-    public GaussianRandomizer(final Random internalRandom, final double mean,
-                              final double standardDeviation) {
+    public GaussianRandomizer(final Random internalRandom, final double mean, final double standardDeviation) {
         super(internalRandom);
 
         if (standardDeviation <= 0.0) {
             throw new IllegalArgumentException();
         }
-        mMean = mean;
-        mStandardDeviation = standardDeviation;
+        this.mean = mean;
+        this.standardDeviation = standardDeviation;
     }
 
     /**
@@ -98,7 +111,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Mean value.
      */
     public double getMean() {
-        return mMean;
+        return mean;
     }
 
     /**
@@ -107,7 +120,7 @@ public class GaussianRandomizer extends Randomizer {
      * @param mean Mean value.
      */
     public void setMean(final double mean) {
-        mMean = mean;
+        this.mean = mean;
     }
 
     /**
@@ -117,7 +130,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Standard deviation.
      */
     public double getStandardDeviation() {
-        return mStandardDeviation;
+        return standardDeviation;
     }
 
     /**
@@ -128,11 +141,10 @@ public class GaussianRandomizer extends Randomizer {
      *                                  deviation is negative or zero.
      */
     public void setStandardDeviation(final double standardDeviation) {
-
         if (standardDeviation <= 0.0) {
             throw new IllegalArgumentException();
         }
-        mStandardDeviation = standardDeviation;
+        this.standardDeviation = standardDeviation;
     }
 
     /**
@@ -143,7 +155,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public boolean nextBoolean() {
-        return nextBoolean(mMean);
+        return nextBoolean(mean);
     }
 
     /**
@@ -156,8 +168,7 @@ public class GaussianRandomizer extends Randomizer {
      * @return Next random boolean value.
      */
     public boolean nextBoolean(final double threshold) {
-        return (mStandardDeviation * getInternalRandom().nextGaussian() + mMean) <
-                threshold;
+        return (standardDeviation * getInternalRandom().nextGaussian() + mean) < threshold;
     }
 
     /**
@@ -188,12 +199,11 @@ public class GaussianRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided length is zero or negative.
      */
     public boolean[] nextBooleans(final int length, final double threshold) {
-
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
 
-        final boolean[] array = new boolean[length];
+        final var array = new boolean[length];
         fill(array, threshold);
         return array;
     }
@@ -206,8 +216,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public int nextInt() {
-        return (int) (mStandardDeviation * getInternalRandom().nextGaussian() +
-                mMean);
+        return (int) (standardDeviation * getInternalRandom().nextGaussian() + mean);
     }
 
     /**
@@ -218,8 +227,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public long nextLong() {
-        return (long) (mStandardDeviation * getInternalRandom().nextGaussian() +
-                mMean);
+        return (long) (standardDeviation * getInternalRandom().nextGaussian() + mean);
     }
 
     /**
@@ -230,8 +238,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public float nextFloat() {
-        return (float) (mStandardDeviation * getInternalRandom().nextGaussian() +
-                mMean);
+        return (float) (standardDeviation * getInternalRandom().nextGaussian() + mean);
     }
 
     /**
@@ -242,7 +249,7 @@ public class GaussianRandomizer extends Randomizer {
      */
     @Override
     public double nextDouble() {
-        return mStandardDeviation * getInternalRandom().nextGaussian() + mMean;
+        return standardDeviation * getInternalRandom().nextGaussian() + mean;
     }
 
     /**

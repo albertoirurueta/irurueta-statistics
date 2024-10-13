@@ -104,7 +104,7 @@ public class UniformRandomizer extends Randomizer {
         if (length <= 0) {
             throw new IllegalArgumentException();
         }
-        final int[] array = new int[length];
+        final var array = new int[length];
         fill(array, maxValue);
         return array;
     }
@@ -121,12 +121,11 @@ public class UniformRandomizer extends Randomizer {
      *                                  or equal than minValue.
      */
     public int nextInt(final int minValue, final int maxValue) {
-
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
 
-        final int diff = maxValue - minValue;
+        final var diff = maxValue - minValue;
         return getInternalRandom().nextInt(diff) + minValue;
     }
 
@@ -145,7 +144,7 @@ public class UniformRandomizer extends Randomizer {
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
-        final int diff = maxValue - minValue;
+        final var diff = maxValue - minValue;
 
         for (int i = 0; i < array.length; i++) {
             array[i] = getInternalRandom().nextInt(diff) + minValue;
@@ -163,7 +162,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public int[] nextInts(final int length, final int minValue, final int maxValue) {
-        final int[] array = new int[length];
+        final var array = new int[length];
         fill(array, minValue, maxValue);
         return array;
     }
@@ -217,7 +216,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public long[] nextLongs(final int length, final long maxValue) {
-        final long[] array = new long[length];
+        final var array = new long[length];
         fill(array, maxValue);
         return array;
     }
@@ -234,13 +233,13 @@ public class UniformRandomizer extends Randomizer {
      *                                  or equal than minValue.
      */
     public long nextLong(final long minValue, final long maxValue) {
-
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
 
-        final long diff = maxValue - minValue;
-        return (Math.abs(getInternalRandom().nextLong()) % diff) + minValue;
+        final var diff = maxValue - minValue;
+        final var next = Math.max(getInternalRandom().nextLong(), Long.MIN_VALUE + 1);
+        return (Math.abs(next) % diff) + minValue;
     }
 
     /**
@@ -271,7 +270,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public long[] nextLongs(final int length, final long minValue, final long maxValue) {
-        final long[] array = new long[length];
+        final var array = new long[length];
         fill(array, minValue, maxValue);
         return array;
     }
@@ -326,7 +325,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public float[] nextFloats(final int length, final float maxValue) {
-        final float[] array = new float[length];
+        final var array = new float[length];
         fill(array, maxValue);
         return array;
     }
@@ -343,12 +342,11 @@ public class UniformRandomizer extends Randomizer {
      *                                  or equal than minValue.
      */
     public float nextFloat(final float minValue, final float maxValue) {
-
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
 
-        final float diff = maxValue - minValue;
+        final var diff = maxValue - minValue;
         return getInternalRandom().nextFloat() * diff + minValue;
     }
 
@@ -380,7 +378,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public float[] nextFloats(final int length, final float minValue, final float maxValue) {
-        final float[] array = new float[length];
+        final var array = new float[length];
         fill(array, minValue, maxValue);
         return array;
     }
@@ -435,7 +433,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public double[] nextDoubles(final int length, final double maxValue) {
-        final double[] array = new double[length];
+        final var array = new double[length];
         fill(array, maxValue);
         return array;
     }
@@ -452,12 +450,11 @@ public class UniformRandomizer extends Randomizer {
      *                                  or equal than minValue.
      */
     public double nextDouble(final double minValue, final double maxValue) {
-
         if (maxValue <= minValue) {
             throw new IllegalArgumentException();
         }
 
-        final double diff = maxValue - minValue;
+        final var diff = maxValue - minValue;
         return getInternalRandom().nextDouble() * diff + minValue;
     }
 
@@ -489,7 +486,7 @@ public class UniformRandomizer extends Randomizer {
      * @throws IllegalArgumentException if provided values are zero or negative.
      */
     public double[] nextDoubles(final int length, final double minValue, final double maxValue) {
-        final double[] array = new double[length];
+        final var array = new double[length];
         fill(array, minValue, maxValue);
         return array;
     }
