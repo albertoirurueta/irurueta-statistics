@@ -15,7 +15,6 @@
  */
 package com.irurueta.statistics;
 
-import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -86,7 +85,7 @@ public class BuildInfo {
      * Singleton stored in a soft reference (to keep it cached in memory unless
      * memory is claimed).
      */
-    private static SoftReference<BuildInfo> mReference;
+    private static SoftReference<BuildInfo> reference;
 
     /**
      * Build timestamp.
@@ -128,7 +127,7 @@ public class BuildInfo {
      */
     private BuildInfo() {
         // loads properties file data
-        try (final InputStream stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
+        try (final var stream = BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES)) {
             final var props = new Properties();
             props.load(stream);
 
@@ -154,9 +153,9 @@ public class BuildInfo {
      */
     public static synchronized BuildInfo getInstance() {
         BuildInfo info;
-        if (mReference == null || (info = mReference.get()) == null) {
+        if (reference == null || (info = reference.get()) == null) {
             info = new BuildInfo();
-            mReference = new SoftReference<>(info);
+            reference = new SoftReference<>(info);
         }
 
         return info;
