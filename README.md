@@ -30,7 +30,7 @@ Latest release:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-statistics</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3</version>
     <scope>compile</scope>
 </dependency>
 ```
