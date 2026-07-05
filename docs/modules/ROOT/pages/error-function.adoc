@@ -1,0 +1,110 @@
+= Error Function
+:description: Algorithm behind the Erf class: the error function, its Chebyshev approximation, and its inverse.
+:stem: latexmath
+
+The `Erf` class implements the error function `erf` and the complementary error function `erfc`, together with their inverses.
+As in Chapter 6 of _Numerical Recipes, 3rd Edition_ (section 6.2.2 -- see xref:reference.adoc[]), the class is presented alongside the incomplete gamma function because both `erf` and `erfc` are special cases of it.
+
+== Definitions
+
+[stem]
+++++
+\operatorname{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^{x} e^{-t^2}\, dt,
+\qquad
+\operatorname{erfc}(x) \equiv 1 - \operatorname{erf}(x) = \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2}\, dt
+++++
+
+Both functions are odd around their midpoint and satisfy simple symmetries:
+
+[stem]
+++++
+\operatorname{erf}(0)=0,\quad \operatorname{erf}(\infty)=1,\quad \operatorname{erf}(-x)=-\operatorname{erf}(x)
+++++
+
+[stem]
+++++
+\operatorname{erfc}(0)=1,\quad \operatorname{erfc}(\infty)=0,\quad \operatorname{erfc}(-x)=2-\operatorname{erfc}(x)
+++++
+
+They relate to the regularized incomplete gamma function stem:[P(a,x)] documented in xref:gamma-function.adoc[] by
+
+[stem]
+++++
+\operatorname{erf}(x) = P\!\left(\tfrac12, x^2\right), \qquad
+\operatorname{erfc}(x) = Q\!\left(\tfrac12, x^2\right), \qquad x \ge 0
+++++
+
+`NormalDist` uses exactly this connection: the normal p.d.f. is a rescaled Gaussian kernel stem:[e^{-t^2}], so its cumulative distribution function reduces to `erfc` -- see xref:normal-distribution-algorithm.adoc[].
+
+== Chebyshev approximation
+
+Rather than evaluating `erf`/`erfc` through the more expensive general incomplete-gamma machinery, `Erf` uses a dedicated Chebyshev approximation that is faster and specific to this special function.
+For stem:[z \ge 0], with
+
+[stem]
+++++
+t = \frac{2}{2+z}
+++++
+
+the complementary error function is approximated as
+
+[stem]
+++++
+\operatorname{erfc}(z) \approx t\, \exp\!\left[-z^{2} + P(t)\right]
+++++
+
+where stem:[P(t)] is a degree-28 Chebyshev polynomial whose coefficients are precomputed and stored in the `COF` array.
+The private method `erfccheb` evaluates this polynomial using Clenshaw's recurrence (the loop that accumulates `d`/`dd` over the coefficients) and combines it with the exponential prefactor.
+`erf` and `erfc` then dispatch to `erfccheb` depending on the sign of their argument, using the symmetries above to cover negative values:
+
+[mermaid]
+----
+flowchart TD
+    ErfCall["erf(x)"]
+    ErfcCall["erfc(x)"]
+    ErfSign{"x >= 0?"}
+    ErfcSign{"x >= 0?"}
+    Cheb["erfccheb(|x|)\n(Chebyshev series)"]
+
+    ErfCall --> ErfSign
+    ErfSign -- yes --> ErfPos["1 - erfccheb(x)"]
+    ErfSign -- no --> ErfNeg["erfccheb(-x) - 1"]
+    ErfPos --> Cheb
+    ErfNeg --> Cheb
+
+    ErfcCall --> ErfcSign
+    ErfcSign -- yes --> ErfcPos["erfccheb(x)"]
+    ErfcSign -- no --> ErfcNeg["2 - erfccheb(-x)"]
+    ErfcPos --> Cheb
+    ErfcNeg --> Cheb
+----
+
+[source,java]
+----
+import com.irurueta.statistics.Erf;
+
+double errorFunction = Erf.erf(1.0);
+double complementaryErrorFunction = Erf.erfc(1.0);
+----
+
+== Inverse functions
+
+`Erf.inverfc(p)` returns the value stem:[x] such that stem:[\operatorname{erfc}(x) = p] for stem:[0 < p < 2], and `Erf.inverf(p)` reuses it as stem:[\operatorname{erf}^{-1}(p) = \operatorname{erfc}^{-1}(1-p)].
+As with the inverse incomplete gamma function, the implementation (following a suggestion by P.J. Acklam cited in the book) starts from a rational approximation of the inverse normal cumulative distribution function and refines it with two iterations of Halley's method, using
+
+[stem]
+++++
+\frac{d}{dx}\operatorname{erfc}(x) = -\frac{2}{\sqrt{\pi}} e^{-x^{2}}
+++++
+
+as the derivative needed by the Halley correction.
+
+[source,java]
+----
+import com.irurueta.statistics.Erf;
+
+double xSuchThatErfcIsOneHalf = Erf.inverfc(0.5);
+double xSuchThatErfIsOneHalf = Erf.inverf(0.5);
+----
+
+`NormalDist.invcdf` calls `Erf.inverfc` to compute quantiles of the normal distribution -- see xref:normal-distribution-algorithm.adoc[].

@@ -2,4 +2,9 @@
 * xref:installation.adoc[Installation]
 * xref:random-generation.adoc[Random value generation]
 * xref:distributions.adoc[Statistical distributions]
+* Algorithms
+** xref:gamma-function.adoc[Gamma function]
+** xref:error-function.adoc[Error function]
+** xref:normal-distribution-algorithm.adoc[Normal distribution]
+** xref:chi-squared-distribution-algorithm.adoc[Chi-squared distribution]
 * xref:reference.adoc[Reference]

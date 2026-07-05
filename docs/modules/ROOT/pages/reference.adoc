@@ -24,3 +24,9 @@ The Maven reports are generated during Maven site execution and are available af
 |https://github.com/albertoirurueta/irurueta-statistics[Repository]
 |Github repository
 |===
+
+== Bibliography
+
+The algorithms implemented by the `Gamma`, `Erf`, `NormalDist`, and `ChiSqDist` classes (see xref:gamma-function.adoc[], xref:error-function.adoc[], xref:normal-distribution-algorithm.adoc[], and xref:chi-squared-distribution-algorithm.adoc[]) follow the descriptions and reference implementations given in Chapter 6, "Special Functions," of:
+
+Press, W.H., Teukolsky, S.A., Vetterling, W.T., and Flannery, B.P. 2007, _Numerical Recipes: The Art of Scientific Computing_, 3rd ed. (New York: Cambridge University Press), ISBN 978-0-521-88068-8.

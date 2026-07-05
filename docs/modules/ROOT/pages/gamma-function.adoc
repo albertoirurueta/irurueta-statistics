@@ -1,0 +1,182 @@
+= Gamma Function
+:description: Algorithm behind the Gamma class: the gamma function, factorials, the beta function, and the incomplete gamma function.
+:stem: latexmath
+
+The `Gamma` class implements the gamma function and the related functions built on top of it: factorials, binomial coefficients, the beta function, and the incomplete gamma function together with its inverse.
+The implementation follows the algorithms described in Chapter 6 ("Special Functions") of _Numerical Recipes, 3rd Edition_ -- see xref:reference.adoc[] for the full citation.
+
+== Gamma function and its logarithm
+
+The gamma function extends the factorial to real and complex arguments and is defined by the integral
+
+[stem]
+++++
+\Gamma(z) = \int_0^{\infty} t^{z-1} e^{-t}\, dt
+++++
+
+For a positive integer stem:[n] it reduces to the familiar factorial, offset by one, and it satisfies a simple recurrence relation:
+
+[stem]
+++++
+n! = \Gamma(n+1), \qquad \Gamma(z+1) = z\,\Gamma(z)
+++++
+
+Because stem:[\Gamma(x)] overflows for quite modest values of stem:[x], the library follows the book's recommendation and implements the *logarithm* of the gamma function, `Gamma.gammln(xx)`, rather than the gamma function itself.
+`gammln` uses the Lanczos approximation, a rational-function approximation that is specific to the gamma function and accurate to better than stem:[10^{-15}] over the whole positive real line:
+
+[stem]
+++++
+\ln\Gamma(z+1) = \left(z+\gamma+\tfrac12\right)\ln\!\left(z+\gamma+\tfrac12\right) - \left(z+\gamma+\tfrac12\right)
+   + \ln\!\left(\sqrt{2\pi}\left(c_0 + \frac{c_1}{z+1} + \frac{c_2}{z+2} + \cdots + \frac{c_N}{z+N}\right)\right)
+++++
+
+with 14 precomputed coefficients stem:[c_0,\dots,c_{14}] (the `COF` array in the source code, taken from the coefficients calculated by P. Godfrey).
+
+[source,java]
+----
+import com.irurueta.statistics.Gamma;
+
+double logGammaOfFive = Gamma.gammln(5.0); // ln(4!) = ln(24)
+----
+
+== Factorials and binomial coefficients
+
+Because factorials are usually requested repeatedly for small integer arguments, `Gamma.factrl(n)` builds a lookup table of `0!` to `170!` on first use instead of calling `gammln` every time; `171!` would overflow a `double`.
+`Gamma.factln(n)` similarly caches stem:[\ln(n!)] for `n` below 2000 and falls back to `gammln(n + 1)` beyond that.
+Both are used to compute the binomial coefficient
+
+[stem]
+++++
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!}, \qquad 0 \le k \le n
+++++
+
+which `Gamma.bico(n, k)` evaluates from the factorial tables when `n` is small, and from `factln` differences (rounded with `floor(0.5 + ...)` to clean up round-off error) for larger `n`.
+
+[source,java]
+----
+double sixFactorial = Gamma.factrl(6);
+double logOfLargeFactorial = Gamma.factln(5000);
+double waysToChooseThree = Gamma.bico(10, 3);
+----
+
+== Beta function
+
+The beta function is defined by the Euler integral and relates to the gamma function as follows:
+
+[stem]
+++++
+B(z,w) = \int_0^1 t^{z-1}(1-t)^{w-1}\, dt = \frac{\Gamma(z)\,\Gamma(w)}{\Gamma(z+w)}
+++++
+
+`Gamma.beta(z, w)` evaluates the right-hand side directly as a sum of logarithms, `exp(gammln(z) + gammln(w) - gammln(z + w))`, which avoids overflow for moderately large arguments.
+
+[source,java]
+----
+double betaValue = Gamma.beta(2.0, 3.0);
+----
+
+== Incomplete gamma function
+
+The regularized incomplete gamma function stem:[P(a,x)] and its complement stem:[Q(a,x)] are defined by
+
+[stem]
+++++
+P(a,x) \equiv \frac{\gamma(a,x)}{\Gamma(a)} = \frac{1}{\Gamma(a)}\int_0^x e^{-t} t^{a-1}\, dt, \qquad
+Q(a,x) \equiv 1 - P(a,x) = \frac{1}{\Gamma(a)}\int_x^{\infty} e^{-t} t^{a-1}\, dt, \qquad a > 0
+++++
+
+with the limiting values stem:[P(a,0)=0], stem:[P(a,\infty)=1], stem:[Q(a,0)=1], and stem:[Q(a,\infty)=0].
+No single numerical method is efficient across the whole stem:[(a,x)] plane, so `Gamma.gammp` and `Gamma.gammq` switch between three algorithms, exactly as `struct Gamma` does in the book:
+
+* A *series expansion*, which converges quickly for stem:[x < a+1]:
++
+[stem]
+++++
+\gamma(a,x) = e^{-x} x^{a} \sum_{n=0}^{\infty} \frac{\Gamma(a)}{\Gamma(a+1+n)}\, x^{n}
+++++
+
+* A *continued fraction* (its rapidly converging "even part"), used for stem:[x \ge a+1]:
++
+[stem]
+++++
+\Gamma(a,x) = e^{-x} x^{a}\, \cfrac{1}{x+1-a-\cfrac{1\cdot(1-a)}{x+3-a-\cfrac{2\cdot(2-a)}{x+5-a-\cdots}}}
+++++
+
+* A *Gauss-Legendre quadrature* of the defining integral, used once stem:[a \ge 100] (the `ASWITCH` constant), where the series and the continued fraction both become inefficient.
+  `Gamma` extends `GaussLegendreQuadrature`, which supplies the 18 abscissas and weights of the quadrature rule.
+
+[mermaid]
+----
+flowchart TD
+    Start["gammp(a, x) / gammq(a, x)"]
+    XZero{"x == 0?"}
+    Large{"a >= 100 (ASWITCH)?"}
+    NearA{"x < a + 1?"}
+    Quadrature["Gauss-Legendre quadrature\n(gammpapprox)"]
+    Series["Series expansion\n(gser)"]
+    ContinuedFraction["Continued fraction\n(gcf)"]
+
+    Start --> XZero
+    XZero -- yes --> Trivial["P = 0, Q = 1"]
+    XZero -- no --> Large
+    Large -- yes --> Quadrature
+    Large -- no --> NearA
+    NearA -- yes --> Series
+    NearA -- no --> ContinuedFraction
+----
+
+Both `gser` and `gcf` iterate until the relative change drops below machine precision, and throw `MaxIterationsExceededException` if that has not happened after 100 iterations -- a situation the book notes as rare and limited to numerically unstable inputs.
+
+[source,java]
+----
+import com.irurueta.statistics.Gamma;
+import com.irurueta.statistics.MaxIterationsExceededException;
+
+Gamma gamma = new Gamma();
+try {
+    double regularizedLowerIncompleteGamma = gamma.gammp(2.0, 3.0);
+    double regularizedUpperIncompleteGamma = gamma.gammq(2.0, 3.0);
+} catch (final MaxIterationsExceededException e) {
+    // convergence was not reached for these inputs
+}
+----
+
+Each call also updates `gamma.getGln()` with the value of stem:[\ln\Gamma(a)] used internally, in case a different normalization such as stem:[\gamma(a,x)] or stem:[\Gamma(a,x)] is needed afterward.
+
+== Inverse incomplete gamma function
+
+`Gamma.invgammp(p, a)` returns the value stem:[x] such that stem:[P(a,x) = p] for a probability stem:[0 \le p \le 1].
+It uses Halley's method (a second-order variant of Newton's method), which converges quickly because the derivative of stem:[P(a,x)] with respect to stem:[x] is simply the gamma p.d.f. itself.
+A good initial guess is essential: for stem:[a > 1] the implementation follows the normal-distribution-based approximation from Abramowitz & Stegun, and for stem:[a \le 1] it uses the book's rough approximations
+
+[stem]
+++++
+P_a \equiv P(a,1) \approx 0.253\,a + 0.12\,a^{2}, \qquad 0 \le a \le 1
+++++
+
+[stem]
+++++
+P(a,x) \approx
+\begin{cases}
+P_a\, x^{a}, & x < 1 \\
+P_a + (1 - P_a)\left(1 - e^{1-x}\right), & x \ge 1
+\end{cases}
+++++
+
+Twelve Halley iterations at most are then applied to refine this guess to full accuracy.
+
+[source,java]
+----
+import com.irurueta.statistics.Gamma;
+import com.irurueta.statistics.MaxIterationsExceededException;
+
+Gamma gamma = new Gamma();
+try {
+    double xSuchThatPIsOneHalf = gamma.invgammp(0.5, 2.0);
+} catch (final MaxIterationsExceededException e) {
+    // convergence was not reached for these inputs
+}
+----
+
+`ChiSqDist` uses `gammp` and `invgammp` directly to implement the chi-squared distribution -- see xref:chi-squared-distribution-algorithm.adoc[].
+`Erf` computes the error function as a special case of the incomplete gamma function, although for performance it uses a dedicated Chebyshev approximation instead of calling `Gamma` at run time -- see xref:error-function.adoc[].

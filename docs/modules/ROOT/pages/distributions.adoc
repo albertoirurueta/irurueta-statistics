@@ -3,6 +3,7 @@
 
 `NormalDist` and `ChiSqDist` evaluate the probability density function (p.d.f.), cumulative distribution function (c.d.f.), and inverse cumulative distribution function of the normal and chi-squared distributions.
 Each method is available both as a static call with explicit distribution parameters and as an instance call that reuses the mean, standard deviation, or degrees of freedom stored in the object.
+This page focuses on usage; for the underlying formulas and algorithms, see xref:normal-distribution-algorithm.adoc[], xref:chi-squared-distribution-algorithm.adoc[], xref:gamma-function.adoc[], and xref:error-function.adoc[].
 
 == Normal distribution
 
