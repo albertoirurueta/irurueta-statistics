@@ -2,6 +2,8 @@
 :description: Mathematical background of ChiSqDist: p.d.f., c.d.f., and inverse c.d.f. expressed through the incomplete gamma function.
 :stem: latexmath
 
+NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
+
 `ChiSqDist` implements the chi-squared (stem:[\chi^2]) distribution as described in section 6.14.8 of _Numerical Recipes, 3rd Edition_ (see xref:reference.adoc[]).
 For usage-oriented examples, see xref:distributions.adoc[]; this page focuses on the underlying formulas and how they map onto the gamma function described in xref:gamma-function.adoc[].
 

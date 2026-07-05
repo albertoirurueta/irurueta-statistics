@@ -2,6 +2,8 @@
 :description: Algorithm behind the Gamma class: the gamma function, factorials, the beta function, and the incomplete gamma function.
 :stem: latexmath
 
+NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
+
 The `Gamma` class implements the gamma function and the related functions built on top of it: factorials, binomial coefficients, the beta function, and the incomplete gamma function together with its inverse.
 The implementation follows the algorithms described in Chapter 6 ("Special Functions") of _Numerical Recipes, 3rd Edition_ -- see xref:reference.adoc[] for the full citation.
 

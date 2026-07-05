@@ -2,6 +2,8 @@
 :description: Mathematical background of NormalDist: p.d.f., c.d.f., inverse c.d.f., and Gaussian uncertainty propagation.
 :stem: latexmath
 
+NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
+
 `NormalDist` implements the normal (Gaussian) distribution as described in section 6.14.1 of _Numerical Recipes, 3rd Edition_ (see xref:reference.adoc[]).
 For usage-oriented examples, see xref:distributions.adoc[]; this page focuses on the underlying formulas and how they map onto the error function described in xref:error-function.adoc[].
 

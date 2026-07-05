@@ -1,6 +1,8 @@
 = Irurueta Statistics
 :description: Java library for pseudo-random number generation and statistical distributions.
 
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
+
 Irurueta Statistics is a lightweight Java library for generating pseudo-random values and for working with common statistical distributions.
 It provides randomizers that produce uniformly or Gaussian distributed values, distribution classes that evaluate probability density, cumulative distribution, and inverse cumulative distribution functions, and low level special functions used to implement them.
 
