@@ -9,7 +9,7 @@ The Maven reports are generated during Maven site execution and are available af
 | Report
 | Description
 
-| https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/units/package-summary.html[Javadoc]
+| https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/package-summary.html[Javadoc]
 | API reference generated as part of Maven site execution.
 
 | https://albertoirurueta.github.io/irurueta-statistics/mvn-site/jacoco/index.html[JaCoCo]
