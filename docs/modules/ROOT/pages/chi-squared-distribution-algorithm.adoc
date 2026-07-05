@@ -1,0 +1,98 @@
+= Chi-Squared Distribution Algorithm
+:description: Mathematical background of ChiSqDist: p.d.f., c.d.f., and inverse c.d.f. expressed through the incomplete gamma function.
+:stem: latexmath
+
+NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
+
+`ChiSqDist` implements the chi-squared (stem:[\chi^2]) distribution as described in section 6.14.8 of _Numerical Recipes, 3rd Edition_ (see xref:reference.adoc[]).
+For usage-oriented examples, see xref:distributions.adoc[]; this page focuses on the underlying formulas and how they map onto the gamma function described in xref:gamma-function.adoc[].
+
+== Probability density function
+
+The chi-squared distribution has a single parameter stem:[\nu > 0], usually an integer known as the number of degrees of freedom.
+Writing stem:[\chi^2 \sim \text{Chisquare}(\nu)], its density is
+
+[stem]
+++++
+p(\chi^2) = \frac{1}{2^{\nu/2}\,\Gamma(\nu/2)}\, \left(\chi^{2}\right)^{\nu/2 - 1} e^{-\chi^{2}/2}, \qquad \chi^2 > 0
+++++
+
+Its mean and variance are simply
+
+[stem]
+++++
+\operatorname{Mean} = \nu, \qquad \operatorname{Var} = 2\nu
+++++
+
+and, for stem:[\nu \ge 2], the density has a single mode at stem:[\chi^2 = \nu - 2].
+
+`ChiSqDist` avoids repeated calls to the gamma function by precomputing, once per instance, the logarithm of the normalizing constant:
+
+[stem]
+++++
+\text{fac} = \frac{\nu}{2}\ln 2 + \ln\Gamma\!\left(\frac{\nu}{2}\right) = \ln\!\left(2^{\nu/2}\,\Gamma(\nu/2)\right)
+++++
+
+so that `p(x2)` reduces to a single `exp` call, `exp(-0.5 * (x2 - (nu - 2) * log(x2)) - fac)`.
+
+== Cumulative distribution function
+
+The chi-squared distribution is a special case of the gamma distribution, so its cumulative distribution function is the regularized incomplete gamma function stem:[P(a,x)] from xref:gamma-function.adoc[]:
+
+[stem]
+++++
+\operatorname{cdf}(\chi^2) \equiv P(<\chi^2) = P\!\left(\frac{\nu}{2},\, \frac{\chi^2}{2}\right)
+++++
+
+Its complement can be obtained either as stem:[1-P] or, more accurately when stem:[P] is close to 1, directly as stem:[Q]:
+
+[stem]
+++++
+Q(\chi^2 \mid \nu) = 1 - P(<\chi^2) = Q\!\left(\frac{\nu}{2},\, \frac{\chi^2}{2}\right)
+++++
+
+`ChiSqDist.cdf(x2)` calls `Gamma.gammp(0.5 * nu, 0.5 * x2)` and therefore inherits the same series/continued-fraction/quadrature selection, and the same `MaxIterationsExceededException`, documented in xref:gamma-function.adoc[].
+
+== Inverse cumulative distribution function
+
+The inverse cdf is expressed through the inverse of stem:[P(a,x)] on its second argument, denoted stem:[P^{-1}(a,p)]:
+
+[stem]
+++++
+x(P) = 2\, P^{-1}\!\left(\frac{\nu}{2},\, P\right)
+++++
+
+`ChiSqDist.invcdf(p)` calls `Gamma.invgammp(p, 0.5 * nu)` and doubles the result, so it can likewise throw `MaxIterationsExceededException` in the rare cases where Halley's method does not converge within its iteration budget.
+
+[mermaid]
+----
+flowchart LR
+    subgraph ChiSqDist
+        P["p(x2)"]
+        CDF["cdf(x2)"]
+        INVCDF["invcdf(p)"]
+    end
+    subgraph Gamma
+        GAMMP["gammp(a, x)"]
+        INVGAMMP["invgammp(p, a)"]
+    end
+    CDF -->|"gammp(nu/2, x2/2)"| GAMMP
+    INVCDF -->|"2 * invgammp(p, nu/2)"| INVGAMMP
+----
+
+[source,java]
+----
+import com.irurueta.statistics.ChiSqDist;
+import com.irurueta.statistics.MaxIterationsExceededException;
+
+ChiSqDist chiSqDist = new ChiSqDist(5.0);
+
+double density = chiSqDist.p(3.0);
+
+try {
+    double probabilityBelow = chiSqDist.cdf(3.0);
+    double valueAt95Percent = chiSqDist.invcdf(0.95);
+} catch (final MaxIterationsExceededException e) {
+    // convergence was not reached for these inputs
+}
+----

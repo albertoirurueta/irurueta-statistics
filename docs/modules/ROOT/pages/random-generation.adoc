@@ -1,0 +1,98 @@
+= Random Value Generation
+:description: Generate pseudo-random values with UniformRandomizer, GaussianRandomizer, and the Randomizer factory.
+
+`Randomizer` is the abstract base class for pseudo-random value generation.
+It wraps a `java.util.Random` instance and exposes methods to obtain single values or arrays of booleans, integers, longs, floats, and doubles.
+Two concrete implementations are provided: `UniformRandomizer`, where every value in a range is equally likely, and `GaussianRandomizer`, where values follow a normal distribution with a configurable mean and standard deviation.
+
+== Create a randomizer
+
+Both randomizers can be constructed directly, optionally providing the `java.util.Random` instance to use internally.
+
+[source,java]
+----
+import com.irurueta.statistics.GaussianRandomizer;
+import com.irurueta.statistics.UniformRandomizer;
+
+import java.security.SecureRandom;
+
+UniformRandomizer uniformRandomizer = new UniformRandomizer();
+
+GaussianRandomizer gaussianRandomizer = new GaussianRandomizer(0.0, 1.0);
+
+UniformRandomizer secureUniformRandomizer =
+        new UniformRandomizer(new SecureRandom());
+----
+
+They can also be obtained through the `Randomizer.create` factory methods, which is convenient when the randomizer type is chosen dynamically.
+
+[source,java]
+----
+import com.irurueta.statistics.Randomizer;
+import com.irurueta.statistics.RandomizerType;
+
+Randomizer defaultRandomizer = Randomizer.create();
+Randomizer gaussianRandomizer = Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER);
+Randomizer secureRandomizer = Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER, true);
+----
+
+== Set a seed
+
+A seed determines the sequence of pseudo-random numbers that will be generated.
+The same seed always produces the same sequence, which is useful for reproducible tests; using the system clock as a seed produces a different sequence on each run.
+
+[source,java]
+----
+UniformRandomizer randomizer = new UniformRandomizer();
+randomizer.setSeed(System.currentTimeMillis());
+----
+
+== Generate uniformly distributed values
+
+`UniformRandomizer` generates booleans, integers, longs, floats, and doubles, with overloads to bound integer, long, float, and double values within a range.
+
+[source,java]
+----
+UniformRandomizer randomizer = new UniformRandomizer();
+
+boolean coinFlip = randomizer.nextBoolean();
+int dieRoll = randomizer.nextInt(1, 7);
+long id = randomizer.nextLong(0L, 1_000_000L);
+float ratio = randomizer.nextFloat(0.0f, 1.0f);
+double angle = randomizer.nextDouble(0.0, 2.0 * Math.PI);
+----
+
+== Generate Gaussian distributed values
+
+`GaussianRandomizer` generates values following a normal distribution with the mean and standard deviation supplied at construction time (`0.0` and `1.0` by default).
+
+[source,java]
+----
+GaussianRandomizer randomizer = new GaussianRandomizer(10.0, 2.5);
+
+double sample = randomizer.nextDouble();
+double mean = randomizer.getMean();
+double standardDeviation = randomizer.getStandardDeviation();
+
+randomizer.setMean(0.0);
+randomizer.setStandardDeviation(1.0);
+----
+
+`nextBoolean()` returns `true` with 50% probability by comparing a Gaussian sample against the mean.
+An overload, `nextBoolean(threshold)`, returns `true` when a Gaussian sample falls below the given threshold, which is useful for simulating events with a probability derived from a normal distribution.
+
+== Fill and generate arrays
+
+Every randomizer exposes `fill` methods that populate an existing array, and `next*s` methods that allocate and return a new array.
+
+[source,java]
+----
+UniformRandomizer randomizer = new UniformRandomizer();
+
+double[] samples = new double[100];
+randomizer.fill(samples, -1.0, 1.0);
+
+int[] dieRolls = randomizer.nextInts(10, 1, 7);
+double[] uniform = randomizer.nextDoubles(50, 0.0, 1.0);
+boolean[] coinFlips = randomizer.nextBooleans(20);
+----

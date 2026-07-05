@@ -1,0 +1,112 @@
+= Normal Distribution Algorithm
+:description: Mathematical background of NormalDist: p.d.f., c.d.f., inverse c.d.f., and Gaussian uncertainty propagation.
+:stem: latexmath
+
+NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
+
+`NormalDist` implements the normal (Gaussian) distribution as described in section 6.14.1 of _Numerical Recipes, 3rd Edition_ (see xref:reference.adoc[]).
+For usage-oriented examples, see xref:distributions.adoc[]; this page focuses on the underlying formulas and how they map onto the error function described in xref:error-function.adoc[].
+
+== Probability density function
+
+If stem:[x] is drawn from a normal distribution with mean stem:[\mu] and standard deviation stem:[\sigma > 0], written stem:[x \sim N(\mu,\sigma)], its probability density function is
+
+[stem]
+++++
+p(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\, \exp\!\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2}\right]
+++++
+
+`NormalDist.p(x)` evaluates this expression directly, and the static overload `NormalDist.p(x, mu, sig)` does the same without requiring an instance.
+
+== Cumulative distribution function
+
+The cumulative distribution function is the probability of observing a value at most stem:[x].
+For the normal distribution it is written in terms of the complementary error function rather than being integrated numerically:
+
+[stem]
+++++
+\operatorname{cdf}(x) \equiv P(<x) = \int_{-\infty}^{x} p(x')\, dx' = \frac{1}{2}\,\operatorname{erfc}\!\left(-\frac{1}{\sqrt2}\cdot\frac{x-\mu}{\sigma}\right)
+++++
+
+`NormalDist.cdf(x)` computes exactly this, delegating to `Erf.erfc`.
+
+== Inverse cumulative distribution function
+
+Because the c.d.f. is monotonically increasing between 0 and 1, it can be inverted in closed form using the inverse complementary error function:
+
+[stem]
+++++
+x(P) = \mu - \sqrt{2}\,\sigma\, \operatorname{erfc}^{-1}(2P), \qquad 0 < P < 1
+++++
+
+`NormalDist.invcdf(p)` calls `Erf.inverfc(2.0 * p)` and rescales the result, which is why it is only valid for probabilities strictly between 0 and 1.
+
+[mermaid]
+----
+flowchart LR
+    subgraph NormalDist
+        P["p(x)"]
+        CDF["cdf(x)"]
+        INVCDF["invcdf(p)"]
+    end
+    subgraph Erf
+        ERFC["erfc(x)"]
+        INVERFC["inverfc(p)"]
+    end
+    CDF -->|"0.5 * erfc(...)"| ERFC
+    INVCDF -->|"-sqrt(2) * sig * inverfc(2p) + mu"| INVERFC
+----
+
+[source,java]
+----
+import com.irurueta.statistics.NormalDist;
+
+NormalDist normalDist = new NormalDist(10.0, 2.5);
+
+double density = normalDist.p(12.0);
+double probabilityBelow = normalDist.cdf(12.0);
+double valueAt95Percent = normalDist.invcdf(0.95);
+----
+
+== Mahalanobis distance
+
+Beyond what the book's `Normaldist` struct provides, this library also exposes the Mahalanobis distance of a point to the distribution's mean, expressed in units of standard deviation:
+
+[stem]
+++++
+d_M(x) = \frac{|x-\mu|}{\sigma}
+++++
+
+[source,java]
+----
+double mahalanobisDistance = NormalDist.mahalanobisDistance(12.0, 10.0, 2.5);
+----
+
+== Gaussian uncertainty propagation
+
+`NormalDist.propagate` is another extension beyond the book: given a differentiable one-dimensional function stem:[f] and an input distribution stem:[x \sim N(\mu,\sigma)], it linearizes stem:[f] around stem:[\mu] (a first-order, or "delta method," approximation) to estimate the distribution of stem:[y = f(x)]:
+
+[stem]
+++++
+y \sim N\big(f(\mu),\; |f'(\mu)|\,\sigma\big)
+++++
+
+[source,java]
+----
+import com.irurueta.statistics.NormalDist;
+
+NormalDist.DerivativeEvaluator squareEvaluator = new NormalDist.DerivativeEvaluator() {
+    @Override
+    public double evaluate(final double x) {
+        return x * x;
+    }
+
+    @Override
+    public double evaluateDerivative(final double x) {
+        return 2.0 * x;
+    }
+};
+
+NormalDist input = new NormalDist(3.0, 0.1);
+NormalDist propagated = NormalDist.propagate(squareEvaluator, input);
+----

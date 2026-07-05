@@ -1,0 +1,73 @@
+= Irurueta Statistics
+:description: Java library for pseudo-random number generation and statistical distributions.
+
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
+
+Irurueta Statistics is a lightweight Java library for generating pseudo-random values and for working with common statistical distributions.
+It provides randomizers that produce uniformly or Gaussian distributed values, distribution classes that evaluate probability density, cumulative distribution, and inverse cumulative distribution functions, and low level special functions used to implement them.
+
+The library is useful when an application needs repeatable pseudo-random data for testing or simulation, needs to evaluate how likely a value is under a normal or chi-squared distribution, or needs to propagate Gaussian uncertainty through a non-linear function.
+
+== What the library contains
+
+The public API is organized around three concepts:
+
+[mermaid]
+----
+graph TD
+    Randomizer["Randomizer base class"]
+    Uniform["UniformRandomizer"]
+    Gaussian["GaussianRandomizer"]
+    Dist["Distribution classes"]
+    Normal["NormalDist"]
+    ChiSq["ChiSqDist"]
+    Special["Special functions"]
+    Erf["Erf"]
+    Gamma["Gamma"]
+
+    Randomizer --> Uniform
+    Randomizer --> Gaussian
+    Dist --> Normal
+    Dist --> ChiSq
+    Special --> Erf
+    Special --> Gamma
+    Normal --> Erf
+    ChiSq --> Gamma
+----
+
+`Randomizer`::
+Abstract base class for pseudo-random value generation, backed by a `java.util.Random` (or `java.security.SecureRandom`) instance.
+Concrete subclasses are `UniformRandomizer` and `GaussianRandomizer`, which generate booleans, integers, longs, floats, doubles, and arrays of each following a uniform or Gaussian distribution.
+
+`NormalDist`::
+Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a Gaussian (normal) distribution, computes Mahalanobis distance, and propagates Gaussian uncertainty through a differentiable one-dimensional function.
+
+`ChiSqDist`::
+Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a chi-squared distribution with a given number of degrees of freedom.
+
+`Erf` and `Gamma`::
+Static utility classes implementing the error function and the gamma function, used internally by `NormalDist` and `ChiSqDist` and available for direct use in other numerical computations.
+
+== Quick example
+
+[source,java]
+----
+import com.irurueta.statistics.GaussianRandomizer;
+import com.irurueta.statistics.NormalDist;
+import com.irurueta.statistics.UniformRandomizer;
+
+UniformRandomizer uniformRandomizer = new UniformRandomizer();
+double angle = uniformRandomizer.nextDouble(0.0, 2.0 * Math.PI);
+
+GaussianRandomizer gaussianRandomizer = new GaussianRandomizer(0.0, 1.0);
+double noise = gaussianRandomizer.nextDouble();
+
+NormalDist normalDist = new NormalDist(0.0, 1.0);
+double probabilityBelowOne = normalDist.cdf(1.0);
+double valueAt95Percent = normalDist.invcdf(0.95);
+----
+
+== Documentation map
+
+Start with xref:installation.adoc[] to add the dependency.
+Then read xref:random-generation.adoc[] for pseudo-random value generation and xref:distributions.adoc[] for probability distributions and uncertainty propagation.

@@ -1,0 +1,39 @@
+= Installation
+:description: Add Irurueta Statistics to a Java project.
+
+Irurueta Statistics is published as a Maven artifact with group id `com.irurueta` and artifact id `irurueta-statistics`.
+The project itself is built as a Java 17 Maven JAR.
+
+== Maven
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.irurueta</groupId>
+    <artifactId>irurueta-statistics</artifactId>
+    <version>1.4.0</version>
+</dependency>
+----
+
+If you are consuming a snapshot build from this checkout, use the repository version shown in `pom.xml`, for example `1.5.0-SNAPSHOT`.
+
+== Gradle
+
+[source,kotlin]
+----
+dependencies {
+    implementation("com.irurueta:irurueta-statistics:1.3.4")
+}
+----
+
+== Imports
+
+All runtime types live in the `com.irurueta.statistics` package:
+
+[source,java]
+----
+import com.irurueta.statistics.GaussianRandomizer;
+import com.irurueta.statistics.UniformRandomizer;
+import com.irurueta.statistics.NormalDist;
+import com.irurueta.statistics.ChiSqDist;
+----

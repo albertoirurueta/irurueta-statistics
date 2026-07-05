@@ -1,0 +1,32 @@
+= Reference
+:description: Links to generated API, test, coverage, and code quality reports.
+
+This page links to reports produced by the project build and quality tooling.
+The Maven reports are generated during Maven site execution and are available after `target/site` is copied into the documentation output as `mvn-site`.
+
+[cols="1,3", options="header"]
+|===
+| Report
+| Description
+
+| https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/package-summary.html[Javadoc]
+| API reference generated as part of Maven site execution.
+
+| https://albertoirurueta.github.io/irurueta-statistics/mvn-site/jacoco/index.html[JaCoCo]
+| Code coverage report generated during the Maven build.
+
+| https://albertoirurueta.github.io/irurueta-statistics/mvn-site/surefire.html[Surefire]
+| Unit test execution report.
+
+| link:https://sonarcloud.io/project/overview?id=albertoirurueta_irurueta-statistics[SonarCloud]
+| Code quality, issue, and coverage information from SonarCloud.
+
+|https://github.com/albertoirurueta/irurueta-statistics[Repository]
+|Github repository
+|===
+
+== Bibliography
+
+The algorithms implemented by the `Gamma`, `Erf`, `NormalDist`, and `ChiSqDist` classes (see xref:gamma-function.adoc[], xref:error-function.adoc[], xref:normal-distribution-algorithm.adoc[], and xref:chi-squared-distribution-algorithm.adoc[]) follow the descriptions and reference implementations given in Chapter 6, "Special Functions," of:
+
+Press, W.H., Teukolsky, S.A., Vetterling, W.T., and Flannery, B.P. 2007, _Numerical Recipes: The Art of Scientific Computing_, 3rd ed. (New York: Cambridge University Press), ISBN 978-0-521-88068-8.
