@@ -1,0 +1,115 @@
+= Statistical Distributions
+:description: Evaluate normal and chi-squared distributions, propagate uncertainty, and use the underlying special functions.
+
+`NormalDist` and `ChiSqDist` evaluate the probability density function (p.d.f.), cumulative distribution function (c.d.f.), and inverse cumulative distribution function of the normal and chi-squared distributions.
+Each method is available both as a static call with explicit distribution parameters and as an instance call that reuses the mean, standard deviation, or degrees of freedom stored in the object.
+
+== Normal distribution
+
+A `NormalDist` instance holds a mean and a standard deviation, defaulting to the standard normal distribution `N(0, 1)`.
+
+[source,java]
+----
+import com.irurueta.statistics.NormalDist;
+
+NormalDist standardNormal = new NormalDist();
+NormalDist normalDist = new NormalDist(10.0, 2.5);
+
+double density = normalDist.p(12.0);
+double probabilityBelow = normalDist.cdf(12.0);
+double valueAt95Percent = normalDist.invcdf(0.95);
+
+double variance = normalDist.getVariance();
+normalDist.setVariance(9.0);
+----
+
+The same evaluations are available as static methods when only the mean, standard deviation, and evaluation point are needed, without creating an instance.
+
+[source,java]
+----
+double density = NormalDist.p(12.0, 10.0, 2.5);
+double probabilityBelow = NormalDist.cdf(12.0, 10.0, 2.5);
+double valueAt95Percent = NormalDist.invcdf(0.95, 10.0, 2.5);
+double mahalanobisDistance = NormalDist.mahalanobisDistance(12.0, 10.0, 2.5);
+----
+
+`invcdf` requires a probability strictly between `0.0` and `1.0`, and both `p` and `cdf`/`invcdf` throw `IllegalArgumentException` when the standard deviation is zero or negative.
+
+== Propagate Gaussian uncertainty
+
+`NormalDist.propagate` linearizes a differentiable one-dimensional function around a mean and propagates the input standard deviation through its derivative, which is a common technique to estimate the uncertainty of a derived quantity.
+
+[source,java]
+----
+import com.irurueta.statistics.NormalDist;
+
+NormalDist.DerivativeEvaluator squareEvaluator = new NormalDist.DerivativeEvaluator() {
+    @Override
+    public double evaluate(final double x) {
+        return x * x;
+    }
+
+    @Override
+    public double evaluateDerivative(final double x) {
+        return 2.0 * x;
+    }
+};
+
+NormalDist input = new NormalDist(3.0, 0.1);
+NormalDist propagated = NormalDist.propagate(squareEvaluator, input);
+
+double propagatedMean = propagated.getMean();
+double propagatedStandardDeviation = propagated.getStandardDeviation();
+----
+
+An overload without a `dist` argument accepts the mean and standard deviation directly, and `propagateThisDistribution` propagates the distribution the method is called on.
+
+== Chi-squared distribution
+
+A `ChiSqDist` instance holds the `nu` parameter (degrees of freedom).
+Its `cdf` and `invcdf` methods rely on an iterative evaluation of the incomplete gamma function and therefore declare `MaxIterationsExceededException`, which is only thrown in rare, numerically unstable cases.
+
+[source,java]
+----
+import com.irurueta.statistics.ChiSqDist;
+import com.irurueta.statistics.MaxIterationsExceededException;
+
+ChiSqDist chiSqDist = new ChiSqDist(5.0);
+
+double density = chiSqDist.p(3.0);
+
+try {
+    double probabilityBelow = chiSqDist.cdf(3.0);
+    double valueAt95Percent = chiSqDist.invcdf(0.95);
+} catch (final MaxIterationsExceededException e) {
+    // convergence was not reached for these inputs
+}
+----
+
+Static equivalents take the degrees of freedom as an explicit parameter:
+
+[source,java]
+----
+double density = ChiSqDist.p(3.0, 5.0);
+double probabilityBelow = ChiSqDist.cdf(3.0, 5.0);
+double valueAt95Percent = ChiSqDist.invcdf(0.95, 5.0);
+----
+
+== Special functions
+
+`Erf` and `Gamma` implement the special functions used internally by `NormalDist` and `ChiSqDist`, and are available for direct use in other numerical computations.
+
+[source,java]
+----
+import com.irurueta.statistics.Erf;
+import com.irurueta.statistics.Gamma;
+
+double errorFunction = Erf.erf(1.0);
+double complementaryErrorFunction = Erf.erfc(1.0);
+
+Gamma gamma = new Gamma();
+double logGamma = Gamma.gammln(5.0);
+double regularizedLowerIncompleteGamma = gamma.gammp(2.0, 3.0);
+----
+
+`Gamma` extends `GaussLegendreQuadrature`, which supplies the quadrature nodes and weights used to evaluate the incomplete gamma function; both `gammp` and `gammq` can throw `MaxIterationsExceededException` for the same reason as `ChiSqDist.cdf` and `ChiSqDist.invcdf`.

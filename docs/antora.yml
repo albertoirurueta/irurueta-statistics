@@ -1,0 +1,5 @@
+name: irurueta-statistics
+version: 1.4.0
+title: Irurueta Statistics
+nav:
+  - modules/ROOT/nav.adoc
