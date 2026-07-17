@@ -26,6 +26,9 @@ Its mean and variance are simply
 
 and, for stem:[\nu \ge 2], the density has a single mode at stem:[\chi^2 = \nu - 2].
 
+.Chi-squared probability density for several degrees of freedom ν. The peak shifts right and flattens as ν grows, consistent with mean ν and mode ν - 2.
+image::chi-squared-distribution-plot.svg[Plot of the chi-squared probability density function for nu = 1, 3, 6 and 9,width=600]
+
 `ChiSqDist` avoids repeated calls to the gamma function by precomputing, once per instance, the logarithm of the normalizing constant:
 
 [stem]

@@ -30,6 +30,9 @@ For the normal distribution it is written in terms of the complementary error fu
 
 `NormalDist.cdf(x)` computes exactly this, delegating to `Erf.erfc`.
 
+.Standard normal distribution: probability density function p(x) and cumulative distribution function cdf(x), for μ = 0 and σ = 1.
+image::normal-distribution-plot.svg[Plot of the standard normal p.d.f. and c.d.f.,width=600]
+
 == Inverse cumulative distribution function
 
 Because the c.d.f. is monotonically increasing between 0 and 1, it can be inverted in closed form using the inverse complementary error function:
