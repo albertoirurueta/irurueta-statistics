@@ -2,7 +2,7 @@
 :description: Add Irurueta Statistics to a Java project.
 
 Irurueta Statistics is published as a Maven artifact with group id `com.irurueta` and artifact id `irurueta-statistics`.
-The project itself is built as a Java 17 Maven JAR.
+The project itself is built as a Java 21 Maven JAR.
 
 == Maven
 
