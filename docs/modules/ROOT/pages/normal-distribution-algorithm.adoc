@@ -113,3 +113,20 @@ NormalDist.DerivativeEvaluator squareEvaluator = new NormalDist.DerivativeEvalua
 NormalDist input = new NormalDist(3.0, 0.1);
 NormalDist propagated = NormalDist.propagate(squareEvaluator, input);
 ----
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `NormalDist`
+| link:{javadoc-base}/NormalDist.html[javadoc] · link:{github-source-base}/NormalDist.java[source]
+
+| `NormalDist.DerivativeEvaluator`
+| link:{javadoc-base}/NormalDist.DerivativeEvaluator.html[javadoc] · link:{github-source-base}/NormalDist.java[source]
+
+| `Erf`
+| link:{javadoc-base}/Erf.html[javadoc] · link:{github-source-base}/Erf.java[source]
+|===
