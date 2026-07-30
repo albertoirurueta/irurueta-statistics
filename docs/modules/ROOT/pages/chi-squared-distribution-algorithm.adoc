@@ -99,3 +99,20 @@ try {
     // convergence was not reached for these inputs
 }
 ----
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `ChiSqDist`
+| link:{javadoc-base}/ChiSqDist.html[javadoc] · link:{github-source-base}/ChiSqDist.java[source]
+
+| `MaxIterationsExceededException`
+| link:{javadoc-base}/MaxIterationsExceededException.html[javadoc] · link:{github-source-base}/MaxIterationsExceededException.java[source]
+
+| `Gamma`
+| link:{javadoc-base}/Gamma.html[javadoc] · link:{github-source-base}/Gamma.java[source]
+|===

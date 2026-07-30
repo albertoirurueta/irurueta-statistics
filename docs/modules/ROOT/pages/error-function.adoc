@@ -113,3 +113,14 @@ double xSuchThatErfIsOneHalf = Erf.inverf(0.5);
 ----
 
 `NormalDist.invcdf` calls `Erf.inverfc` to compute quantiles of the normal distribution -- see xref:normal-distribution-algorithm.adoc[].
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `Erf`
+| link:{javadoc-base}/Erf.html[javadoc] · link:{github-source-base}/Erf.java[source]
+|===

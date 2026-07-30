@@ -37,3 +37,23 @@ import com.irurueta.statistics.UniformRandomizer;
 import com.irurueta.statistics.NormalDist;
 import com.irurueta.statistics.ChiSqDist;
 ----
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `GaussianRandomizer`
+| link:{javadoc-base}/GaussianRandomizer.html[javadoc] · link:{github-source-base}/GaussianRandomizer.java[source]
+
+| `UniformRandomizer`
+| link:{javadoc-base}/UniformRandomizer.html[javadoc] · link:{github-source-base}/UniformRandomizer.java[source]
+
+| `NormalDist`
+| link:{javadoc-base}/NormalDist.html[javadoc] · link:{github-source-base}/NormalDist.java[source]
+
+| `ChiSqDist`
+| link:{javadoc-base}/ChiSqDist.html[javadoc] · link:{github-source-base}/ChiSqDist.java[source]
+|===

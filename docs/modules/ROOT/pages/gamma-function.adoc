@@ -189,3 +189,20 @@ try {
 
 `ChiSqDist` uses `gammp` and `invgammp` directly to implement the chi-squared distribution -- see xref:chi-squared-distribution-algorithm.adoc[].
 `Erf` computes the error function as a special case of the incomplete gamma function, although for performance it uses a dedicated Chebyshev approximation instead of calling `Gamma` at run time -- see xref:error-function.adoc[].
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `Gamma`
+| link:{javadoc-base}/Gamma.html[javadoc] · link:{github-source-base}/Gamma.java[source]
+
+| `MaxIterationsExceededException`
+| link:{javadoc-base}/MaxIterationsExceededException.html[javadoc] · link:{github-source-base}/MaxIterationsExceededException.java[source]
+
+| `GaussLegendreQuadrature`
+| link:{javadoc-base}/GaussLegendreQuadrature.html[javadoc] · link:{github-source-base}/GaussLegendreQuadrature.java[source]
+|===
