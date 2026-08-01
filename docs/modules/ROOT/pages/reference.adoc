@@ -21,6 +21,9 @@ The Maven reports are generated during Maven site execution and are available af
 | link:https://sonarcloud.io/project/overview?id=albertoirurueta_irurueta-statistics[SonarCloud]
 | Code quality, issue, and coverage information from SonarCloud.
 
+|https://albertoirurueta.github.io/irurueta-statistics/mvn-site[Maven Site]
+|Aggregation of project reports.
+
 |https://github.com/albertoirurueta/irurueta-statistics[Repository]
 |Github repository
 |===
