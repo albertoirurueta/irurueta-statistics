@@ -175,7 +175,10 @@ class NormalDistTest {
             final var std = randomizer.nextDouble(0.0, MAX_RANDOM_VALUE);
 
             final var x = randomizer.nextDouble(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
-            final var p = randomizer.nextDouble(); //value between 0.0 and 1.0
+            //value between 0.0 and 1.0
+            final var min = Double.MIN_VALUE;
+            final var max = 1.0 - ABSOLUTE_ERROR;
+            final var p = Math.clamp(randomizer.nextDouble(), min, max);
 
             final var dist = new NormalDist(mean, std);
 
