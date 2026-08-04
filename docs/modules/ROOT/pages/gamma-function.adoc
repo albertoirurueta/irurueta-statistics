@@ -198,11 +198,11 @@ try {
 | Links
 
 | `Gamma`
-| link:{javadoc-base}/Gamma.html[javadoc] · link:{github-source-base}/Gamma.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java[source]
 
 | `MaxIterationsExceededException`
-| link:{javadoc-base}/MaxIterationsExceededException.html[javadoc] · link:{github-source-base}/MaxIterationsExceededException.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/MaxIterationsExceededException.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/MaxIterationsExceededException.java[source]
 
 | `GaussLegendreQuadrature`
-| link:{javadoc-base}/GaussLegendreQuadrature.html[javadoc] · link:{github-source-base}/GaussLegendreQuadrature.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussLegendreQuadrature.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussLegendreQuadrature.java[source]
 |===

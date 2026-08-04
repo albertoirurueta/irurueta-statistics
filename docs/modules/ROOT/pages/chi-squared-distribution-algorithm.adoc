@@ -108,11 +108,11 @@ try {
 | Links
 
 | `ChiSqDist`
-| link:{javadoc-base}/ChiSqDist.html[javadoc] · link:{github-source-base}/ChiSqDist.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java[source]
 
 | `MaxIterationsExceededException`
-| link:{javadoc-base}/MaxIterationsExceededException.html[javadoc] · link:{github-source-base}/MaxIterationsExceededException.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/MaxIterationsExceededException.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/MaxIterationsExceededException.java[source]
 
 | `Gamma`
-| link:{javadoc-base}/Gamma.html[javadoc] · link:{github-source-base}/Gamma.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java[source]
 |===
