@@ -105,14 +105,14 @@ boolean[] coinFlips = randomizer.nextBooleans(20);
 | Links
 
 | `Randomizer`
-| link:{javadoc-base}/Randomizer.html[javadoc] · link:{github-source-base}/Randomizer.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Randomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Randomizer.java[source]
 
 | `RandomizerType`
-| link:{javadoc-base}/RandomizerType.html[javadoc] · link:{github-source-base}/RandomizerType.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/RandomizerType.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/RandomizerType.java[source]
 
 | `UniformRandomizer`
-| link:{javadoc-base}/UniformRandomizer.html[javadoc] · link:{github-source-base}/UniformRandomizer.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java[source]
 
 | `GaussianRandomizer`
-| link:{javadoc-base}/GaussianRandomizer.html[javadoc] · link:{github-source-base}/GaussianRandomizer.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java[source]
 |===

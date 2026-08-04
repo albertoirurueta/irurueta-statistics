@@ -122,11 +122,11 @@ NormalDist propagated = NormalDist.propagate(squareEvaluator, input);
 | Links
 
 | `NormalDist`
-| link:{javadoc-base}/NormalDist.html[javadoc] · link:{github-source-base}/NormalDist.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
 
 | `NormalDist.DerivativeEvaluator`
-| link:{javadoc-base}/NormalDist.DerivativeEvaluator.html[javadoc] · link:{github-source-base}/NormalDist.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.DerivativeEvaluator.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
 
 | `Erf`
-| link:{javadoc-base}/Erf.html[javadoc] · link:{github-source-base}/Erf.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java[source]
 |===

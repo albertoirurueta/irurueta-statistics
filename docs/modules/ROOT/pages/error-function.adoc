@@ -122,5 +122,5 @@ double xSuchThatErfIsOneHalf = Erf.inverf(0.5);
 | Links
 
 | `Erf`
-| link:{javadoc-base}/Erf.html[javadoc] · link:{github-source-base}/Erf.java[source]
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java[source]
 |===
