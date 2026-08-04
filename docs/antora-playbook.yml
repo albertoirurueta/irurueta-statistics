@@ -27,7 +27,7 @@ antora:
 asciidoc:
   attributes:
     mathjax-tex-tags: ams
-    mathjax-tex-packages: ams
+    mathjax-tex-packages: ams boldsymbol
     github-source-base: https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics
     javadoc-base: https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics
   extensions:
