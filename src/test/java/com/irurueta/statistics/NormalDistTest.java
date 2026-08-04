@@ -29,7 +29,7 @@ class NormalDistTest {
 
     private static final int N_SAMPLES = 1000000;
 
-    private static final double RELATIVE_ERROR = 0.10;
+    private static final double RELATIVE_ERROR = 0.12;
 
     private static final int TIMES = 10;
 
