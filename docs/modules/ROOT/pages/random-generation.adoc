@@ -1,5 +1,6 @@
 = Random Value Generation
 :description: Generate pseudo-random values with UniformRandomizer, GaussianRandomizer, and the Randomizer factory.
+:keywords: pseudo-random number generation, UniformRandomizer, GaussianRandomizer, Randomizer factory, java.util.Random, SecureRandom, random seed, uniform distribution, Gaussian distribution, random array generation
 
 `Randomizer` is the abstract base class for pseudo-random value generation.
 It wraps a `java.util.Random` instance and exposes methods to obtain single values or arrays of booleans, integers, longs, floats, and doubles.

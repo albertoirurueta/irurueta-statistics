@@ -1,5 +1,6 @@
 = Statistical Distributions
 :description: Evaluate normal and chi-squared distributions, propagate uncertainty, and use the underlying special functions.
+:keywords: NormalDist, ChiSqDist, probability density function, cumulative distribution function, inverse cdf, Gaussian uncertainty propagation, Mahalanobis distance, Erf, Gamma function, chi-squared distribution, normal distribution
 
 `NormalDist` and `ChiSqDist` evaluate the probability density function (p.d.f.), cumulative distribution function (c.d.f.), and inverse cumulative distribution function of the normal and chi-squared distributions.
 Each method is available both as a static call with explicit distribution parameters and as an instance call that reuses the mean, standard deviation, or degrees of freedom stored in the object.

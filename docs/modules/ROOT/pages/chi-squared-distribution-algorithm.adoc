@@ -1,5 +1,6 @@
 = Chi-Squared Distribution Algorithm
 :description: Mathematical background of ChiSqDist: p.d.f., c.d.f., and inverse c.d.f. expressed through the incomplete gamma function.
+:keywords: chi-squared distribution algorithm, degrees of freedom, incomplete gamma function, probability density function, cumulative distribution function, inverse cdf, ChiSqDist, Numerical Recipes
 :stem: latexmath
 
 NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.

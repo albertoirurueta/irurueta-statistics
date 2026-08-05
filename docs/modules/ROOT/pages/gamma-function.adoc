@@ -1,5 +1,6 @@
 = Gamma Function
 :description: Algorithm behind the Gamma class: the gamma function, factorials, the beta function, and the incomplete gamma function.
+:keywords: gamma function, log gamma function, factorial, binomial coefficient, beta function, incomplete gamma function, inverse incomplete gamma function, Lanczos approximation, Gauss-Legendre quadrature, Gamma class, Numerical Recipes
 :stem: latexmath
 
 NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.

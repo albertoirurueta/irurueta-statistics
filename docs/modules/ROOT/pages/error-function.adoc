@@ -1,5 +1,6 @@
 = Error Function
 :description: Algorithm behind the Erf class: the error function, its Chebyshev approximation, and its inverse.
+:keywords: error function, complementary error function, erf, erfc, inverse error function, Chebyshev approximation, incomplete gamma function, Erf class, Numerical Recipes
 :stem: latexmath
 
 NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
