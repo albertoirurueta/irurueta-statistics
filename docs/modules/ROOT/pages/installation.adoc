@@ -1,5 +1,6 @@
 = Installation
 :description: Add Irurueta Statistics to a Java project.
+:keywords: Maven dependency, Gradle dependency, Java library installation, irurueta-statistics, com.irurueta, Java 21
 
 Irurueta Statistics is published as a Maven artifact with group id `com.irurueta` and artifact id `irurueta-statistics`.
 The project itself is built as a Java 17 Maven JAR.
@@ -22,7 +23,7 @@ If you are consuming a snapshot build from this checkout, use the repository ver
 [source,kotlin]
 ----
 dependencies {
-    implementation("com.irurueta:irurueta-statistics:1.3.4")
+    implementation("com.irurueta:irurueta-statistics:1.4.0")
 }
 ----
 
@@ -37,3 +38,23 @@ import com.irurueta.statistics.UniformRandomizer;
 import com.irurueta.statistics.NormalDist;
 import com.irurueta.statistics.ChiSqDist;
 ----
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `GaussianRandomizer`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java[source]
+
+| `UniformRandomizer`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java[source]
+
+| `NormalDist`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
+
+| `ChiSqDist`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java[source]
+|===

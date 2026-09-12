@@ -1,5 +1,6 @@
 = Error Function
 :description: Algorithm behind the Erf class: the error function, its Chebyshev approximation, and its inverse.
+:keywords: error function, complementary error function, erf, erfc, inverse error function, Chebyshev approximation, incomplete gamma function, Erf class, Numerical Recipes
 :stem: latexmath
 
 NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
@@ -27,6 +28,9 @@ Both functions are odd around their midpoint and satisfy simple symmetries:
 ++++
 \operatorname{erfc}(0)=1,\quad \operatorname{erfc}(\infty)=0,\quad \operatorname{erfc}(-x)=2-\operatorname{erfc}(x)
 ++++
+
+.The error function erf(x) and the complementary error function erfc(x) = 1 - erf(x).
+image::error-function-plot.svg[Plot of erf(x) and erfc(x) over x from -3 to 3,width=600]
 
 They relate to the regularized incomplete gamma function stem:[P(a,x)] documented in xref:gamma-function.adoc[] by
 
@@ -110,3 +114,14 @@ double xSuchThatErfIsOneHalf = Erf.inverf(0.5);
 ----
 
 `NormalDist.invcdf` calls `Erf.inverfc` to compute quantiles of the normal distribution -- see xref:normal-distribution-algorithm.adoc[].
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `Erf`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java[source]
+|===

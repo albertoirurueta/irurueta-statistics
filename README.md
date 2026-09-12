@@ -55,6 +55,7 @@ graph LR
 - [Javadoc report](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/index.html)
 - [JaCoCo coverage report](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/jacoco/index.html)
 - [Surefire test report](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/surefire.html)
+- [Maven site report](http://albertoirurueta.github.io/irurueta-statistics/mvn-site)
 - [SonarCloud dashboard](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-statistics)
 
 The Antora documentation source lives in [`docs/modules/ROOT`](docs/modules/ROOT).
@@ -106,6 +107,8 @@ GaussianRandomizer gaussianRandomizer = new GaussianRandomizer(0.0, 1.0);
 double gaussianValue = gaussianRandomizer.nextDouble();
 ```
 
+Classes used: [`UniformRandomizer`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java)), [`GaussianRandomizer`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java)).
+
 ### Evaluate a normal distribution
 
 ```java
@@ -117,6 +120,8 @@ double probability = dist.cdf(1.5);
 double x = dist.invcdf(0.975);
 ```
 
+Classes used: [`NormalDist`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java)).
+
 ### Evaluate a chi-squared distribution
 
 ```java
@@ -125,6 +130,8 @@ import com.irurueta.statistics.ChiSqDist;
 double degreesOfFreedom = 5.0;
 double probability = ChiSqDist.cdf(3.2, degreesOfFreedom);
 ```
+
+Classes used: [`ChiSqDist`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java)).
 
 ### Propagate Gaussian uncertainty through a function
 
@@ -147,6 +154,8 @@ DerivativeEvaluator square = new DerivativeEvaluator() {
 
 NormalDist propagated = NormalDist.propagate(square, input);
 ```
+
+Classes used: [`NormalDist`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java)), [`NormalDist.DerivativeEvaluator`](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.DerivativeEvaluator.html) ([source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java)).
 
 ## 🛠️ Build from source
 
@@ -175,14 +184,14 @@ npx antora antora-playbook.yml
 
 ## 🧮 Supported statistical building blocks
 
-| Class | Purpose |
-| --- | --- |
-| `UniformRandomizer` | Generates pseudo-random values uniformly distributed. |
-| `GaussianRandomizer` | Generates pseudo-random values following a normal distribution. |
-| `NormalDist` | p.d.f., c.d.f., inverse c.d.f., and Gaussian uncertainty propagation. |
-| `ChiSqDist` | p.d.f., c.d.f., and inverse c.d.f. of the chi-squared distribution. |
-| `Gamma` | Gamma function, factorials, beta function, incomplete gamma function. |
-| `Erf` | Error function, complementary error function, and their inverses. |
+| Class | Purpose | Javadoc | Source |
+| --- | --- | --- | --- |
+| `UniformRandomizer` | Generates pseudo-random values uniformly distributed. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java) |
+| `GaussianRandomizer` | Generates pseudo-random values following a normal distribution. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java) |
+| `NormalDist` | p.d.f., c.d.f., inverse c.d.f., and Gaussian uncertainty propagation. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java) |
+| `ChiSqDist` | p.d.f., c.d.f., and inverse c.d.f. of the chi-squared distribution. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java) |
+| `Gamma` | Gamma function, factorials, beta function, incomplete gamma function. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java) |
+| `Erf` | Error function, complementary error function, and their inverses. | [javadoc](https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html) | [source](https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java) |
 
 ## 🤝 Contributing
 

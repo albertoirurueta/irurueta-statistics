@@ -1,5 +1,6 @@
 = Statistical Distributions
 :description: Evaluate normal and chi-squared distributions, propagate uncertainty, and use the underlying special functions.
+:keywords: NormalDist, ChiSqDist, probability density function, cumulative distribution function, inverse cdf, Gaussian uncertainty propagation, Mahalanobis distance, Erf, Gamma function, chi-squared distribution, normal distribution
 
 `NormalDist` and `ChiSqDist` evaluate the probability density function (p.d.f.), cumulative distribution function (c.d.f.), and inverse cumulative distribution function of the normal and chi-squared distributions.
 Each method is available both as a static call with explicit distribution parameters and as an instance call that reuses the mean, standard deviation, or degrees of freedom stored in the object.
@@ -114,3 +115,29 @@ double regularizedLowerIncompleteGamma = gamma.gammp(2.0, 3.0);
 ----
 
 `Gamma` extends `GaussLegendreQuadrature`, which supplies the quadrature nodes and weights used to evaluate the incomplete gamma function; both `gammp` and `gammq` can throw `MaxIterationsExceededException` for the same reason as `ChiSqDist.cdf` and `ChiSqDist.invcdf`.
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `NormalDist`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
+
+| `NormalDist.DerivativeEvaluator`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.DerivativeEvaluator.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
+
+| `ChiSqDist`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java[source]
+
+| `MaxIterationsExceededException`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/MaxIterationsExceededException.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/MaxIterationsExceededException.java[source]
+
+| `Erf`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java[source]
+
+| `Gamma`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java[source]
+|===

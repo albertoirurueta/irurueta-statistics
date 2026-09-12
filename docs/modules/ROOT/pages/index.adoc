@@ -1,5 +1,6 @@
 = Irurueta Statistics
 :description: Java library for pseudo-random number generation and statistical distributions.
+:keywords: Java statistics library, pseudo-random number generator, normal distribution, Gaussian distribution, chi-squared distribution, UniformRandomizer, GaussianRandomizer, NormalDist, ChiSqDist, uncertainty propagation
 
 NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
 
@@ -35,18 +36,18 @@ graph TD
     ChiSq --> Gamma
 ----
 
-`Randomizer`::
-Abstract base class for pseudo-random value generation, backed by a `java.util.Random` (or `java.security.SecureRandom`) instance.
-Concrete subclasses are `UniformRandomizer` and `GaussianRandomizer`, which generate booleans, integers, longs, floats, doubles, and arrays of each following a uniform or Gaussian distribution.
+`link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Randomizer.html[Randomizer]`::
+Abstract base class for pseudo-random value generation, backed by a `java.util.Random` (or `java.security.SecureRandom`) instance (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Randomizer.java[source]).
+Concrete subclasses are `link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html[UniformRandomizer]` (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java[source]) and `link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html[GaussianRandomizer]` (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java[source]), which generate booleans, integers, longs, floats, doubles, and arrays of each following a uniform or Gaussian distribution.
 
-`NormalDist`::
-Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a Gaussian (normal) distribution, computes Mahalanobis distance, and propagates Gaussian uncertainty through a differentiable one-dimensional function.
+`link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html[NormalDist]`::
+Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a Gaussian (normal) distribution, computes Mahalanobis distance, and propagates Gaussian uncertainty through a differentiable one-dimensional function (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]).
 
-`ChiSqDist`::
-Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a chi-squared distribution with a given number of degrees of freedom.
+`link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/ChiSqDist.html[ChiSqDist]`::
+Evaluates the probability density function, cumulative distribution function, and inverse cumulative distribution function of a chi-squared distribution with a given number of degrees of freedom (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/ChiSqDist.java[source]).
 
-`Erf` and `Gamma`::
-Static utility classes implementing the error function and the gamma function, used internally by `NormalDist` and `ChiSqDist` and available for direct use in other numerical computations.
+`link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Erf.html[Erf]` and `link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html[Gamma]`::
+Static utility classes implementing the error function and the gamma function, used internally by `NormalDist` and `ChiSqDist` and available for direct use in other numerical computations (link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Erf.java[Erf source], link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java[Gamma source]).
 
 == Quick example
 
@@ -66,6 +67,21 @@ NormalDist normalDist = new NormalDist(0.0, 1.0);
 double probabilityBelowOne = normalDist.cdf(1.0);
 double valueAt95Percent = normalDist.invcdf(0.95);
 ----
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `UniformRandomizer`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/UniformRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/UniformRandomizer.java[source]
+
+| `GaussianRandomizer`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussianRandomizer.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussianRandomizer.java[source]
+
+| `NormalDist`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/NormalDist.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/NormalDist.java[source]
+|===
 
 == Documentation map
 

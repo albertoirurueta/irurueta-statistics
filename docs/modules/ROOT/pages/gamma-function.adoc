@@ -1,5 +1,6 @@
 = Gamma Function
 :description: Algorithm behind the Gamma class: the gamma function, factorials, the beta function, and the incomplete gamma function.
+:keywords: gamma function, log gamma function, factorial, binomial coefficient, beta function, incomplete gamma function, inverse incomplete gamma function, Lanczos approximation, Gauss-Legendre quadrature, Gamma class, Numerical Recipes
 :stem: latexmath
 
 NOTE: This page was generated with the assistance of AI. Please report any inaccuracies.
@@ -22,6 +23,9 @@ For a positive integer stem:[n] it reduces to the familiar factorial, offset by 
 ++++
 n! = \Gamma(n+1), \qquad \Gamma(z+1) = z\,\Gamma(z)
 ++++
+
+.Gamma function Γ(x). Poles occur at zero and every negative integer, where the function alternates sign between consecutive poles.
+image::gamma-function-plot.svg[Plot of the gamma function showing poles at zero and the negative integers,width=600]
 
 Because stem:[\Gamma(x)] overflows for quite modest values of stem:[x], the library follows the book's recommendation and implements the *logarithm* of the gamma function, `Gamma.gammln(xx)`, rather than the gamma function itself.
 `gammln` uses the Lanczos approximation, a rational-function approximation that is specific to the gamma function and accurate to better than stem:[10^{-15}] over the whole positive real line:
@@ -88,6 +92,10 @@ Q(a,x) \equiv 1 - P(a,x) = \frac{1}{\Gamma(a)}\int_x^{\infty} e^{-t} t^{a-1}\, d
 ++++
 
 with the limiting values stem:[P(a,0)=0], stem:[P(a,\infty)=1], stem:[Q(a,0)=1], and stem:[Q(a,\infty)=0].
+
+.Regularized lower incomplete gamma function P(a,x) for four values of a. Small a rises to 1 almost immediately, while larger a delays the rise and flattens the curve into an S shape centered near x ≈ a.
+image::incomplete-gamma-plot.svg[Plot of the regularized lower incomplete gamma function P(a,x) for a = 0.5, 1, 3 and 10,width=600]
+
 No single numerical method is efficient across the whole stem:[(a,x)] plane, so `Gamma.gammp` and `Gamma.gammq` switch between three algorithms, exactly as `struct Gamma` does in the book:
 
 * A *series expansion*, which converges quickly for stem:[x < a+1]:
@@ -182,3 +190,20 @@ try {
 
 `ChiSqDist` uses `gammp` and `invgammp` directly to implement the chi-squared distribution -- see xref:chi-squared-distribution-algorithm.adoc[].
 `Erf` computes the error function as a special case of the incomplete gamma function, although for performance it uses a dedicated Chebyshev approximation instead of calling `Gamma` at run time -- see xref:error-function.adoc[].
+
+== API reference
+
+[cols="1,2", options="header"]
+|===
+| Class
+| Links
+
+| `Gamma`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/Gamma.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/Gamma.java[source]
+
+| `MaxIterationsExceededException`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/MaxIterationsExceededException.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/MaxIterationsExceededException.java[source]
+
+| `GaussLegendreQuadrature`
+| link:https://albertoirurueta.github.io/irurueta-statistics/mvn-site/apidocs/com/irurueta/statistics/GaussLegendreQuadrature.html[javadoc] · link:https://github.com/albertoirurueta/irurueta-statistics/blob/master/src/main/java/com/irurueta/statistics/GaussLegendreQuadrature.java[source]
+|===
