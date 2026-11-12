@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-11-12
+
+### Changed
+
+- Raised the minimum Java version from 17 to 21 (`maven.compiler.source`/`maven.compiler.target`). Consumers need
+  a JDK 21 runtime to use the library.
+
 ## [1.4.0] - 2026-07-05
 
 ### Added
@@ -91,7 +98,8 @@ Initial release.
 - `MaxIterationsExceededException` / `StatisticsException` for convergence failures in the numerical routines.
 - `BuildInfo` singleton exposing build metadata (version, commit, branch) embedded at build time.
 
-[Unreleased]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.4.0...HEAD
+[Unreleased]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.4.1...HEAD
+[1.4.1]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.3.4...1.4.0
 [1.3.4]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.3.3...1.3.4
 [1.3.3]: https://github.com/albertoirurueta/irurueta-statistics/compare/1.3.2...1.3.3
