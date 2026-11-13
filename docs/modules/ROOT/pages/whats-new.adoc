@@ -1,0 +1,15 @@
+= What's new
+:description: Release notes for Irurueta Statistics.
+:keywords: changelog, release notes, irurueta-statistics
+
+NOTE: This documentation was generated with the assistance of AI. Please report any inaccuracies.
+
+== 1.4.1
+
+♻️ Raised the minimum Java version from 17 to 21 (`maven.compiler.source`/`maven.compiler.target`). Consumers need a JDK 21 runtime to use the library.
+
+== 1.4.0
+
+✨ Added an Antora-based documentation site under `docs/`, covering installation, random generation, distributions, and the underlying gamma-function, error-function, chi-squared-distribution, and normal-distribution algorithms.
+
+♻️ Overhauled `README.md` and updated the GitHub Actions workflow definitions. This release contains no changes to library source or tests.
