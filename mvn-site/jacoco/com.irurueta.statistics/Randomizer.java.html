@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Randomizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-statistics</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.statistics</a> &gt; <span class="el_source">Randomizer.java</span></div><h1>Randomizer.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (C) 2012 Alberto Irurueta Carro (alberto@irurueta.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.irurueta.statistics;
+
+import java.security.SecureRandom;
+import java.util.Random;
+
+/**
+ * Parent class of all Randomizers. Specific subclasses exist for different
+ * distribution types (currently only uniform and gaussian distributions are
+ * implemented).
+ * This class provides static methods to ease the instantiation of a Randomizer.
+ * For instance, a UniformRandomizer can be created like this:
+ * &lt;pre&gt;
+ * {@code
+ * Randomizer.create(RandomizerType.UNIFORM_RANDOMIZER);
+ * }
+ * &lt;/pre&gt;
+ * whereas a GaussianRandomizer can be created like this:
+ * &lt;pre&gt;
+ * {@code
+ * Randomizer.create(RandomizerType.GAUSSIAN_RANDOMIZER);
+ * }
+ * &lt;/pre&gt;
+ */
+public abstract class Randomizer {
+
+    /**
+     * Indicates that by default non-secured random instance is used if none
+     * is provided.
+     */
+    public static final boolean USE_SECURE_RANDOM_BY_DEFAULT = false;
+
+    /**
+     * Indicates default randomizer type if non is provided. By default, uniform
+     * randomizers are created.
+     */
+<span class="fc" id="L51">    public static final RandomizerType DEFAULT_RANDOMIZER_TYPE = RandomizerType.UNIFORM_RANDOMIZER;</span>
+
+    /**
+     * Instance in charge of generating pseudo-random values. Secure instances
+     * can be used if the generated values need to be ensured to be &quot;more&quot;
+     * random at the expense of higher computational cost.
+     */
+    private Random internalRandom;
+
+    /**
+     * Constructor.
+     * Uses default {@link Random} implementation.
+     */
+    protected Randomizer() {
+<span class="fc" id="L65">        this(new Random());</span>
+<span class="fc" id="L66">    }</span>
+
+    /**
+     * Constructor.
+     *
+     * @param internalRandom Instance in charge of generating pseudo-random
+     *                       values.
+     * @throws NullPointerException if provided value is null.
+     */
+<span class="fc" id="L75">    protected Randomizer(final Random internalRandom) {</span>
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (internalRandom == null) {</span>
+<span class="fc" id="L78">            throw new NullPointerException();</span>
+        }
+<span class="fc" id="L80">        this.internalRandom = internalRandom;</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Returns internal instance in charge of generating pseudo-random values.
+     *
+     * @return instance in charge of generating pseudo-random values.
+     */
+    public Random getInternalRandom() {
+<span class="fc" id="L89">        return internalRandom;</span>
+    }
+
+    /**
+     * Sets internal instance in charge of generating pseudo-random values.
+     *
+     * @param internalRandom Instance in charge of generating pseudo-random
+     *                       values.
+     * @throws NullPointerException if provided value is null.
+     */
+    public void setInternalRandom(final Random internalRandom) {
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (internalRandom == null) {</span>
+<span class="fc" id="L101">            throw new NullPointerException();</span>
+        }
+<span class="fc" id="L103">        this.internalRandom = internalRandom;</span>
+<span class="fc" id="L104">    }</span>
+
+    /**
+     * Sets the seed for the internal randomizer.
+     * A seed determines the sequence of pseudo-random numbers to be generated.
+     * Whenever the same seed is used on different executions, the generated
+     * sequence will be the same.
+     * To alleviate this issue and allow the generation of &quot;more&quot; random values
+     * the system clock can be used as the seed.
+     * Example:
+     * &lt;pre&gt;
+     * {@code
+     * Randomizer randomizer = Randomizer.create();
+     * randomizer.setSeed(System.currentTimeMillis());
+     * }
+     * &lt;/pre&gt;
+     * Notice that using the clock as seed is not a secure solution to generate
+     * random values. If a secure solution is required (i.e. for encryption
+     * purposes, then a SecureRandom instance must be provided as the internal
+     * random instance)
+     *
+     * @param seed Value to be used as seed
+     */
+    public void setSeed(final long seed) {
+<span class="fc" id="L128">        internalRandom.setSeed(seed);</span>
+<span class="fc" id="L129">    }</span>
+
+    /**
+     * Returns next random boolean value following a given distribution
+     * depending on the randomizer type.
+     *
+     * @return Next random boolean value
+     */
+    public abstract boolean nextBoolean();
+
+    /**
+     * Fills provided array with random booleans.
+     *
+     * @param array Array to be filled.
+     */
+    public void fill(final boolean[] array) {
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L146">            array[i] = nextBoolean();</span>
+        }
+<span class="fc" id="L148">    }</span>
+
+    /**
+     * Returns array of booleans.
+     *
+     * @param length Length of array to be returned.
+     * @return Array of uniform booleans.
+     * @throws IllegalArgumentException if provided value is zero or negative.
+     */
+    public boolean[] nextBooleans(final int length) {
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L159">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L161">        final boolean[] array = new boolean[length];</span>
+<span class="fc" id="L162">        fill(array);</span>
+<span class="fc" id="L163">        return array;</span>
+    }
+
+    /**
+     * Returns next random integer value following a given distribution
+     * depending on the randomizer type.
+     *
+     * @return Next random integer value.
+     */
+    public abstract int nextInt();
+
+    /**
+     * Fills provided array with random integer values.
+     *
+     * @param array Array to be filled.
+     */
+    public void fill(final int[] array) {
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L181">            array[i] = nextInt();</span>
+        }
+<span class="fc" id="L183">    }</span>
+
+    /**
+     * Returns array of random integers.
+     *
+     * @param length Length of array to be returned.
+     * @return Array of random integers.
+     * @throws IllegalArgumentException if provided value is zero or negative.
+     */
+    public int[] nextInts(final int length) {
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L194">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L196">        final int[] array = new int[length];</span>
+<span class="fc" id="L197">        fill(array);</span>
+<span class="fc" id="L198">        return array;</span>
+    }
+
+    /**
+     * Returns next random long value following a given distribution depending
+     * on the randomizer type.
+     *
+     * @return Next random integer value.
+     */
+    public abstract long nextLong();
+
+    /**
+     * Fills provided array with random long values.
+     *
+     * @param array Array to be filled.
+     */
+    public void fill(final long[] array) {
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L216">            array[i] = nextLong();</span>
+        }
+<span class="fc" id="L218">    }</span>
+
+    /**
+     * Returns array of random long values.
+     *
+     * @param length Length of array to be returned.
+     * @return Array of random long values.
+     * @throws IllegalArgumentException if provided value is zero or negative.
+     */
+    public long[] nextLongs(final int length) {
+<span class="fc bfc" id="L228" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L229">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L231">        final long[] array = new long[length];</span>
+<span class="fc" id="L232">        fill(array);</span>
+<span class="fc" id="L233">        return array;</span>
+    }
+
+    /**
+     * Returns next random floating-point value following a given distribution
+     * depending on the randomizer type.
+     *
+     * @return Next random integer value.
+     */
+    public abstract float nextFloat();
+
+    /**
+     * Fills provided array with random floating point values.
+     *
+     * @param array Array to be filled.
+     */
+    public void fill(final float[] array) {
+<span class="fc bfc" id="L250" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L251">            array[i] = nextFloat();</span>
+        }
+<span class="fc" id="L253">    }</span>
+
+    /**
+     * Returns array of floating point values.
+     *
+     * @param length Length of array to be returned.
+     * @return Array of random float values.
+     * @throws IllegalArgumentException if provided value is zero or negative.
+     */
+    public float[] nextFloats(final int length) {
+<span class="fc bfc" id="L263" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L264">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L266">        final float[] array = new float[length];</span>
+<span class="fc" id="L267">        fill(array);</span>
+<span class="fc" id="L268">        return array;</span>
+    }
+
+    /**
+     * Returns next random double precision floating-point value following a
+     * given distribution depending on the randomizer type.
+     *
+     * @return Next random double precision floating-point value.
+     */
+    public abstract double nextDouble();
+
+    /**
+     * Fills provided array with random double precision floating point values.
+     *
+     * @param array Array to be filled.
+     */
+    public void fill(final double[] array) {
+<span class="fc bfc" id="L285" title="All 2 branches covered.">        for (int i = 0; i &lt; array.length; i++) {</span>
+<span class="fc" id="L286">            array[i] = nextDouble();</span>
+        }
+<span class="fc" id="L288">    }</span>
+
+    /**
+     * Returns array of double precision floating point values.
+     *
+     * @param length Length of array to be returned.
+     * @return Array of random double values.
+     * @throws IllegalArgumentException if provided value is zero or negative.
+     */
+    public double[] nextDoubles(final int length) {
+<span class="fc bfc" id="L298" title="All 2 branches covered.">        if (length &lt;= 0) {</span>
+<span class="fc" id="L299">            throw new IllegalArgumentException();</span>
+        }
+<span class="fc" id="L301">        final double[] array = new double[length];</span>
+<span class="fc" id="L302">        fill(array);</span>
+<span class="fc" id="L303">        return array;</span>
+    }
+
+    /**
+     * Returns the randomizer type of this instance.
+     *
+     * @return Randomizer type.
+     */
+    public abstract RandomizerType getType();
+
+    /**
+     * Creates a new Randomizer instance using DEFAULT_RANDOMIZER_TYPE and
+     * USE_SECURE_RANDOM_By_DEFAULT to determine what type of random
+     * distribution is to be used and whether the random generator must be
+     * secure or not.
+     *
+     * @return A Randomizer instance using default randomizer type and secure
+     * mode.
+     */
+    public static Randomizer create() {
+<span class="fc" id="L323">        return create(DEFAULT_RANDOMIZER_TYPE);</span>
+    }
+
+    /**
+     * Creates a new Randomizer instance using DEFAULT_RANDOMIZER_TYPE. The
+     * instantiated Randomizer will generate secure values depending on provided
+     * parameter. When secure random generator is requested, generated values
+     * tend to be more &quot;random&quot; at the expense of larger computational cost.
+     * Secure mode should only be used on specific applications, such as
+     * cryptography, and hence the name of the parameter.
+     *
+     * @param useSecureRandom Parameter indicating whether generated values will
+     *                        be used for security purposes such as cryptography.
+     * @return A Randomizer instance using provided secure mode.
+     */
+    public static Randomizer create(final boolean useSecureRandom) {
+<span class="fc" id="L339">        return create(DEFAULT_RANDOMIZER_TYPE, useSecureRandom);</span>
+    }
+
+    /**
+     * Creates a new Randomizer instance using provided internal randomizer
+     * instance.
+     *
+     * @param internalRandomizer Internal instance to be used for generation of
+     *                           pseudo-random values.
+     * @return A Randomizer instance using provided internal randomizer.
+     * @throws NullPointerException Exception thrown if provided internal
+     *                              randomizer is null.
+     */
+    public static Randomizer create(final Random internalRandomizer) {
+<span class="fc" id="L353">        return create(DEFAULT_RANDOMIZER_TYPE, internalRandomizer);</span>
+    }
+
+    /**
+     * Creates a new Randomizer instance using provided randomizer type and
+     * the default secure mode specified by USE_SECURE_RANDOM_BY_DEFAULT.
+     *
+     * @param type Randomizer type to be used when creating an instance.
+     * @return A Randomizer instance using provided randomizer type.
+     */
+    public static Randomizer create(final RandomizerType type) {
+<span class="fc" id="L364">        return create(type, USE_SECURE_RANDOM_BY_DEFAULT);</span>
+    }
+
+    /**
+     * Creates a new Randomizer instance using provided randomizer type and
+     * provided secure mode.
+     *
+     * @param type            Randomizer type to be used when creating an instance.
+     * @param useSecureRandom Boolean indicating whether generated values will
+     *                        be secure for specific purposes such as cryptography. Secure mode
+     *                        generates more &quot;random&quot; values at the expense of higher computational
+     *                        cost.
+     * @return A Randomizer instance using provided randomizer type and secure
+     * mode.
+     */
+    public static Randomizer create(final RandomizerType type, final boolean useSecureRandom) {
+<span class="fc bfc" id="L380" title="All 2 branches covered.">        if (useSecureRandom) {</span>
+<span class="fc" id="L381">            return create(type, new SecureRandom());</span>
+        } else {
+<span class="fc" id="L383">            return create(type, new Random());</span>
+        }
+    }
+
+    /**
+     * Creates a new Randomizer instance using provided randomizer type and
+     * internal randomizer.
+     *
+     * @param type           Randomizer type to be used when creating an instance.
+     * @param internalRandom Internal random instance to be used to generate
+     *                       pseudo-random values.
+     * @return A Randomizer instance using provided randomizer type and internal
+     * random instance.
+     * @throws NullPointerException Exception thrown if internal random is null.
+     */
+    public static Randomizer create(final RandomizerType type, final Random internalRandom) {
+
+<span class="fc bfc" id="L400" title="All 2 branches covered.">        if (internalRandom == null) {</span>
+<span class="fc" id="L401">            throw new NullPointerException();</span>
+        }
+
+<span class="fc bfc" id="L404" title="All 2 branches covered.">        if (type == RandomizerType.GAUSSIAN_RANDOMIZER) {</span>
+<span class="fc" id="L405">            return new GaussianRandomizer(internalRandom);</span>
+        } else {
+<span class="fc" id="L407">            return new UniformRandomizer(internalRandom);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
