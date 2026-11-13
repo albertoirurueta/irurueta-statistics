@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-`irurueta-statistics` is a small, dependency-free Java 17 library (Maven, `com.irurueta:irurueta-statistics`) providing pseudo-random number generation and common statistical distributions. All production code lives under the single package `com.irurueta.statistics` in `src/main/java`; tests mirror it 1:1 in `src/test/java` (one `*Test.java` per class, JUnit 5).
+`irurueta-statistics` is a small, dependency-free Java 21 library (Maven, `com.irurueta:irurueta-statistics`) providing pseudo-random number generation and common statistical distributions. All production code lives under the single package `com.irurueta.statistics` in `src/main/java`; tests mirror it 1:1 in `src/test/java` (one `*Test.java` per class, JUnit 5).
 
 ## Common commands
 

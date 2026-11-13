@@ -1,4 +1,5 @@
 * xref:index.adoc[Overview]
+* xref:whats-new.adoc[What's new]
 * xref:installation.adoc[Installation]
 * xref:random-generation.adoc[Random value generation]
 * xref:distributions.adoc[Statistical distributions]

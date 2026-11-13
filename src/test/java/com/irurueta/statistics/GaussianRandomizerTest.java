@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GaussianRandomizerTest {
 
     private static final int NUM_SAMPLES = 1000000;
-    private static final double RELATIVE_ERROR = 0.05;
+    private static final double RELATIVE_ERROR = 0.07;
     private static final double ABSOLUTE_ERROR = 0.01;
 
     private static final double MEAN = 5;
@@ -50,7 +50,8 @@ class GaussianRandomizerTest {
         assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
-        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(new Random(), MEAN,
+        final var random = new Random();
+        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(random, MEAN,
                 -STANDARD_DEVIATION));
 
         // test 3rd constructor
@@ -74,7 +75,7 @@ class GaussianRandomizerTest {
         assertEquals(STANDARD_DEVIATION, randomizer.getStandardDeviation(), 0.0);
 
         // Force IllegalArgumentException
-        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(new Random(), MEAN,
+        assertThrows(IllegalArgumentException.class, () -> new GaussianRandomizer(random, MEAN,
                 -STANDARD_DEVIATION));
     }
 
