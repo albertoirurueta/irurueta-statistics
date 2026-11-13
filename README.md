@@ -70,7 +70,7 @@ For a released dependency, pin the version you want to use. Example:
 <dependency>
     <groupId>com.irurueta</groupId>
     <artifactId>irurueta-statistics</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
 </dependency>
 ```
 
@@ -88,7 +88,7 @@ For local development against the current repository snapshot:
 
 ```kotlin
 dependencies {
-    implementation("com.irurueta:irurueta-statistics:1.4.0")
+    implementation("com.irurueta:irurueta-statistics:1.4.1")
 }
 ```
 
